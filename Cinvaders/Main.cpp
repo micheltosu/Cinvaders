@@ -1,10 +1,19 @@
+#ifdef _WIN32
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
+
+#elif defined (__APPLE__)
+#include <SDL2/SDL.h>
+#include <SDL2_image/SDL_image.h>
+#include <SDL2_mixer/SDL_mixer.h>
+#include <SDL2_ttf/SDL_ttf.h>
+#endif
+
 #include <string>
 #include <iostream>
-
 
 using namespace std;
 int main(int argc, char** argv) {
@@ -21,7 +30,7 @@ int main(int argc, char** argv) {
 
 
 
-
+	SDL_Delay(15000);
 
 
 	//Destroyers
