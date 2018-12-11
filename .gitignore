@@ -4,6 +4,7 @@
 # Visual studio code ignore
 .vscode
 Build/*
+*.ds_store
 
 # User-specific files
 *.suo
