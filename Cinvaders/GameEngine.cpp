@@ -59,7 +59,7 @@ namespace ToMingine {
             exit(-1);
         }
 
-        background = IMG_LoadTexture(renderer, "/Users/michel/git/Cinvaders/Resources/Image/background.png");
+        background = IMG_LoadTexture(renderer, "Resources/Image/background.png");
         if (background == nullptr) {
             std::cout << "Error: cannot load image: " << std::endl;
             std::cout << SDL_GetError() << std::endl;
