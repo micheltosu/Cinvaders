@@ -10,6 +10,15 @@ int main(int argc, char** argv) {
 
 	ToMingine::GameEngine gm = ToMingine::GameEngine::getInstance();
 	gm.setBackground("Resources/Image/background.png");
+
+	GameObject player1;
+	Sprite p1sprite;
+	Player p1char; 
+	player1.addRenderedObject(p1sprite);
+	player1.addGameChar(p1char);
+
+
+
 	
 	gm.run();
 
