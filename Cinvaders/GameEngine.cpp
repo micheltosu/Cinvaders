@@ -6,8 +6,7 @@ namespace ToMingine {
     void GameEngine::updateWindow() {
         SDL_RenderClear(renderer);
         //updateGameObjects();
-        SDL_Rect rekt = {0, 0, 1280, 720};
-        SDL_RenderCopy(renderer, background, NULL, &rekt);
+        SDL_RenderCopy(renderer, background, NULL, NULL);
         SDL_RenderPresent(renderer);
     }
 
@@ -43,29 +42,25 @@ namespace ToMingine {
     }
 
     GameEngine::GameEngine() {
-        SDL_Init(SDL_INIT_EVERYTHING);
+        if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
+			std::cout << SDL_GetError() << std::endl;
+			exit(-1);
+		}
+		
         TTF_Init();
 
-        SDL_Window* window = SDL_CreateWindow("Titel", 100, 100, window_width, window_height, 0);
+        window = SDL_CreateWindow("ToMingine", 100, 100, window_width, window_height, 0);
         if (window  == nullptr) {
             std::cout << "Error: cannot load window: " << std::endl;
             std::cout << SDL_GetError() << std::endl;
             exit(-1);
         }
-        SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+        renderer = SDL_CreateRenderer(window, -1, 0);
         if (renderer  == nullptr) {
             std::cout << "Error: cannot load renderer: " << std::endl;
             std::cout << SDL_GetError() << std::endl;
             exit(-1);
-        }
-
-        background = IMG_LoadTexture(renderer, "Resources/Image/background.png");
-        if (background == nullptr) {
-            std::cout << "Error: cannot load image: " << std::endl;
-            std::cout << SDL_GetError() << std::endl;
-            exit(-1);
-        }
-      
+        }      
     }
 
     GameEngine::~GameEngine() {
