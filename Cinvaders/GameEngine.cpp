@@ -41,6 +41,12 @@ namespace ToMingine {
 
     }
 
+    GameEngine &GameEngine::getInstance() {
+        static GameEngine gm; 
+
+        return gm;
+    }
+
     GameEngine::GameEngine() {
         if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
 			std::cout << SDL_GetError() << std::endl;
@@ -69,6 +75,4 @@ namespace ToMingine {
         TTF_Quit();
         SDL_Quit();
     }
-
-    GameEngine gm;
 }

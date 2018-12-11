@@ -19,13 +19,14 @@ namespace ToMingine {
 
     class GameEngine {
         public:
-        GameEngine();
         ~GameEngine();
-
+        static GameEngine &getInstance();
+        
         void run();
         void updateWindow();
         void setBackground(std::string filename);
         private:
+        GameEngine();
         
         SDL_Window *window;
         SDL_Renderer *renderer;
@@ -36,6 +37,6 @@ namespace ToMingine {
         
     };
 
-    extern GameEngine gm;
+    //extern GameEngine gm;
     
 }
