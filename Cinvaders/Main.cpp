@@ -11,7 +11,8 @@ int main(int argc, char** argv) {
 	ToMingine::GameEngine gm = ToMingine::GameEngine::getInstance();
 	gm.setBackground("Resources/Image/background.png");
 
-	gm.add("Resources/Image/ship.png");
+	GameObject* go = new GameObject("Resources/Image/ship.png");
+	gm.add(go);
 
 
 

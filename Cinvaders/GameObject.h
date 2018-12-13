@@ -1,3 +1,6 @@
+#ifndef GAMEOBJECT_H
+#define GAMEOBJECT_H
+
 #include "RenderedObject.h"
 #include <string>
 
@@ -5,7 +8,7 @@ namespace ToMingine {
 
 class GameObject {
     public:
-		GameObject(SDL_Renderer* renderer, std::string);
+		GameObject(std::string);
 		~GameObject();
 		void tick();
 		int width, height;
@@ -19,3 +22,4 @@ class GameObject {
 
 	};
 }
+#endif

@@ -33,8 +33,8 @@ namespace ToMingine {
         } // yttre while
     }
 
-	void GameEngine::add(std::string path){
-		gameObjects.push_back(new GameObject(renderer,path));
+	void GameEngine::add(GameObject* go){
+		gameObjects.push_back(go);
 	}
 
     void GameEngine::setBackground(std::string filename) {
