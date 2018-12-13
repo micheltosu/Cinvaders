@@ -12,7 +12,10 @@
 #include <SDL2_ttf/SDL_ttf.h>
 #endif
 
+#include "GameObject.h"
+#include <iostream>
 #include <string>
+#include <vector>
 
 namespace ToMingine {
 
@@ -23,6 +26,8 @@ namespace ToMingine {
         static GameEngine &getInstance();
         
         void run();
+		void add(std::string);
+		void remover(GameObject*);
         void updateWindow();
         void setBackground(std::string filename);
         private:
@@ -31,6 +36,7 @@ namespace ToMingine {
         SDL_Window *window;
         SDL_Renderer *renderer;
         SDL_Texture *background;
+		std::vector<GameObject*> gameObjects;
 
         int window_width = 1280;
         int window_height = 720;

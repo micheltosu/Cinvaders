@@ -1,16 +1,20 @@
 #include "RenderedObject.h"
+#include <string>
 
 namespace ToMingine {
 
 class GameObject {
     public:
-    GameObject();
-    ~GameObject();
-    void tick();
-    void addRenderedObject(RenderedObject &obj);
+		GameObject(SDL_Renderer* renderer, std::string);
+		GameObject();
+		~GameObject();
+		void tick();
+		SDL_Renderer* renderer;
+
+		SDL_Texture* texture;
 
     private:
-    RenderedObject &ro;
+		void draw();
 
 };
 }

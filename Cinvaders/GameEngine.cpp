@@ -1,12 +1,14 @@
 #include "GameEngine.h"
-#include <iostream>
+
 
 namespace ToMingine {
 
     void GameEngine::updateWindow() {
-        SDL_RenderClear(renderer);
-        //updateGameObjects();
+		SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, background, NULL, NULL);
+		for (GameObject* go : gameObjects) {
+			go->tick();
+		}
         SDL_RenderPresent(renderer);
     }
 
@@ -24,11 +26,16 @@ namespace ToMingine {
                         break;
                 } // switch end
             } // event loop
+			
 
             updateWindow();
             
         } // yttre while
     }
+
+	void GameEngine::add(std::string path){
+		gameObjects.push_back(new GameObject(renderer,path));
+	}
 
     void GameEngine::setBackground(std::string filename) {
         background = IMG_LoadTexture(renderer, filename.c_str());
