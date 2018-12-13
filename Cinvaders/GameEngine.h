@@ -28,7 +28,7 @@ namespace ToMingine {
         void run();
 		void add(GameObject*);
 		void remover(GameObject*);
-        void updateWindow();
+        void updateWindow(SDL_Event&);
         void setBackground(std::string filename);
 		SDL_Renderer* getRen() { return renderer; }
         private:

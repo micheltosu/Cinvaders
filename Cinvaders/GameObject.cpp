@@ -11,7 +11,12 @@ namespace ToMingine {
 		SDL_FreeSurface(surface);
 	}
 
-	void GameObject::tick(){
+
+
+	void GameObject::tick(SDL_Event& event){
+		if (script) {
+			script->keyBoardEvent(event);
+		}
 		draw();
 	}
 

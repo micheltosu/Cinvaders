@@ -3,11 +3,11 @@
 
 namespace ToMingine {
 
-    void GameEngine::updateWindow() {
+    void GameEngine::updateWindow(SDL_Event& event) {
 		SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, background, NULL, NULL);
 		for (GameObject* go : gameObjects) {
-			go->tick();
+			go->tick(event);
 		}
         SDL_RenderPresent(renderer);
     }
@@ -28,7 +28,7 @@ namespace ToMingine {
             } // event loop
 			
 
-            updateWindow();
+            updateWindow(event);
             
         } // yttre while
     }
