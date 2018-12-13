@@ -26,7 +26,7 @@ namespace ToMingine {
         static GameEngine &getInstance();
         
         void run();
-		void add(std::string);
+		void add(GameObject*);
 		void remover(GameObject*);
         void updateWindow();
         void setBackground(std::string filename);
