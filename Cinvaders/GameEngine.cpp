@@ -34,7 +34,7 @@ namespace ToMingine {
     }
 
 	void GameEngine::add(std::string path){
-		gameObjects.push_back(new GameObject(renderer,path));
+		gameObjects.push_back(new GameObject(path));
 	}
 
     void GameEngine::setBackground(std::string filename) {

@@ -1,9 +1,10 @@
 #include "GameObject.h"
+#include "GameEngine.h"
 
 namespace ToMingine {
-	GameObject::GameObject(SDL_Renderer* renderer, std::string path) {
+	GameObject::GameObject(std::string path) {
 
-		this->renderer = renderer;
+		renderer = GameEngine::getInstance().getRen();
 		SDL_Surface* surface = IMG_Load(path.c_str());
 		texture = SDL_CreateTextureFromSurface(renderer, surface);
 		rect = { 0, 0, surface->w, surface->h };

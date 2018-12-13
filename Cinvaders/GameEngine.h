@@ -30,6 +30,7 @@ namespace ToMingine {
 		void remover(GameObject*);
         void updateWindow();
         void setBackground(std::string filename);
+		SDL_Renderer* getRen() { return renderer; }
         private:
         GameEngine();
         
