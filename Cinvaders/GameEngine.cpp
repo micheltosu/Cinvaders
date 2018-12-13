@@ -24,6 +24,8 @@ namespace ToMingine {
                     case SDL_QUIT:
                         quit = true;
                         break;
+					case SDL_KEYDOWN:
+						//go->keyboarevent(new ToMingineChar(event.key));
                 } // switch end
             } // event loop
 			

@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include "GameEngine.h"
+#include "PlayerScript.h"
 
 using namespace std;
 using namespace ToMingine;
@@ -12,6 +13,7 @@ int main(int argc, char** argv) {
 	gm.setBackground("Resources/Image/background.png");
 
 	GameObject* go = new GameObject("Resources/Image/ship.png");
+	go->addScript(PlayerScript(go));
 	gm.add(go);
 
 

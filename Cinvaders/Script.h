@@ -10,7 +10,7 @@
 namespace ToMingine {
 	class Script {
 	public:
-		virtual void keyBoardEvent(SDL_Event& keyEvent) {};
+		virtual void keyBoardEvent(SDL_Event& keyEvent);
 	};
 
 }
