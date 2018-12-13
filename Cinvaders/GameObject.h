@@ -6,15 +6,16 @@ namespace ToMingine {
 class GameObject {
     public:
 		GameObject(SDL_Renderer* renderer, std::string);
-		GameObject();
 		~GameObject();
 		void tick();
-		SDL_Renderer* renderer;
-
-		SDL_Texture* texture;
+		int width, height;
 
     private:
 		void draw();
+		SDL_Rect rect;
+		SDL_Renderer* renderer;
+		SDL_Texture* texture;
+		
 
-};
+	};
 }
