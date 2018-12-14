@@ -13,12 +13,9 @@ int main(int argc, char** argv) {
 	gm.setBackground("Resources/Image/background.png");
 
 	GameObject* go = new GameObject("Resources/Image/ship.png");
-	go->addScript(PlayerScript(go));
+	PlayerScript* s = new PlayerScript(go);
+	go->addScript(s);
 	gm.add(go);
-
-
-
-	
 	gm.run();
 
 	return 0;

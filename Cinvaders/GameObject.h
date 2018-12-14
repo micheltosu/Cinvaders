@@ -12,14 +12,15 @@ class GameObject {
 		GameObject(std::string);
 		~GameObject();
 
-		void addScript(Script s) { script = s; }
+		void addScript(Script* s) { script = s; }
 		void tick(SDL_Event&);
-		int width, height;
+		void move(int x, int y);
 
     private:
 		void draw();
+		int width, height;
 
-		Script* script;
+		Script* script = nullptr;
 		SDL_Rect rect;
 		SDL_Renderer* renderer;
 		SDL_Texture* texture;

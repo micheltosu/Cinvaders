@@ -1,3 +1,7 @@
+#ifndef GAME_ENGINE_H
+#define GAME_ENGINE_H
+
+
 #ifdef _WIN32
 
 #include <SDL.h>
@@ -19,8 +23,7 @@
 
 namespace ToMingine {
 
-
-    class GameEngine {
+	class GameEngine {
         public:
         ~GameEngine();
         static GameEngine &getInstance();
@@ -47,3 +50,4 @@ namespace ToMingine {
     //extern GameEngine gm;
     
 }
+#endif // !GAME_ENGINE_H

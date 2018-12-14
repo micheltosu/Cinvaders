@@ -14,13 +14,21 @@ namespace ToMingine {
 
 
 	void GameObject::tick(SDL_Event& event){
-		if (script) {
-			script->keyBoardEvent(event);
+		if (script != nullptr) {
+			script->run();
+			
 		}
 		draw();
+	}
+
+	void GameObject::move(int x, int y){
+		rect.x += x;
+		rect.y += y;
 	}
 
 	void GameObject::draw(){
 		SDL_RenderCopy(renderer, texture, NULL, &rect);
 	}
+
+
 }
