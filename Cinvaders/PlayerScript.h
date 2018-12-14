@@ -12,7 +12,8 @@ class PlayerScript : public Script
 public:
 	PlayerScript(GameObject*);
 	~PlayerScript();
-	void keyBoardEvent(char);
+	void run();
+	//void keyBoardEvent(char);
 
 private:
 	GameObject* go;

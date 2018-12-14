@@ -9,8 +9,6 @@ PlayerScript::~PlayerScript()
 {
 }
 
-void PlayerScript::keyBoardEvent(char input){
-	if (input == 'w')
-		std::cout << "Pressed W." << std::endl;
-	}
+ void PlayerScript::run(){
+	 go->move(1, 1);
 }
