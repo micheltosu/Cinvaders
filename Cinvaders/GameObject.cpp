@@ -16,7 +16,7 @@ namespace ToMingine {
 	void GameObject::tick(SDL_Event& event){
 		if (script != nullptr) {
 			script->run();
-			runInput(1);
+			
 		}
 		draw();
 	}
@@ -24,15 +24,6 @@ namespace ToMingine {
 	void GameObject::move(int x, int y){
 		rect.x += x;
 		rect.y += y;
-	}
-
-	void GameObject::addInput(Input i){
-		inputs.push_back(i);
-	}
-
-	void GameObject::runInput(unsigned int key){
-		for (Input i : inputs)
-			i.doMe(key);
 	}
 
 	void GameObject::draw(){
