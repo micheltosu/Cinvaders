@@ -2,8 +2,10 @@
 #define GAMEOBJECT_H
 
 #include "RenderedObject.h"
-#include <string>
 #include "Script.h"
+#include "Input.h"
+#include <string>
+#include <vector>
 
 namespace ToMingine {
 
@@ -15,9 +17,16 @@ class GameObject {
 		void addScript(Script* s) { script = s; }
 		void tick(SDL_Event&);
 		void move(int x, int y);
+		void addInput(Input i);
+
+		
 
     private:
+
+		void runInput(unsigned int key);
 		void draw();
+
+		std::vector<Input> inputs;
 		int width, height;
 
 		Script* script = nullptr;

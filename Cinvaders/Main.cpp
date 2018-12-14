@@ -5,6 +5,12 @@
 
 using namespace std;
 using namespace ToMingine;
+
+
+void myFunc() {
+	std::cout << "Jag pekar!!!" << std::endl;
+}
+
 int main(int argc, char** argv) {
 	int window_width = 1280;
 	int window_height = 720;
@@ -16,6 +22,13 @@ int main(int argc, char** argv) {
 	PlayerScript* s = new PlayerScript(go);
 	go->addScript(s);
 	gm.add(go);
+
+
+
+	void(*fpek)() = myFunc;
+	Input n = Input(1, fpek);
+	go->addInput(n);
+
 	gm.run();
 
 	return 0;
