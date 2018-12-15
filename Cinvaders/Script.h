@@ -8,6 +8,7 @@
 #endif
 
 #include <map>
+#include <iostream>
 
 namespace ToMingine {
 	class Script {
@@ -25,9 +26,13 @@ namespace ToMingine {
 			input[key] = fpek;
 		}
 
-	void runInput(SDL_Event& key) {
-		input.find(key.key.keysym.sym);
-	}
+		void runInput(SDL_Event& key) {
+			input.at(key.key.keysym.sym)();
+		}
+
+		void runInput(Uint32 key) {
+			input.at(key)();
+		}
 
 	private:
 		std::map<Uint32, void (*)()> input;

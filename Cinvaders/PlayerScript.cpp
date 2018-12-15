@@ -4,9 +4,9 @@ void myFunc() {
 	std::cout << "Jag pekar!! " << std::endl;
 }
 
+void(*fpek)() = myFunc;
 PlayerScript::PlayerScript(GameObject* go){
 	this->go = go;
-	void(*fpek)() = myFunc;
 	addInput<void> (SDLK_w, fpek);
 }
 

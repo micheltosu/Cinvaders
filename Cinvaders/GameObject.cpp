@@ -16,7 +16,7 @@ namespace ToMingine {
 	void GameObject::tick(SDL_Event& event){
 		if (script != nullptr) {
 			script->run();
-			script->runInput(event);
+			script->runInput(SDLK_w);
 			
 		}
 		draw();
