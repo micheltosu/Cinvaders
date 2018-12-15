@@ -27,7 +27,9 @@ namespace ToMingine {
 		}
 
 		void runInput(SDL_Event& key) {
+			if (!(input.find(key.key.keysym.sym) == input.end())) {
 			input.at(key.key.keysym.sym)();
+			}
 		}
 
 		void runInput(Uint32 key) {

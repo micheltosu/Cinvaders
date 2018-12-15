@@ -18,3 +18,7 @@ PlayerScript::~PlayerScript()
  void PlayerScript::run(){
 	 go->move(1, 1);
 }
+
+ void PlayerScript::moveDown(){
+	 go->move(0,1);
+ }

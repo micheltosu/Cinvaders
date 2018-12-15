@@ -13,8 +13,7 @@ public:
 	PlayerScript(GameObject*);
 	~PlayerScript();
 	void run();
-	//void keyBoardEvent(char);
-
+	void moveDown();
 private:
 	GameObject* go;
 };
