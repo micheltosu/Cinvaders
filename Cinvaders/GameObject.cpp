@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "GameEngine.h"
+#include <iostream>
 
 namespace ToMingine {
 	GameObject::GameObject(std::string path) {
@@ -13,14 +14,19 @@ namespace ToMingine {
 
 
 
-	void GameObject::tick(SDL_Event& event){
+	void GameObject::tick(){
 		if (script != nullptr) {
 			script->run();
-			script->runInput(event);
+			
 			
 		}
 		draw();
 	}
+
+	void GameObject::keyBoardEvent(Uint32 key){
+		script->keyBoardEvent(key);
+	}
+
 
 	void GameObject::move(int x, int y){
 		rect.x += x;

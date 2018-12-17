@@ -3,11 +3,11 @@
 
 namespace ToMingine {
 
-    void GameEngine::updateWindow(SDL_Event& event) {
+    void GameEngine::updateWindow() {
 		SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, background, NULL, NULL);
 		for (GameObject* go : gameObjects) {
-			go->tick(event);
+			go->tick();
 		}
         SDL_RenderPresent(renderer);
     }
@@ -19,17 +19,22 @@ namespace ToMingine {
         while (!quit) {
             SDL_Event event;
 			SDL_PollEvent(&event);
-           // while( SDL_PollEvent(&event)) {
+			Uint32 key = 0;
+			while( SDL_PollEvent(&event)) {
                 switch (event.type) {
                     case SDL_QUIT:
                         quit = true;
                         break;
+					case SDL_KEYDOWN:
+						key = event.key.keysym.sym;
+						for (GameObject* go : gameObjects) {
+							go->keyBoardEvent(key);
+						}
+						break;
                 } // switch end
-           // } // event loop
-			
-			
-            updateWindow(event);
-            
+            } // event loop
+			std::cout << "Utanför event loopen" << std::endl;
+            updateWindow();
         } // yttre while
     }
 

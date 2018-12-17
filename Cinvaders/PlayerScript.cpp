@@ -1,13 +1,8 @@
 #include "PlayerScript.h"
+#include <iostream>
 
-void myFunc() {
-	std::cout << "Jag pekar!! " << std::endl;
-}
-
-void(*fpek)() = myFunc;
 PlayerScript::PlayerScript(GameObject* go){
 	this->go = go;
-	addInput<void> (SDLK_w, fpek);
 }
 
 
@@ -16,9 +11,15 @@ PlayerScript::~PlayerScript()
 }
 
  void PlayerScript::run(){
-	 go->move(1, 1);
+	 //go->move(0, 1);
 }
 
  void PlayerScript::moveDown(){
 	 go->move(0,1);
  }
+
+void PlayerScript::keyBoardEvent(Uint32 key){
+	std::cout << "keyboardevent";
+	if (key == SDLK_s)
+		 moveDown();
+}

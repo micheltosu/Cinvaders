@@ -14,6 +14,7 @@ public:
 	~PlayerScript();
 	void run();
 	void moveDown();
+	void keyBoardEvent(Uint32);
 private:
 	GameObject* go;
 };

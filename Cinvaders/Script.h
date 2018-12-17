@@ -13,35 +13,8 @@
 namespace ToMingine {
 	class Script {
 	public:
-		virtual void run() {};
-		virtual void keyBoardEvent(SDL_Event& keyEvent) {};
-
-		template <typename RET, typename ARG>
-		void addInput(Uint32 key, RET(*fpek)(ARG)) {
-			input[key] = fpek;
-		}
-
-		template <typename RET>
-		void addInput(Uint32 key, RET(*fpek)()) {
-			input[key] = fpek;
-		}
-
-		void runInput(SDL_Event& key) {
-			if (!(input.find(key.key.keysym.sym) == input.end())) {
-			input.at(key.key.keysym.sym)();
-			}
-		}
-
-		void runInput(Uint32 key) {
-			input.at(key)();
-		}
-
-	private:
-		std::map<Uint32, void (*)()> input;
+		virtual void run() = 0;
+		virtual void keyBoardEvent(Uint32) {};
 	};
-
 }
-
-
-
 #endif

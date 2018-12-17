@@ -13,7 +13,8 @@ class GameObject {
 		~GameObject();
 
 		void addScript(Script* s) { script = s; }
-		void tick(SDL_Event&);
+		void tick();
+		void keyBoardEvent(Uint32);
 		void move(int x, int y);
 
     private:
