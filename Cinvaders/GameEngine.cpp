@@ -33,7 +33,6 @@ namespace ToMingine {
 						key = 0;
                 } // switch end
             } // event loop
-			std::cout << key << std::endl;
 			
 			for (GameObject* go : gameObjects) {
 				go->keyBoardEvent(key);
