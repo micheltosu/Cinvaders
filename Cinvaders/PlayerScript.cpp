@@ -19,7 +19,10 @@ PlayerScript::~PlayerScript()
  }
 
 void PlayerScript::keyBoardEvent(Uint32 key){
-	std::cout << "keyboardevent";
+	//std::cout << "keyboardevent";
 	if (key == SDLK_s)
 		 moveDown();
+	if (key == SDLK_w)
+		go->move(0, -1);
+
 }

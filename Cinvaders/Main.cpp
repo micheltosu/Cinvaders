@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
 	int window_width = 1280;
 	int window_height = 720;
 
-	ToMingine::GameEngine gm = ToMingine::GameEngine::getInstance();
+	GameEngine gm = GameEngine::getInstance();
 	gm.setBackground("Resources/Image/background.png");
 
 	GameObject* go = new GameObject("Resources/Image/ship.png");
