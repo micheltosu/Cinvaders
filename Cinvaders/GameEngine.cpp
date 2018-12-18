@@ -16,28 +16,32 @@ namespace ToMingine {
 
         bool quit = false;
 		Uint32 key = 0;
+		int keysPressed = 0;
 
         while (!quit) {
             SDL_Event event;
 			while( SDL_PollEvent(&event)) {
-				//std::cout << "i event loopen";
                 switch (event.type) {
                     case SDL_QUIT:
                         quit = true;
                         break;
 					case SDL_KEYDOWN:
-						//std::cout << "KEYPRESSED";
-						key = event.key.keysym.sym;
+						if (key != event.key.keysym.sym) {
+							key = event.key.keysym.sym;
+							keysPressed++;
+						}
 						break;
 					case SDL_KEYUP:
-						key = 0;
+						keysPressed--;
+						if(keysPressed == 0)
+							key = 0;
+						break;
                 } // switch end
             } // event loop
 			
 			for (GameObject* go : gameObjects) {
 				go->keyBoardEvent(key);
 			}
-            
 			updateWindow();
         } // yttre while
     }
