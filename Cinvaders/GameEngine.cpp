@@ -15,21 +15,34 @@ namespace ToMingine {
     void GameEngine::run() {
 
         bool quit = false;
+		Uint32 key = 0;
+		int keysPressed = 0;
 
         while (!quit) {
             SDL_Event event;
-
-            while( SDL_PollEvent(&event)) {
+			while( SDL_PollEvent(&event)) {
                 switch (event.type) {
                     case SDL_QUIT:
                         quit = true;
                         break;
+					case SDL_KEYDOWN:
+						if (key != event.key.keysym.sym) {
+							key = event.key.keysym.sym;
+							keysPressed++;
+						}
+						break;
+					case SDL_KEYUP:
+						keysPressed--;
+						if(keysPressed == 0)
+							key = 0;
+						break;
                 } // switch end
             } // event loop
 			
-
-            updateWindow();
-            
+			for (GameObject* go : gameObjects) {
+				go->keyBoardEvent(key);
+			}
+			updateWindow();
         } // yttre while
     }
 

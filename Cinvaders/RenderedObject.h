@@ -1,3 +1,7 @@
+#ifndef RENDERED_OBJECT_H
+#define RENDERED_OBJECT_H
+
+
 #ifdef _WIN32
 
 #include <SDL.h>
@@ -20,3 +24,4 @@ class RenderedObject {
     SDL_Renderer *rend;
 };
 }
+#endif
