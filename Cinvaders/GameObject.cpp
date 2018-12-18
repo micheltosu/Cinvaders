@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "GameEngine.h"
+#include <iostream>
 
 namespace ToMingine {
 	GameObject::GameObject(std::string path) {
@@ -11,11 +12,30 @@ namespace ToMingine {
 		SDL_FreeSurface(surface);
 	}
 
+
+
 	void GameObject::tick(){
+		if (script != nullptr) {
+			script->run();
+			
+			
+		}
 		draw();
+	}
+
+	void GameObject::keyBoardEvent(Uint32 key){
+		script->keyBoardEvent(key);
+	}
+
+
+	void GameObject::move(int x, int y){
+		rect.x += x;
+		rect.y += y;
 	}
 
 	void GameObject::draw(){
 		SDL_RenderCopy(renderer, texture, NULL, &rect);
 	}
+
+
 }

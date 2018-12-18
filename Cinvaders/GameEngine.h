@@ -1,3 +1,7 @@
+#ifndef GAME_ENGINE_H
+#define GAME_ENGINE_H
+
+
 #ifdef _WIN32
 
 #include <SDL.h>
@@ -19,19 +23,18 @@
 
 namespace ToMingine {
 
-
-    class GameEngine {
+	class GameEngine {
         public:
         ~GameEngine();
         static GameEngine &getInstance();
         
-        void run();
+		void run();
 		void add(GameObject*);
-		void remover(GameObject*);
-        void updateWindow();
-        void setBackground(std::string filename);
+		void remove(GameObject*);
+		void updateWindow();
+		void setBackground(std::string filename);
 		SDL_Renderer* getRen() { return renderer; }
-        private:
+		private:
         GameEngine();
         
         SDL_Window *window;
@@ -47,3 +50,4 @@ namespace ToMingine {
     //extern GameEngine gm;
     
 }
+#endif // !GAME_ENGINE_H
