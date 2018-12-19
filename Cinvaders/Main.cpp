@@ -5,6 +5,11 @@
 
 using namespace std;
 using namespace ToMingine;
+
+void printer() {
+    cout << "JUMP" << endl;
+}
+
 int main(int argc, char** argv) {
 	int window_width = 1280;
 	int window_height = 720;
@@ -17,6 +22,9 @@ int main(int argc, char** argv) {
 	go->addScript(s);
 	gm.add(go);
 	gm.run();
+    
+    SDL_Keycode sk = SDLK_SPACE;
+    gm.keyboardManager()->addBinding(sk, printer);
 
 
 	return 0;
