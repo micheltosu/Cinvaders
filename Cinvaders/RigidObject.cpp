@@ -1,4 +1,5 @@
 #include "RigidObject.h"
+#include "GameEngine.h"
 
 namespace ToMingine {
 
@@ -12,12 +13,12 @@ namespace ToMingine {
 	RigidObject::~RigidObject(){
 	}
 
-	void RigidObject::move(int x, int y) {
-	/*	if (gm.requestMove(this)) {
-		rect.x += x;
-		rect.y += y;
+	/*void RigidObject::move(int x, int y) {
+		if (gm.requestMove(this)) {
+			rect.x += x;
+			rect.y += y;
+		}
 	}*/
-	}
 
 
 }

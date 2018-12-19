@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "GameEngine.h"
 
 
 namespace ToMingine {
@@ -19,19 +20,22 @@ namespace ToMingine {
 		SDL_FreeSurface(surface);
 	}
 
+	GameObject::~GameObject()
+	{
+	}
+
 
 
 	void GameObject::tick(){
 		if (script != nullptr) {
 			script->run();
-			
-			
 		}
 		draw();
 	}
 
 	void GameObject::keyBoardEvent(Uint32 key){
-		script->keyBoardEvent(key);
+		if (script != nullptr)
+			script->keyBoardEvent(key);
 	}
 
 
