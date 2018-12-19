@@ -61,6 +61,26 @@ namespace ToMingine {
 
     }
 
+	bool GameEngine::requestMove(GameObject* movingObject){
+		SDL_Rect* movingRect = movingObject->getRect();
+		SDL_Rect* otherRect;
+		for (GameObject* o : gameObjects) {
+			otherRect = o->getRect();
+			if (o != movingObject) {
+				if (
+					otherRect->x + otherRect->w <= movingRect->x &&
+					movingRect->x + movingRect->w <= otherRect->x &&
+					otherRect->y + otherRect->h <= movingRect->y &&
+					movingRect->x + otherRect->h <= otherRect->y
+					)
+					return false;
+			}
+		}
+		return true;
+	}
+
+	
+
     GameEngine &GameEngine::getInstance() {
         static GameEngine gm; 
 

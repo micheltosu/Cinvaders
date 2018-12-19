@@ -12,10 +12,10 @@ int main(int argc, char** argv) {
 	GameEngine gm = GameEngine::getInstance();
 	gm.setBackground("Resources/Image/background.png");
 
-	GameObject* go = new GameObject("Resources/Image/ship.png");
-	PlayerScript* s = new PlayerScript(go);
-	go->addScript(s);
-	gm.add(go);
+	RigidObject* player = new RigidObject("Resources/Image/ship.png", 10, 10);
+	PlayerScript* s = new PlayerScript(player);
+	player->addScript(s);
+	gm.add(player);
 	gm.run();
 
 

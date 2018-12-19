@@ -1,8 +1,8 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
-#include "RenderedObject.h"
 #include <string>
+#include <vector>
 #include "Script.h"
 
 namespace ToMingine {
@@ -10,6 +10,7 @@ namespace ToMingine {
 class GameObject {
     public:
 		GameObject(std::string);
+		GameObject(std::string, int x, int y);
 		~GameObject();
 
 		void addScript(Script* s) { script = s; }
@@ -17,12 +18,18 @@ class GameObject {
 		void keyBoardEvent(Uint32);
 		void move(int x, int y);
 
-    private:
+		SDL_Rect* getRect() { return &rect; }
+
+	protected:
+		SDL_Rect rect;
+    
+
+private:
 		void draw();
+		
 		int width, height;
 
 		Script* script = nullptr;
-		SDL_Rect rect;
 		SDL_Renderer* renderer;
 		SDL_Texture* texture;
 		

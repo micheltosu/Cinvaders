@@ -17,6 +17,7 @@
 #endif
 
 #include "GameObject.h"
+#include "RigidObject.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -34,6 +35,9 @@ namespace ToMingine {
 		void updateWindow();
 		void setBackground(std::string filename);
 		SDL_Renderer* getRen() { return renderer; }
+
+		bool requestMove(GameObject* o);
+
 		private:
         GameEngine();
         
@@ -47,7 +51,7 @@ namespace ToMingine {
         
     };
 
-    //extern GameEngine gm;
+    extern GameEngine gm;
     
 }
 #endif // !GAME_ENGINE_H
