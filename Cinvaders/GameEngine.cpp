@@ -39,6 +39,7 @@ namespace ToMingine {
                 } // switch end
             } // event loop
 			
+            keyMan->tick();
 			for (GameObject* go : gameObjects) {
 				go->keyBoardEvent(key);
 			}

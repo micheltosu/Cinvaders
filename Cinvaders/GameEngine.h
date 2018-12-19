@@ -17,6 +17,7 @@
 #endif
 
 #include "GameObject.h"
+#include "KeyboardManager.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -34,12 +35,14 @@ namespace ToMingine {
 		void updateWindow();
 		void setBackground(std::string filename);
 		SDL_Renderer* getRen() { return renderer; }
+        KeyboardManager *keyboardManager() { return keyMan; }
 		private:
         GameEngine();
         
         SDL_Window *window;
         SDL_Renderer *renderer;
         SDL_Texture *background;
+        KeyboardManager *keyMan;
 		std::vector<GameObject*> gameObjects;
 
         int window_width = 1280;
