@@ -44,6 +44,9 @@ namespace ToMingine {
 			static GameEngine instance;
 			return instance;
 		}
+		
+		int window_width = 1280;
+		int window_height = 720;
 
 		KeyboardManager *keyboardManager() { return keyMan; }
 	private:
@@ -56,8 +59,6 @@ namespace ToMingine {
 		KeyboardManager *keyMan;
 		std::vector<GameObject*> gameObjects;
 
-		int window_width = 1280;
-		int window_height = 720;
 		bool start = true;
 
 		GameEngine(const GameEngine& other) = delete;
