@@ -1,15 +1,21 @@
 #include "KeyboardManager.h"
 #include <iostream>
-
+#include <list>
 namespace ToMingine {
     void KeyboardManager::tick() {
-        if ( pressedKey.empty()) { std::cout << "no pressed key set exists" << std::endl;}
         for (std::set<SDL_Keycode>::iterator it = pressedKey.begin(); it != pressedKey.end(); it++) {
+            std::cout << "Key: " << *it << "pressed" << std::endl;
             // Sparar listan för att förkorta nedan uttryck
-            std::list<void (*)()> bindingsList = bindings.find(*it)->second;
-            for (std::list<void (*)()>::iterator bIt = bindingsList.begin() ; bIt != bindingsList.end(); bIt++) {
-                (*bIt)();
+            
+            if (bindings.find(*it) != bindings.end()) {
+                std::list<void (*)()> bindingsList = bindings.find(*it)->second;
+                for (std::list<void (*)()>::iterator bIt = bindingsList.begin() ; bIt != bindingsList.end(); bIt++) {
+                    
+                    std::cout << "Running binding: " << *bIt << " for " << *it << std::endl;
+                    (*bIt)();
+                }
             }
+            
         }
     }
     
@@ -22,6 +28,13 @@ namespace ToMingine {
     }
     
     void KeyboardManager::addBinding(SDL_Keycode& key, void (*funk)() ) {
+        if(bindings.find(key) == bindings.end()) {
+            auto newList = new std::list<void(*)()>();
+            auto newPair = new std::pair<SDL_Keycode, std::list<void (*)()>>(key, *newList );
+            
+            
+            bindings.insert(*newPair);
+        }
         auto vec = bindings.at(key);
         vec.push_back(funk);
     }

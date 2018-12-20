@@ -21,11 +21,10 @@ int main(int argc, char** argv) {
 	PlayerScript* s = new PlayerScript(go);
 	go->addScript(s);
 	gm.add(go);
-	gm.run();
     
     SDL_Keycode sk = SDLK_SPACE;
     gm.keyboardManager()->addBinding(sk, printer);
 
-
+    gm.run();
 	return 0;
 }
