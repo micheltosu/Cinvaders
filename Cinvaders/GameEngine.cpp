@@ -30,11 +30,15 @@ namespace ToMingine {
 							key = event.key.keysym.sym;
 							keysPressed++;
 						}
+                        
+                        keyMan->keyPressed(event.key.keysym.sym);
 						break;
 					case SDL_KEYUP:
 						keysPressed--;
 						if(keysPressed == 0)
 							key = 0;
+                        
+                        keyMan->keyReleased(event.key.keysym.sym);
 						break;
                 } // switch end
             } // event loop
@@ -87,7 +91,9 @@ namespace ToMingine {
             std::cout << "Error: cannot load renderer: " << std::endl;
             std::cout << SDL_GetError() << std::endl;
             exit(-1);
-        }      
+        }
+        
+        keyMan = new KeyboardManager();
     }
 
     GameEngine::~GameEngine() {
