@@ -8,7 +8,9 @@ namespace ToMingine {
             // Sparar listan för att förkorta nedan uttryck
             
             if (bindings.find(*it) != bindings.end()) {
+                std::cout << "Det finns " << bindings.find(*it)->second.size() << "bindings" << std::endl;
                 std::list<void (*)()> bindingsList = bindings.find(*it)->second;
+                
                 for (std::list<void (*)()>::iterator bIt = bindingsList.begin() ; bIt != bindingsList.end(); bIt++) {
                     
                     std::cout << "Running binding: " << *bIt << " for " << *it << std::endl;
