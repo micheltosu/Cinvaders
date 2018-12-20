@@ -6,18 +6,15 @@ PlayerScript::PlayerScript(RigidObject* ro){
 }
 
 
-PlayerScript::~PlayerScript()
-{
-}
+PlayerScript::~PlayerScript() { }
 
- void PlayerScript::run(){
-}
+ void PlayerScript::run() { }
 
- void PlayerScript::moveDown(){
+ void PlayerScript::moveDown() {
 	 ro->move(0,1);
  }
 
-void PlayerScript::keyBoardEvent(Uint32 key){
+void PlayerScript::keyBoardEvent(Uint32 key) {
 	int x = 0, y = 0;
 	if (key == SDLK_s)
 		y += 1;

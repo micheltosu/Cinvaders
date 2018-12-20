@@ -3,16 +3,11 @@
 
 namespace ToMingine {
 
-	RigidObject::RigidObject(std::string path):GameObject(path){
-		
-	}
+	RigidObject::RigidObject(std::string path):GameObject(path) { }
 
-	RigidObject::RigidObject(std::string path, int x, int y) : GameObject(path, x, y) {
+	RigidObject::RigidObject(std::string path, int x, int y) : GameObject(path, x, y) { }
 
-	}
-
-	RigidObject::~RigidObject(){
-	}
+	RigidObject::~RigidObject() { }
 
 	bool RigidObject::requestMove(int x, int y){
 		SDL_Rect* otherRect;
@@ -21,10 +16,10 @@ namespace ToMingine {
 			otherRect = go->getRect();
 			if (go != this) {
 				if (
-					otherRect->x + otherRect->w >= getRect()->x + x &&
-					getRect()->x + getRect()->w + x >= otherRect->x &&
 					otherRect->y + otherRect->h >= getRect()->y + y &&
-					getRect()->y + otherRect->h + y >= otherRect->y
+					getRect()->y + otherRect->h + y >= otherRect->y &&
+					otherRect->x + otherRect->w >= getRect()->x + x &&
+					getRect()->x + getRect()->w + x >= otherRect->x 
 					) {
 					return false;
 				}
@@ -38,7 +33,5 @@ namespace ToMingine {
 			rect.x += x * SPEED;
 			rect.y += y * SPEED;
 		}
-
 	}
-
 }

@@ -25,26 +25,25 @@
 
 namespace ToMingine {
 
+
     class GameEngine {
+
         public:
-        ~GameEngine();
+			  ~GameEngine();
         
-        void run();
-        void add(GameObject*);
-        void remove(GameObject*);
-        void updateWindow();
-        void setBackground(std::string filename);
-        SDL_Renderer* getRen() { return renderer; }
-		bool requestMove(GameObject* o);
-		std::vector<GameObject*>* getGameObjects();
 
+			  void run();
+			  void add(GameObject*);
+			  void remove(GameObject*);
+			  void updateWindow();
+			  void setBackground(std::string filename);
+			  SDL_Renderer* getRen() { return renderer; }
+			  std::vector<GameObject*>* getGameObjects();
 
-		static GameEngine& getInstance(){
-			static GameEngine instance;
-			return instance;
-		}
-
-
+		    static GameEngine& getInstance(){
+			    static GameEngine instance;
+			    return instance;
+		    }
 
         KeyboardManager *keyboardManager() { return keyMan; }
         private:
@@ -63,6 +62,7 @@ namespace ToMingine {
         
         GameEngine(const GameEngine& other)    = delete;
         const GameEngine& operator=(const GameEngine& other) = delete;
+
 
     };
 }

@@ -7,14 +7,15 @@
 
 
 using namespace ToMingine;
-class PlayerScript : public Script
-{
+class PlayerScript : public Script {
+
 public:
 	PlayerScript(RigidObject*);
 	~PlayerScript();
 	void run();
 	void moveDown();
 	void keyBoardEvent(Uint32);
+
 private:
 	RigidObject* ro;
 };

@@ -8,6 +8,7 @@
 namespace ToMingine {
 
 class GameObject {
+
     public:
 		GameObject(std::string);
 		GameObject(std::string, int x, int y);
@@ -16,19 +17,13 @@ class GameObject {
 		void addScript(Script* s) { script = s; }
 		void tick();
 		void keyBoardEvent(Uint32);
-		//void move(int x, int y);
-
-		void test();
 
 		SDL_Rect* getRect() { return &rect; }
-
-
 
 	protected:
 		SDL_Rect rect;
     
-
-private:
+	private:
 		void draw();
 		
 		int width, height;

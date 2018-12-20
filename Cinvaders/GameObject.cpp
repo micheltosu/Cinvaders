@@ -12,7 +12,7 @@ namespace ToMingine {
 		SDL_FreeSurface(surface);
 	}
 
-	GameObject::GameObject(std::string path, int x, int y){
+	GameObject::GameObject(std::string path, int x, int y) {
 		renderer = GameEngine::getInstance().getRen();
 		SDL_Surface* surface = IMG_Load(path.c_str());
 		texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -20,37 +20,23 @@ namespace ToMingine {
 		SDL_FreeSurface(surface);
 	}
 
-	GameObject::~GameObject()
-	{
-	}
+	GameObject::~GameObject() {	}
 
 
 
-	void GameObject::tick(){
+	void GameObject::tick() {
 		if (script != nullptr) {
 			script->run();
 		}
 		draw();
 	}
 
-	void GameObject::keyBoardEvent(Uint32 key){
+	void GameObject::keyBoardEvent(Uint32 key) {
 		if (script != nullptr)
 			script->keyBoardEvent(key);
 	}
 
-	void GameObject::test()
-	{
-		std::cout << "Test" << std::endl;
-	}
-
-/*
-	void GameObject::move(int x, int y){
-
-		rect.x += x;
-		rect.y += y;
-	}*/
-
-	void GameObject::draw(){
+	void GameObject::draw() {
 		SDL_RenderCopy(renderer, texture, NULL, &rect);
 	}
 
