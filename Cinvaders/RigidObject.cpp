@@ -13,12 +13,10 @@ namespace ToMingine {
 	RigidObject::~RigidObject(){
 	}
 
-	/*void RigidObject::move(int x, int y) {
-		if (gm.requestMove(this)) {
+	void RigidObject::move(int x, int y) {
+		if (GameEngine::getInstance()->requestMove(this)) {
 			rect.x += x;
 			rect.y += y;
 		}
-	}*/
-
-
+	}
 }

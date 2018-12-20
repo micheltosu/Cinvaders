@@ -39,6 +39,8 @@ namespace ToMingine {
                 } // switch end
             } // event loop
 			
+			std::cout << gameObjects.size() << std::endl;
+
 			for (GameObject* go : gameObjects) {
 				go->keyBoardEvent(key);
 			}
@@ -62,18 +64,24 @@ namespace ToMingine {
     }
 
 	bool GameEngine::requestMove(GameObject* movingObject){
+		std::cout << "REQUEST MADE!" << std::endl;
 		SDL_Rect* movingRect = movingObject->getRect();
 		SDL_Rect* otherRect;
-		for (GameObject* o : gameObjects) {
-			otherRect = o->getRect();
-			if (o != movingObject) {
+		std::cout << gameObjects.size() << std::endl;
+		for (GameObject* go : gameObjects){
+			std::cout << "OBJECT EXISTS!" << std::endl;
+			otherRect = go->getRect();
+			if (go != movingObject) {
+				std::cout << "MORE OBJECTS EXISTS!" << std::endl;
 				if (
 					otherRect->x + otherRect->w <= movingRect->x &&
 					movingRect->x + movingRect->w <= otherRect->x &&
 					otherRect->y + otherRect->h <= movingRect->y &&
 					movingRect->x + otherRect->h <= otherRect->y
-					)
+					) {
+					std::cout << "COLLISION" << std::endl;
 					return false;
+				}
 			}
 		}
 		return true;
@@ -81,9 +89,9 @@ namespace ToMingine {
 
 	
 
-    GameEngine &GameEngine::getInstance() {
-        static GameEngine gm; 
-
+    GameEngine *GameEngine::getInstance() {
+		if (!nullptr)
+			gm = new GameEngine();
         return gm;
     }
 
@@ -115,4 +123,5 @@ namespace ToMingine {
         TTF_Quit();
         SDL_Quit();
     }
+        
 }

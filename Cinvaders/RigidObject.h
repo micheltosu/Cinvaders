@@ -1,10 +1,9 @@
 #ifndef RIGID_OBJECT_H
 #define RIGID_OBJECT_H
+#include <SDL.h>
 #include <string>
 #include <iostream>
 #include "GameObject.h"
-//#include "GameEngine.h"
-
 
 namespace ToMingine {
 	class RigidObject :	public GameObject {
@@ -12,6 +11,8 @@ namespace ToMingine {
 		RigidObject(std::string path);
 		RigidObject(std::string path, int x, int y);
 		~RigidObject();
+
+	//	bool requestMove();
 
 		void move(int x, int y);
 

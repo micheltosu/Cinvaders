@@ -1,8 +1,8 @@
 #include "PlayerScript.h"
 #include <iostream>
 
-PlayerScript::PlayerScript(GameObject* go){
-	this->go = go;
+PlayerScript::PlayerScript(RigidObject* ro){
+	this->ro = ro;
 }
 
 
@@ -14,7 +14,7 @@ PlayerScript::~PlayerScript()
 }
 
  void PlayerScript::moveDown(){
-	 go->move(0,1);
+	 ro->move(0,1);
  }
 
 void PlayerScript::keyBoardEvent(Uint32 key){
@@ -27,6 +27,6 @@ void PlayerScript::keyBoardEvent(Uint32 key){
 		x += 1;
 	if (key == SDLK_a)
 		x -= 1;
-	go->move(x, y);
+	ro->move(x, y);
 
 }

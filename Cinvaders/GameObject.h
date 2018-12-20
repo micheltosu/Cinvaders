@@ -5,7 +5,6 @@
 #include <vector>
 #include "Script.h"
 
-
 namespace ToMingine {
 
 class GameObject {
@@ -17,9 +16,13 @@ class GameObject {
 		void addScript(Script* s) { script = s; }
 		void tick();
 		void keyBoardEvent(Uint32);
-		void move(int x, int y);
+		//void move(int x, int y);
+
+		void test();
 
 		SDL_Rect* getRect() { return &rect; }
+
+
 
 	protected:
 		SDL_Rect rect;

@@ -27,7 +27,6 @@ namespace ToMingine {
 	class GameEngine {
         public:
         ~GameEngine();
-        static GameEngine &getInstance();
         
 		void run();
 		void add(GameObject*);
@@ -35,8 +34,11 @@ namespace ToMingine {
 		void updateWindow();
 		void setBackground(std::string filename);
 		SDL_Renderer* getRen() { return renderer; }
+		static GameEngine* getInstance();
 
 		bool requestMove(GameObject* o);
+
+		static GameEngine* gm;
 
 		private:
         GameEngine();
@@ -48,10 +50,12 @@ namespace ToMingine {
 
         int window_width = 1280;
         int window_height = 720;
+		bool start = true;
         
-    };
+		GameEngine(const GameEngine& other)	= delete;
+		const GameEngine& operator=(const GameEngine& other) = delete;
 
-    extern GameEngine gm;
-    
+    };
+	GameEngine *GameEngine::gm = nullptr;
 }
 #endif // !GAME_ENGINE_H
