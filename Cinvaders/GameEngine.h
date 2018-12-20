@@ -34,15 +34,15 @@ namespace ToMingine {
 		void updateWindow();
 		void setBackground(std::string filename);
 		SDL_Renderer* getRen() { return renderer; }
-		//static GameEngine* getInstance();
+		bool requestMove(GameObject* o);
+		std::vector<GameObject*>* getGameObjects();
+
 
 		static GameEngine& getInstance(){
-			static GameEngine instance; // Guaranteed to be destroyed.
-								  // Instantiated on first use.
+			static GameEngine instance;
 			return instance;
 		}
 
-		bool requestMove(GameObject* o);
 
 
 		private:

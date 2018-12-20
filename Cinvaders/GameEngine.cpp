@@ -38,8 +38,6 @@ namespace ToMingine {
 						break;
                 } // switch end
             } // event loop
-			
-			std::cout << gameObjects.size() << std::endl;
 
 			for (GameObject* go : gameObjects) {
 				go->keyBoardEvent(key);
@@ -63,16 +61,13 @@ namespace ToMingine {
 
     }
 
-	bool GameEngine::requestMove(GameObject* movingObject){
-		std::cout << "REQUEST MADE!" << std::endl;
+	/*bool GameEngine::requestMove(GameObject* movingObject){
 		SDL_Rect* movingRect = movingObject->getRect();
 		SDL_Rect* otherRect;
 		std::cout << gameObjects.size() << std::endl;
 		for (GameObject* go : gameObjects){
-			std::cout << "OBJECT EXISTS!" << std::endl;
 			otherRect = go->getRect();
 			if (go != movingObject) {
-				std::cout << "MORE OBJECTS EXISTS!" << std::endl;
 				if (
 					otherRect->x + otherRect->w >= movingRect->x &&
 					movingRect->x + movingRect->w >= otherRect->x &&
@@ -85,6 +80,10 @@ namespace ToMingine {
 			}
 		}
 		return true;
+	}*/
+
+	std::vector<GameObject*>* GameEngine::getGameObjects(){
+		return &gameObjects;
 	}
 
     GameEngine::GameEngine() {

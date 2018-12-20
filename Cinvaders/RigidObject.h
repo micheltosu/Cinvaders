@@ -12,7 +12,7 @@ namespace ToMingine {
 		RigidObject(std::string path, int x, int y);
 		~RigidObject();
 
-	//	bool requestMove();
+		bool requestMove(int, int);
 
 		void move(int x, int y);
 
