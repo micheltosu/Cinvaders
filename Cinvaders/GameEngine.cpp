@@ -1,7 +1,7 @@
 #include "GameEngine.h"
 
-
 namespace ToMingine {
+
 
     void GameEngine::updateWindow() {
 		SDL_RenderClear(renderer);
@@ -13,12 +13,12 @@ namespace ToMingine {
     }
 
     void GameEngine::run() {
-
         bool quit = false;
 		Uint32 key = 0;
 		int keysPressed = 0;
 
         while (!quit) {
+			Uint32 nextTick = SDL_GetTicks() + tickInterval;
             SDL_Event event;
 			while( SDL_PollEvent(&event)) {
                 switch (event.type) {
@@ -43,6 +43,10 @@ namespace ToMingine {
 				go->keyBoardEvent(key);
 			}
 			updateWindow();
+			int delay = nextTick - SDL_GetTicks();
+			std::cout << delay << std::endl;
+			if (delay > 0)
+				SDL_Delay(delay);
         } // yttre while
     }
 
@@ -60,27 +64,6 @@ namespace ToMingine {
 
 
     }
-
-	/*bool GameEngine::requestMove(GameObject* movingObject){
-		SDL_Rect* movingRect = movingObject->getRect();
-		SDL_Rect* otherRect;
-		std::cout << gameObjects.size() << std::endl;
-		for (GameObject* go : gameObjects){
-			otherRect = go->getRect();
-			if (go != movingObject) {
-				if (
-					otherRect->x + otherRect->w >= movingRect->x &&
-					movingRect->x + movingRect->w >= otherRect->x &&
-					otherRect->y + otherRect->h >= movingRect->y &&
-					movingRect->x + otherRect->h >= otherRect->y
-					) {
-					std::cout << "COLLISION" << std::endl;
-					return false;
-				}
-			}
-		}
-		return true;
-	}*/
 
 	std::vector<GameObject*>* GameEngine::getGameObjects(){
 		return &gameObjects;
