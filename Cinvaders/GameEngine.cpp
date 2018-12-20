@@ -58,6 +58,13 @@ namespace ToMingine {
         gameObjects.push_back(go);
     }
 
+	void GameEngine::remove(GameObject * o){
+		for (unsigned int i = 0; i < gameObjects.size(); i++) {
+			if(gameObjects[i] == o)
+				gameObjects.erase(gameObjects.begin()+i);
+		}
+	}
+
     void GameEngine::setBackground(std::string filename) {
         background = IMG_LoadTexture(renderer, filename.c_str());
         if (background == nullptr) {
