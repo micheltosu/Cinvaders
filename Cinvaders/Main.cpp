@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
 	ge.add(enemy);
     
     SDL_Keycode sk = SDLK_SPACE;
-    gm.keyboardManager()->addBinding(sk, printer);
+    ge.keyboardManager()->addBinding(sk, printer);
     
 	ge.run();
 
