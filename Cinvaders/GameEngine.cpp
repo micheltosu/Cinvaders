@@ -49,7 +49,6 @@ namespace ToMingine {
             }
             updateWindow();
             int delay = nextTick - SDL_GetTicks();
-            std::cout << delay << std::endl;
             if (delay > 0)
                 SDL_Delay(delay);
         } // yttre while
