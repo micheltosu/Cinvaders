@@ -1,6 +1,13 @@
 #ifndef RIGID_OBJECT_H
 #define RIGID_OBJECT_H
+
+#ifdef __APPLE__
+#include <SDL2/SDL.h>
+#elif defined _WIN32
 #include <SDL.h>
+#endif
+
+
 #include <string>
 #include <iostream>
 #include "GameObject.h"
@@ -21,4 +28,4 @@ namespace ToMingine {
 	};
 
 }
-#endif RIGID_OBJECT_H
+#endif
