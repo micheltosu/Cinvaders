@@ -44,7 +44,7 @@ namespace ToMingine {
 
 		private:
 			GameEngine();
-			const int FPS = 60;
+			const int FPS = 30;
 			const int tickInterval = 1000 / FPS;
 			SDL_Window *window;
 			SDL_Renderer *renderer;

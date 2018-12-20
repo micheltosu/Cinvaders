@@ -17,6 +17,7 @@ public:
 	void keyBoardEvent(Uint32);
 
 private:
+	int x = 0, y = 0;
 	RigidObject* ro;
 };
 
