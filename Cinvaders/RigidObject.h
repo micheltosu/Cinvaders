@@ -7,6 +7,7 @@
 
 namespace ToMingine {
 	class RigidObject :	public GameObject {
+
 	public:
 		RigidObject(std::string path);
 		RigidObject(std::string path, int x, int y);
