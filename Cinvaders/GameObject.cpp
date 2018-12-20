@@ -5,7 +5,7 @@
 namespace ToMingine {
 	
 	GameObject::GameObject(std::string path) {
-		renderer = GameEngine::getInstance()->getRen();
+		renderer = GameEngine::getInstance().getRen();
 		SDL_Surface* surface = IMG_Load(path.c_str());
 		texture = SDL_CreateTextureFromSurface(renderer, surface);
 		rect = { 0, 0, surface->w, surface->h };
@@ -13,7 +13,7 @@ namespace ToMingine {
 	}
 
 	GameObject::GameObject(std::string path, int x, int y){
-		renderer = GameEngine::getInstance()->getRen();
+		renderer = GameEngine::getInstance().getRen();
 		SDL_Surface* surface = IMG_Load(path.c_str());
 		texture = SDL_CreateTextureFromSurface(renderer, surface);
 		rect = { x, y, surface->w, surface->h };

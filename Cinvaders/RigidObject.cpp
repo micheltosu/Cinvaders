@@ -14,7 +14,7 @@ namespace ToMingine {
 	}
 
 	void RigidObject::move(int x, int y) {
-		if (GameEngine::getInstance()->requestMove(this)) {
+		if (GameEngine::getInstance().requestMove(this)) {
 			rect.x += x;
 			rect.y += y;
 		}

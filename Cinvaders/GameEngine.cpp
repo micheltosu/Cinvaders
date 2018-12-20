@@ -74,10 +74,10 @@ namespace ToMingine {
 			if (go != movingObject) {
 				std::cout << "MORE OBJECTS EXISTS!" << std::endl;
 				if (
-					otherRect->x + otherRect->w <= movingRect->x &&
-					movingRect->x + movingRect->w <= otherRect->x &&
-					otherRect->y + otherRect->h <= movingRect->y &&
-					movingRect->x + otherRect->h <= otherRect->y
+					otherRect->x + otherRect->w >= movingRect->x &&
+					movingRect->x + movingRect->w >= otherRect->x &&
+					otherRect->y + otherRect->h >= movingRect->y &&
+					movingRect->x + otherRect->h >= otherRect->y
 					) {
 					std::cout << "COLLISION" << std::endl;
 					return false;
@@ -86,14 +86,6 @@ namespace ToMingine {
 		}
 		return true;
 	}
-
-	
-
-    GameEngine *GameEngine::getInstance() {
-		if (!nullptr)
-			gm = new GameEngine();
-        return gm;
-    }
 
     GameEngine::GameEngine() {
         if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
