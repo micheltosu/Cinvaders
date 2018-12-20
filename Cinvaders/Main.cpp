@@ -21,6 +21,8 @@ int main(int argc, char** argv) {
 	//enemy->addScript(s2);
 	ge.add(player);
 	ge.add(enemy);
+	ge.remove(enemy);//testar bara remove func.
+	ge.add(enemy);
 	ge.run();
 
 	return 0;
