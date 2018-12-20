@@ -5,9 +5,14 @@
 
 using namespace std;
 using namespace ToMingine;
+
+void printer() {
+    cout << "JUMP" << endl;
+}
+
 int main(int argc, char** argv) {
-	int window_width = 1280;
-	int window_height = 720;
+    int window_width = 1280;
+    int window_height = 720;
 
 	GameEngine &ge = GameEngine::getInstance();
 	ge.setBackground("Resources/Image/background.png");
@@ -21,9 +26,14 @@ int main(int argc, char** argv) {
 	//enemy->addScript(s2);
 	ge.add(player);
 	ge.add(enemy);
+
+  SDL_Keycode sk = SDLK_SPACE;
+  ge.keyboardManager()->addBinding(sk, printer);
+    
 	ge.remove(enemy);//testar bara remove func.
 	ge.add(enemy);
+
 	ge.run();
 
-	return 0;
+    return 0;
 }

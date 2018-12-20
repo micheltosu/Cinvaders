@@ -18,45 +18,51 @@
 
 #include "GameObject.h"
 #include "RigidObject.h"
+#include "KeyboardManager.h"
 #include <iostream>
 #include <string>
 #include <vector>
 
 namespace ToMingine {
 
-	class GameEngine {
+
+    class GameEngine {
 
         public:
-			~GameEngine();
+			  ~GameEngine();
         
-			void run();
-			void add(GameObject*);
-			void remove(GameObject*);
-			void updateWindow();
-			void setBackground(std::string filename);
-			SDL_Renderer* getRen() { return renderer; }
-			std::vector<GameObject*>* getGameObjects();
 
-		static GameEngine& getInstance(){
-			static GameEngine instance;
-			return instance;
-		}
+			  void run();
+			  void add(GameObject*);
+			  void remove(GameObject*);
+			  void updateWindow();
+			  void setBackground(std::string filename);
+			  SDL_Renderer* getRen() { return renderer; }
+			  std::vector<GameObject*>* getGameObjects();
 
-		private:
-			GameEngine();
-			const int FPS = 60;
-			const int tickInterval = 1000 / FPS;
-			SDL_Window *window;
-			SDL_Renderer *renderer;
-			SDL_Texture *background;
-			std::vector<GameObject*> gameObjects;
+		    static GameEngine& getInstance(){
+			    static GameEngine instance;
+			    return instance;
+		    }
 
-			int window_width = 1280;
-			int window_height = 720;
-			bool start = true;
-	        
-			GameEngine(const GameEngine& other)	= delete;
-			const GameEngine& operator=(const GameEngine& other) = delete;
+        KeyboardManager *keyboardManager() { return keyMan; }
+        private:
+        GameEngine();
+        const int FPS = 60;
+        const int tickInterval = 1000 / FPS;
+        SDL_Window *window;
+        SDL_Renderer *renderer;
+        SDL_Texture *background;
+        KeyboardManager *keyMan;
+        std::vector<GameObject*> gameObjects;
+
+        int window_width = 1280;
+        int window_height = 720;
+        bool start = true;
+        
+        GameEngine(const GameEngine& other)    = delete;
+        const GameEngine& operator=(const GameEngine& other) = delete;
+
 
     };
 }
