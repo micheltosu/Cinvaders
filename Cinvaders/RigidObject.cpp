@@ -4,9 +4,11 @@
 namespace ToMingine {
 
 	RigidObject::RigidObject(std::string path):GameObject(path){
+		
 	}
 
 	RigidObject::RigidObject(std::string path, int x, int y) : GameObject(path, x, y) {
+
 	}
 
 	RigidObject::~RigidObject(){
@@ -22,7 +24,7 @@ namespace ToMingine {
 					otherRect->x + otherRect->w >= getRect()->x + x &&
 					getRect()->x + getRect()->w + x >= otherRect->x &&
 					otherRect->y + otherRect->h >= getRect()->y + y &&
-					getRect()->y + otherRect->h + y>= otherRect->y
+					getRect()->y + otherRect->h + y >= otherRect->y
 					) {
 					return false;
 				}
@@ -33,9 +35,10 @@ namespace ToMingine {
 
 	void RigidObject::move(int x, int y) {		
 		if (requestMove(x, y)) {
-			rect.x += x;
-			rect.y += y;
+			rect.x += x * SPEED;
+			rect.y += y * SPEED;
 		}
+
 	}
 
 }

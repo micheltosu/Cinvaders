@@ -17,6 +17,7 @@ namespace ToMingine {
 		void move(int x, int y);
 
 	private:
+		const int SPEED = 5;
 	};
 
 }
