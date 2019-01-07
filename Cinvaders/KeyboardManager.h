@@ -31,7 +31,7 @@ private:
     std::map<SDL_Keycode, std::list<void (*)()>> bindings;
     
     
-};
+};	
 }
 
 

@@ -13,12 +13,12 @@ public:
 	PlayerScript(RigidObject*);
 	~PlayerScript();
 	void run();
-	void moveDown();
+	void moveUp();
 	void keyBoardEvent(Uint32);
+	int x = 0, y = 0;
 
 private:
 	SDL_Rect prePos;
-	int x = 0, y = 0;
 	RigidObject* ro;
 };
 

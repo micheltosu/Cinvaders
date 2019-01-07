@@ -25,13 +25,11 @@ int main(int argc, char** argv) {
 	player->addScript(s);
 	//enemy->addScript(s2);
 	ge.add(player);
-	ge.add(enemy);
+	//ge.add(enemy);
 
 	SDL_Keycode sk = SDLK_SPACE;
 	ge.keyboardManager()->addBinding(sk, printer);
     
-	ge.remove(enemy);//testar bara remove func.
-	ge.add(enemy);
 
 	ge.run();
 

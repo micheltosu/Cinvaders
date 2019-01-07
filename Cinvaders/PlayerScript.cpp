@@ -4,6 +4,8 @@
 
 PlayerScript::PlayerScript(RigidObject* ro){
 	this->ro = ro;
+	SDL_Keycode sk = SDLK_w;
+	//GameEngine::getInstance().keyboardManager()->addBinding(sk, moveUp);
 }
 
 
@@ -27,12 +29,16 @@ void PlayerScript::run() {
 }
 
 void PlayerScript::keyBoardEvent(Uint32 key) {
-	if (key == SDLK_s && y<20)
+	if (key == SDLK_s)
 		y += 1;
-	if (key == SDLK_w && y > -20)
+	if (key == SDLK_w)
 		y -= 1;
-	if (key == SDLK_d && x < 20)
+	if (key == SDLK_d)
 		x += 1;
-	if (key == SDLK_a && x > -20)
+	if (key == SDLK_a)
 		x -= 1;
+}
+
+void PlayerScript::moveUp() {
+	std::cout << "HEJ!" << std::endl;
 }
