@@ -19,9 +19,10 @@
 #include "GameObject.h"
 #include "RigidObject.h"
 #include "KeyboardManager.h"
+#include "Scene.h"
 #include <iostream>
 #include <string>
-#include <vector>
+#include <list>
 
 namespace ToMingine {
 
@@ -33,12 +34,13 @@ namespace ToMingine {
 
 
 		void run();
-		void add(GameObject*);
-		void remove(GameObject*);
-		void updateWindow();
-		void setBackground(std::string filename);
+		void addScene(Scene* s);
+		void setCurrentScene(Scene* s) { currentScene = s; }
 		SDL_Renderer* getRen() { return renderer; }
-		std::vector<GameObject*>* getGameObjects();
+		void nextScene();
+
+
+		void Quit() { quit = true; }
 
 		static GameEngine& getInstance() {
 			static GameEngine instance;
@@ -55,12 +57,13 @@ namespace ToMingine {
 		const int tickInterval = 1000 / FPS;
 		SDL_Window *window;
 		SDL_Renderer *renderer;
-		SDL_Texture *background;
+		
 		KeyboardManager *keyMan;
-		std::vector<GameObject*> gameObjects;
+		std::list<Scene*> scenes;
+		
+		Scene* currentScene;
 
-		bool start = true;
-
+		bool quit = false;
 		GameEngine(const GameEngine& other) = delete;
 		const GameEngine& operator=(const GameEngine& other) = delete;
 

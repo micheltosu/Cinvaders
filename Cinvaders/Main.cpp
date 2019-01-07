@@ -15,7 +15,8 @@ int main(int argc, char** argv) {
     int window_height = 720;
 
 	GameEngine &ge = GameEngine::getInstance();
-	ge.setBackground("Resources/Image/background.png");
+	Scene myScene = Scene("Resources/Image/background.png");
+	ge.setCurrentScene(&myScene);
 
 	RigidObject* player = new RigidObject("Resources/Image/ship.png");
 	RigidObject* enemy = new RigidObject("Resources/Image/ship.png", 300, 300);
@@ -23,9 +24,7 @@ int main(int argc, char** argv) {
 	PlayerScript* s2 = new PlayerScript(enemy);
 
 	player->addScript(s);
-	//enemy->addScript(s2);
-	ge.add(player);
-	//ge.add(enemy);
+	myScene.addObject(player);
 
 	SDL_Keycode sk = SDLK_SPACE;
 	ge.keyboardManager()->addBinding(sk, printer);
