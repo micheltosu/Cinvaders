@@ -6,8 +6,8 @@ find_package(SDL2 REQUIRED)
 
 include_directories(../Cinvaders/Include)
 
-
 file(GLOB SOURCES "../Cinvaders/*.cpp")
 
 
 add_executable(CINVADERS ${SOURCES})
+target_link_libraries(CINVADERS ${SDL2_LIBRARIES})

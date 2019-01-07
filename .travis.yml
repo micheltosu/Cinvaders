@@ -13,4 +13,4 @@ script:
     - ls -la
     - cd Build
     - cmake .
-    - cmake --build
+    - make 
