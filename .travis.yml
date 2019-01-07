@@ -10,6 +10,8 @@ compiler:
     - clang
     - gcc
 script: 
+    - pwd
+    - cd Cinvaders
     - cd Build
     - cmake ..
     - cmake --build
