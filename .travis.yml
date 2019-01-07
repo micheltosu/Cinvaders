@@ -10,5 +10,6 @@ compiler:
     - clang
     - gcc
 script: 
+    - cd Build
     - cmake ..
     - cmake --build
