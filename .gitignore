@@ -3,7 +3,8 @@
 
 # Visual studio code ignore
 .vscode
-Build/*
+Build/OSX*
+Build/WIN*
 *.ds_store
 
 # User-specific files
