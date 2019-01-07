@@ -9,4 +9,6 @@ language: cpp
 compiler:
     - clang
     - gcc
-
+script: 
+    - cmake ..
+    - cmake --build
