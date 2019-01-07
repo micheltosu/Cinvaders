@@ -19,14 +19,24 @@ namespace ToMingine {
 	}
 
 	void GameEngine::addScene(Scene * s){
-		if (scenes.begin)
+		if (scenes.empty())
 			currentScene = s;
 		scenes.push_back(s);
 	}
 
 	void GameEngine::nextScene(){
-		std::list<Scene>::iterator it;
-		for(it = scenes.begin(); it != scenes.end(); it++)
+		std::list<Scene*>::iterator it;
+		for (it = scenes.begin(); it != scenes.end(); it++) {
+			if (*it == currentScene) {
+				if (++it == scenes.end()) {
+					currentScene = *scenes.begin();
+				}
+				else {
+					currentScene = *it;
+				}
+				break;
+			}
+		}
 	}
 
 

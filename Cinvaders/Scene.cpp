@@ -36,8 +36,9 @@ bool Scene::run(){
 				key = event.key.keysym.sym;
 				keysPressed++;
 			}
-			if (event.key.keysym.sym = SDLK_ESCAPE)
+			if (event.key.keysym.sym == SDLK_ESCAPE) {
 				return true;
+			}
 				
 
 			//keyMan->keyPressed(event.key.keysym.sym);

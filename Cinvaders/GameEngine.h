@@ -36,6 +36,7 @@ namespace ToMingine {
 		void run();
 		void addScene(Scene* s);
 		void setCurrentScene(Scene* s) { currentScene = s; }
+		Scene getCurrentScene() { return *currentScene; }
 		SDL_Renderer* getRen() { return renderer; }
 		void nextScene();
 

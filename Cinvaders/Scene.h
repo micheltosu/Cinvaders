@@ -28,7 +28,7 @@ public:
 	void addObject(GameObject* go);
 	//remove object
 	bool run();
-
+	std::list<GameObject*> *getGameObjects() { return &gameObjects; }
 private:
 	SDL_Texture *background;
 	std::list<GameObject*> gameObjects;
