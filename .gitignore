@@ -5,6 +5,7 @@
 .vscode
 Build/*
 !Build/CMakeLists.txt
+!Build/FindSDL2.cmake
 *.ds_store
 
 # User-specific files
