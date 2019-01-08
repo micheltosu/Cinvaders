@@ -14,7 +14,7 @@
 #include <set>
 #include <map>
 #include <list>
-#include <stdio.h>
+#include "KeybindingBase.h"
 
 namespace ToMingine {
 class KeyboardManager {
@@ -23,12 +23,12 @@ public:
     void tick();
     void keyPressed(SDL_Keycode&);
     void keyReleased(SDL_Keycode&);
-    void addBinding(SDL_Keycode&, void(*)());
-    void removeBinding(SDL_Keycode&, void(*)());
+    void addBinding(SDL_Keycode&, KeybindingBase*);
+    void removeBinding(SDL_Keycode&, KeybindingBase*);
     
 private:
     std::set<SDL_Keycode> pressedKey;
-    std::map<SDL_Keycode, std::list<void (*)()>> bindings;
+    std::map<SDL_Keycode, std::list<KeybindingBase*>> bindings;
     
     
 };	

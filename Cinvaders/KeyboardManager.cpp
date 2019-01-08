@@ -5,13 +5,13 @@ namespace ToMingine {
     void KeyboardManager::tick() {
         for (std::set<SDL_Keycode>::iterator it = pressedKey.begin(); it != pressedKey.end(); it++) {
             // Sparar listan för att förkorta nedan uttryck
-            
+            std::cout << "Run" << std::endl;
             if (bindings.find(*it) != bindings.end()) {
-                std::list<void (*)()> bindingsList = bindings.find(*it)->second;
+                std::list<KeybindingBase* > bindingsList = bindings.find(*it)->second;
                 
-                for (std::list<void (*)()>::iterator bIt = bindingsList.begin() ; bIt != bindingsList.end(); bIt++) {
+                for (std::list<KeybindingBase* >::iterator bIt = bindingsList.begin() ; bIt != bindingsList.end(); bIt++) {
                     
-                    (*bIt)();
+                    (*bIt)->execute();
                 }
             }
             
@@ -26,26 +26,26 @@ namespace ToMingine {
         pressedKey.erase(key);
     }
     
-    void KeyboardManager::addBinding(SDL_Keycode& key, void (*funk)() ) {
+    void KeyboardManager::addBinding(SDL_Keycode& key, KeybindingBase* binding ) {
         if(bindings.find(key) == bindings.end()) {
-            auto newList = new std::list<void(*)()>();
-            auto newPair = new std::pair<SDL_Keycode, std::list<void (*)()>>(key, *newList );
+            auto newList = new std::list<KeybindingBase* >();
+            auto newPair = new std::pair<SDL_Keycode, std::list<KeybindingBase* >>(key, *newList );
             
             
             bindings.insert(*newPair);
         }
         
         auto *vec = &(bindings.at(key));
-        vec->push_back(funk);
+        vec->push_back(binding);
         
         //std::cout << "Bindings for: " << key << " is now: " << bindings.at(key).size() << std::endl;
     }
     
-    void KeyboardManager::removeBinding(SDL_Keycode& key, void (*funk)()) {
+    void KeyboardManager::removeBinding(SDL_Keycode& key, KeybindingBase* binding) {
         auto lis = bindings.at(key);
-        for (void (*f)() : lis ) {
-            if (f == funk) {
-                lis.remove(f);
+        for (KeybindingBase* bind: lis ) {
+            if (bind == binding) {
+                lis.remove(bind);
             }
         }
         
