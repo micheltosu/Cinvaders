@@ -3,7 +3,8 @@
 
 #include "Script.h"
 #include "GameEngine.h"
-#include <SDL.h>
+
+
 
 using namespace ToMingine;
 class BulletScript : public Script {
