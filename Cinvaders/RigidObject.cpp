@@ -2,11 +2,11 @@
 #include "GameEngine.h"
 
 namespace ToMingine {
-
-	RigidObject::RigidObject(std::string path):GameObject(new Sprite(path)) { }
-
-	RigidObject::RigidObject(std::string path, int x, int y) : GameObject(new Sprite(path), x, y) { }
-
+    RigidObject::RigidObject(Sprite* spr) : GameObject(spr) {};
+    RigidObject::RigidObject(Sprite* spr, int x, int y) : GameObject(spr, x, y) {};
+    RigidObject::RigidObject(std::string path): RigidObject(new Sprite(path)) { }
+    RigidObject::RigidObject(std::string path, int x, int y) : RigidObject(new Sprite(path), x, y) { }
+    
 	RigidObject::~RigidObject() { }
 
 	bool RigidObject::requestMove(int x, int y){

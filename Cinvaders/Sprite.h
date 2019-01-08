@@ -24,12 +24,12 @@ class GameObject;
     
 class Sprite {
 public:
-    void draw();
+    virtual void draw();
     void addGameObject(GameObject*);
     
     Sprite(std::string);
     virtual ~Sprite();
-private:
+protected:
     int width, height;
     SDL_Rect rect;
     
