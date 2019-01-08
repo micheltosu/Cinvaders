@@ -13,13 +13,11 @@
 
 namespace ToMingine {
     
-AnimatedSprite::AnimatedSprite(std::string path, int w, int h, int num, int seconds = 1) : Sprite(path), frames(num), framesPerImage((seconds * MILLISECONDS) / num) {
+AnimatedSprite::AnimatedSprite(std::string path, int num, int seconds = 1) : Sprite(path), frames(num), framesPerImage((seconds * MILLISECONDS) / num) {
     
-    height = h;
-    width = w;
-    rect.w = width;
-    frameRect.h = height;
-    frameRect.w = width;
+    rect.w = rect.w / num;
+    frameRect.h = rect.h;
+    frameRect.w = rect.w;
     
 }
     
@@ -30,7 +28,7 @@ void AnimatedSprite::draw() {
     
     updateFrame();
     
-    frameRect.x = (width * (currentFrame - 1));
+    frameRect.x = rect.w * (currentFrame - 1);
     frameRect.y = 0;
     
     SDL_RenderCopy(renderer, texture, &frameRect, &rect);

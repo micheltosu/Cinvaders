@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
 	ge.addScene(&myScene);
 	ge.addScene(&myScene2);
 
-    AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/blueShipSheet.png", 99, 75, 4, 1);
+    AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1);
 	RigidObject* player = new RigidObject(playerSprite, 10, 10);
 	RigidObject* enemy = new RigidObject("Resources/Image/ship.png", 300, 300);
 	PlayerScript* s = new PlayerScript(player);

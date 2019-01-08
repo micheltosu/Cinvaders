@@ -30,7 +30,6 @@ public:
     Sprite(std::string);
     virtual ~Sprite();
 protected:
-    int width, height;
     SDL_Rect rect;
     
     Sprite(const Sprite&) = delete;

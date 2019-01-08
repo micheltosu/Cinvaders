@@ -17,7 +17,7 @@ class AnimatedSprite: public Sprite {
 public:
     void draw();
     
-    AnimatedSprite(std::string path, int w, int h, int num, int seconds);
+    AnimatedSprite(std::string path, int num, int seconds);
     
 protected:
     int frames, framesPerImage;
