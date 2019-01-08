@@ -2,11 +2,13 @@
 #include "GameEngine.h"
 #include "BulletScript.h"
 #include <iostream>
+#include "MemberFunctionKeybinding.h"
 
 PlayerScript::PlayerScript(RigidObject* ro){
 	this->ro = ro;
 	SDL_Keycode sk = SDLK_w;
-	//GameEngine::getInstance().keyboardManager()->addBinding(sk, moveUp);
+    MemberFunctionKeybinding<PlayerScript>* mk = new MemberFunctionKeybinding<PlayerScript>(this, &PlayerScript::shoot);
+	GameEngine::getInstance().keyboardManager()->addBinding(sk, mk);
 }
 
 
@@ -40,8 +42,8 @@ void PlayerScript::keyBoardEvent(Uint32 key) {
 		x -= 1;
 	if (key == SDLK_q)
 		x = y = 0;
-	if (key == SDLK_SPACE)
-		shoot();
+	//if (key == SDLK_SPACE)
+	//	shoot();
 }
 
 void PlayerScript::shoot(){
