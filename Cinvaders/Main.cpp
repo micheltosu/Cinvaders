@@ -20,40 +20,43 @@ int main(int argc, char** argv) {
     ge.addScene(&myScene);
     ge.addScene(&myScene2);
 
+	AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1);
+	RigidObject* player = new RigidObject(playerSprite, PLAYER, 500, 550);
+	RigidObject* enemy = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 30);
+	RigidObject* enemy2 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 200);
+	RigidObject* enemy3 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 600, 200);
+	RigidObject* enemy4 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 700, 200);
+
+    PlayerScript* ps = new PlayerScript(player);
+	player->addScript(ps);
+	enemy->addScript(new EnemyScript(enemy));
+	enemy2->addScript(new EnemyScript(enemy2));
+	enemy3->addScript(new EnemyScript(enemy3));
+	enemy4->addScript(new EnemyScript(enemy4));
+	myScene.addObject(player);
+	//myScene.addObject(enemy);
+	myScene.addObject(enemy2);
+	//myScene.addObject(enemy3);
+	myScene.addObject(enemy4);
+
+    // Keybindings
     SDL_Keycode sk = SDLK_SPACE;
     SDL_Keycode right = SDLK_d;
     SDL_Keycode left = SDLK_a;
     SDL_Keycode up = SDLK_w;
     SDL_Keycode down = SDLK_s;
     
-    MemberFunctionKeybinding<PlayerScript>* mk = new MemberFunctionKeybinding<PlayerScript>(s, &PlayerScript::shoot);
-    MemberFunctionKeybinding<PlayerScript>* player_move = new MemberFunctionKeybinding<PlayerScript>(s, &PlayerScript::move);
+    MemberFunctionKeybinding<PlayerScript>* mk = new MemberFunctionKeybinding<PlayerScript>(ps, &PlayerScript::shoot);
+    MemberFunctionKeybinding<PlayerScript>* player_move = new MemberFunctionKeybinding<PlayerScript>(ps, &PlayerScript::move);
     
     GameEngine::getInstance().keyboardManager()->addBinding(sk, mk);
     GameEngine::getInstance().keyboardManager()->addBinding(right, player_move);
     GameEngine::getInstance().keyboardManager()->addBinding(left, player_move);
     GameEngine::getInstance().keyboardManager()->addBinding(up, player_move);
     GameEngine::getInstance().keyboardManager()->addBinding(down, player_move);
+    // End keybindings
     
-	AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1);
-	RigidObject* player = new RigidObject(playerSprite, PLAYER, 600, 700);
-	RigidObject* enemy = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 300);
-	RigidObject* enemy2 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 400);
-	RigidObject* enemy3 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 500);
-	RigidObject* enemy4 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 400, 300);
-
-	player->addScript(new PlayerScript(player));
-	enemy->addScript(new EnemyScript(enemy));
-	enemy2->addScript(new EnemyScript(enemy2));
-	enemy3->addScript(new EnemyScript(enemy3));
-	enemy4->addScript(new EnemyScript(enemy4));
-	myScene.addObject(player);
-	myScene.addObject(enemy);
-	myScene.addObject(enemy2);
-	myScene.addObject(enemy3);
-	myScene.addObject(enemy4);
-
-
+    
     ge.run();
 
     return 0;
