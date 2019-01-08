@@ -15,27 +15,27 @@ int main(int argc, char** argv) {
     int window_width = 1280;
     int window_height = 720;
 
-	GameEngine &ge = GameEngine::getInstance();
-	Scene myScene = Scene("Resources/Image/background.png");
-	Scene myScene2 = Scene("Resources/Image/background.png");
-	ge.addScene(&myScene);
-	ge.addScene(&myScene2);
+    GameEngine &ge = GameEngine::getInstance();
+    Scene myScene = Scene("Resources/Image/background.png");
+    Scene myScene2 = Scene("Resources/Image/background.png");
+    ge.addScene(&myScene);
+    ge.addScene(&myScene2);
 
     AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1);
 	RigidObject* player = new RigidObject(playerSprite, 10, 10);
 	RigidObject* enemy = new RigidObject("Resources/Image/ship.png", 300, 300);
-	PlayerScript* s = new PlayerScript(player);
-	PlayerScript* s2 = new PlayerScript(enemy);
+    PlayerScript* s = new PlayerScript(player);
+    PlayerScript* s2 = new PlayerScript(enemy);
 
-	player->addScript(s);
-	myScene.addObject(player);
-	myScene2.addObject(enemy);
+    player->addScript(s);
+    myScene.addObject(player);
+    myScene.addObject(enemy);
 
-	SDL_Keycode sk = SDLK_SPACE;
-	ge.keyboardManager()->addBinding(sk, printer);
+    SDL_Keycode sk = SDLK_SPACE;
+    ge.keyboardManager()->addBinding(sk, printer);
     
 
-	ge.run();
+    ge.run();
 
     return 0;
 }

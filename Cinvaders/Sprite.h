@@ -29,6 +29,7 @@ public:
     
     Sprite(std::string);
     virtual ~Sprite();
+	const SDL_Rect* getRect() { return &rect; }
 protected:
     SDL_Rect rect;
     

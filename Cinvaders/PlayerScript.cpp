@@ -1,5 +1,6 @@
 #include "PlayerScript.h"
 #include "GameEngine.h"
+#include "BulletScript.h"
 #include <iostream>
 
 PlayerScript::PlayerScript(RigidObject* ro){
@@ -37,6 +38,18 @@ void PlayerScript::keyBoardEvent(Uint32 key) {
 		x += 1;
 	if (key == SDLK_a)
 		x -= 1;
+	if (key == SDLK_q)
+		x = y = 0;
+	if (key == SDLK_SPACE)
+		shoot();
+}
+
+void PlayerScript::shoot(){
+	int x = ro->getRect()->x +(ro->getRect()->w / 2);
+	int y = ro->getRect()->y -(ro->getRect()->h / 2);
+	RigidObject* bullet = new RigidObject("Resources/Image/laser.png", PLAYER, x-1, y);
+	bullet->addScript(new BulletScript(1, bullet));
+	GameEngine::getInstance().getCurrentScene()->addObject(bullet);
 }
 
 void PlayerScript::moveUp() {

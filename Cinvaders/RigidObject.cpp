@@ -2,36 +2,37 @@
 #include "GameEngine.h"
 
 namespace ToMingine {
-    RigidObject::RigidObject(Sprite* spr) : GameObject(spr) {};
-    RigidObject::RigidObject(Sprite* spr, int x, int y) : GameObject(spr, x, y) {};
-    RigidObject::RigidObject(std::string path): RigidObject(new Sprite(path)) { }
-    RigidObject::RigidObject(std::string path, int x, int y) : RigidObject(new Sprite(path), x, y) { }
+    RigidObject::RigidObject(Sprite* spr, Type t) : GameObject(spr, t) {};
+    RigidObject::RigidObject(Sprite* spr, Type t, int x, int y) : GameObject(spr, t, x, y) {};
+    RigidObject::RigidObject(std::string path, Type t): RigidObject(new Sprite(path), t) { }
+    RigidObject::RigidObject(std::string path, Type t, int x, int y) : RigidObject(new Sprite(path), t, x, y) { }
     
-	RigidObject::~RigidObject() { }
+    RigidObject::~RigidObject() { }
 
-	bool RigidObject::requestMove(int x, int y){
-		SDL_Rect* otherRect;
-		std::list<GameObject*>* gameObjects = GameEngine::getInstance().getCurrentScene().getGameObjects();
-		for (GameObject* go : *gameObjects) {
-			otherRect = go->getRect();
-			if (go != this) {
-				if (
-					otherRect->y + otherRect->h >= getRect()->y + y &&
-					getRect()->y + otherRect->h + y >= otherRect->y &&
-					otherRect->x + otherRect->w >= getRect()->x + x &&
-					getRect()->x + getRect()->w + x >= otherRect->x 
-					) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
+    bool RigidObject::requestMove(int x, int y){
+        SDL_Rect* otherRect;
+        std::list<GameObject*>* gameObjects = GameEngine::getInstance().getCurrentScene()->getGameObjects();
+        for (GameObject* go : *gameObjects) {
+            otherRect = go->getRect();
+            if (go != this && type != go->getType()) {
+                if (
+                    otherRect->y + otherRect->h >= getRect()->y + y &&
+                    getRect()->y + otherRect->h + y >= otherRect->y &&
+                    otherRect->x + otherRect->w >= getRect()->x + x &&
+                    getRect()->x + getRect()->w + x >= otherRect->x 
+                    ) {
+                    GameEngine::getInstance().getCurrentScene()->removeObject(go);
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
-	void RigidObject::move(int x, int y) {		
-		//if (requestMove(x, y)) {
-			rect.x += x * SPEED;
-			rect.y += y * SPEED;
-		//}
-	}
+    void RigidObject::move(int x, int y) {        
+        if (requestMove(x, y)) {
+            rect.x += x * SPEED;
+            rect.y += y * SPEED;
+        }
+    }
 }

@@ -5,15 +5,17 @@
 namespace ToMingine {
 	
     GameObject::GameObject () {}
-    GameObject::GameObject(Sprite* spr) : GameObject(spr, 0, 0) {}
-    GameObject::GameObject(Sprite* spr, int x, int y) {
+    GameObject::GameObject(Sprite* spr, Type t) : GameObject(spr, t, 0, 0) {}
+    GameObject::GameObject(Sprite* spr, Type t, int x, int y) {
 		
-       
+		type = t;
         sprite = spr;
         sprite->addGameObject(this);
         
         rect.x = x;
         rect.y = y;
+		rect.w = sprite->getRect()->w;
+		rect.h = sprite->getRect()->h;
 		
 	}
 

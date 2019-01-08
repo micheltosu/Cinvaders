@@ -26,7 +26,7 @@ public:
 	~Scene();
 	void setBackground(std::string path);
 	void addObject(GameObject* go);
-	//remove object
+	void removeObject(GameObject* go);
 	bool run();
 	std::list<GameObject*> *getGameObjects() { return &gameObjects; }
 private:
