@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
 
 	player->addScript(s);
 	myScene.addObject(player);
-	myScene2.addObject(enemy);
+	myScene.addObject(enemy);
 
 	SDL_Keycode sk = SDLK_SPACE;
 	ge.keyboardManager()->addBinding(sk, printer);
