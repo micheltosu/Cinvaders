@@ -4,25 +4,20 @@
 
 namespace ToMingine {
 	
-	GameObject::GameObject(std::string path) {
-		renderer = GameEngine::getInstance().getRen();
-		SDL_Surface* surface = IMG_Load(path.c_str());
-		texture = SDL_CreateTextureFromSurface(renderer, surface);
-		rect = { 0, 0, surface->w, surface->h };
-		SDL_FreeSurface(surface);
-	}
-
-	GameObject::GameObject(std::string path, int x, int y) {
-		renderer = GameEngine::getInstance().getRen();
-		SDL_Surface* surface = IMG_Load(path.c_str());
-		texture = SDL_CreateTextureFromSurface(renderer, surface);
-		rect = { x, y, surface->w, surface->h };
-		SDL_FreeSurface(surface);
+    GameObject::GameObject () {}
+    GameObject::GameObject(Sprite* spr) : GameObject(spr, 0, 0) {}
+    GameObject::GameObject(Sprite* spr, int x, int y) {
+		
+       
+        sprite = spr;
+        sprite->addGameObject(this);
+        
+        rect.x = x;
+        rect.y = y;
+		
 	}
 
 	GameObject::~GameObject() {	}
-
-
 
 	void GameObject::tick() {
 		if (script != nullptr) {
@@ -37,8 +32,8 @@ namespace ToMingine {
 	}
 
 	void GameObject::draw() {
-		SDL_RenderCopy(renderer, texture, NULL, &rect);
-	}
+        if (sprite != nullptr) sprite->draw();
+    }
 
 
 }
