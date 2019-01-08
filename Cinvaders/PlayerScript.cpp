@@ -2,18 +2,14 @@
 #include "GameEngine.h"
 #include "BulletScript.h"
 #include <iostream>
-#include "MemberFunctionKeybinding.h"
+
 
 PlayerScript::PlayerScript(RigidObject* ro){
 	this->ro = ro;
-	SDL_Keycode sk = SDLK_w;
-    MemberFunctionKeybinding<PlayerScript>* mk = new MemberFunctionKeybinding<PlayerScript>(this, &PlayerScript::shoot);
-	GameEngine::getInstance().keyboardManager()->addBinding(sk, mk);
+	
 }
 
-
 PlayerScript::~PlayerScript() { }
-
 
 void PlayerScript::run() {
 		
@@ -31,22 +27,20 @@ void PlayerScript::run() {
 
 }
 
-void PlayerScript::keyBoardEvent(Uint32 key) {
-	if (key == SDLK_s)
-		y += 1;
-	if (key == SDLK_w)
-		y -= 1;
-	if (key == SDLK_d)
-		x += 1;
-	if (key == SDLK_a)
-		x -= 1;
-	if (key == SDLK_q)
-		x = y = 0;
-	//if (key == SDLK_SPACE)
-	//	shoot();
+void PlayerScript::move(uint32_t key) {
+    if (key == SDLK_s)
+        y += 1;
+    if (key == SDLK_w)
+        y -= 1;
+    if (key == SDLK_d)
+        x += 1;
+    if (key == SDLK_a)
+        x -= 1;
+    if (key == SDLK_q)
+        x = y = 0;
 }
 
-void PlayerScript::shoot(){
+void PlayerScript::shoot(uint32_t){
 	int x = ro->getRect()->x +(ro->getRect()->w / 2);
 	int y = ro->getRect()->y -(ro->getRect()->h / 2);
 	RigidObject* bullet = new RigidObject("Resources/Image/laser.png", PLAYER, x-1, y);

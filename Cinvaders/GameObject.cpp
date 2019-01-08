@@ -22,7 +22,7 @@ namespace ToMingine {
 	GameObject::~GameObject() {	}
 
 	void GameObject::tick() {
-		if (script != nullptr) {
+		if (script) {
 			script->run();
 		}
 		draw();
