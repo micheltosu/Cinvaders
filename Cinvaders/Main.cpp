@@ -3,6 +3,7 @@
 #include "GameEngine.h"
 #include "PlayerScript.h"
 #include "AnimatedSprite.h"
+#include "FunctionKeybinding.h"
 
 using namespace std;
 using namespace ToMingine;
@@ -32,7 +33,7 @@ int main(int argc, char** argv) {
     myScene.addObject(enemy);
 
     SDL_Keycode sk = SDLK_SPACE;
-    ge.keyboardManager()->addBinding(sk, printer);
+    ge.keyboardManager()->addBinding(sk, new FunctionKeybinding(printer));
     
 
     ge.run();
