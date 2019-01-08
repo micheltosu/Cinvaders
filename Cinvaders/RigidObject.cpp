@@ -3,9 +3,9 @@
 
 namespace ToMingine {
 
-	RigidObject::RigidObject(std::string path):GameObject(path) { }
+	RigidObject::RigidObject(std::string path):GameObject(new Sprite(path)) { }
 
-	RigidObject::RigidObject(std::string path, int x, int y) : GameObject(path, x, y) { }
+	RigidObject::RigidObject(std::string path, int x, int y) : GameObject(new Sprite(path), x, y) { }
 
 	RigidObject::~RigidObject() { }
 
