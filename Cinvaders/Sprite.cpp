@@ -32,7 +32,7 @@ namespace ToMingine {
     }
     
     Sprite::~Sprite(){
-        delete texture;
+		SDL_DestroyTexture(texture);
         
     }
     

@@ -21,7 +21,6 @@ namespace ToMingine {
 		RigidObject(std::string path, Type t, int x, int y);
         RigidObject(Sprite* spr, Type t, int x, int y);
         ~RigidObject();
-
         
 
         bool requestMove(int, int);

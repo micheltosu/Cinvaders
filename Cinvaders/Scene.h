@@ -33,6 +33,7 @@ public:
 private:
 	SDL_Texture *background;
 	std::list<GameObject*> gameObjects;
+	std::list<GameObject*> toRemove;
 	Uint32 key = 0;
 	int keysPressed = 0;
     KeyboardManager* keyMan;

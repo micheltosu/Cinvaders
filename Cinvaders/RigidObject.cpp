@@ -22,6 +22,7 @@ namespace ToMingine {
                     getRect()->x + getRect()->w + x >= otherRect->x 
                     ) {
                     GameEngine::getInstance().getCurrentScene()->removeObject(go);
+					GameEngine::getInstance().getCurrentScene()->removeObject(this);
                     return false;
                 }
             }
