@@ -5,13 +5,12 @@ namespace ToMingine {
     void KeyboardManager::tick() {
         for (std::set<SDL_Keycode>::iterator it = pressedKey.begin(); it != pressedKey.end(); it++) {
             // Sparar listan för att förkorta nedan uttryck
-            std::cout << "Run" << std::endl;
             if (bindings.find(*it) != bindings.end()) {
                 std::list<KeybindingBase* > bindingsList = bindings.find(*it)->second;
                 
                 for (std::list<KeybindingBase* >::iterator bIt = bindingsList.begin() ; bIt != bindingsList.end(); bIt++) {
                     
-                    (*bIt)->execute();
+                    (*bIt)->execute(*it);
                 }
             }
             

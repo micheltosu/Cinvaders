@@ -7,10 +7,10 @@ namespace ToMingine {
     
     class FunctionKeybinding : public KeybindingBase {
     public:
-        FunctionKeybinding(void (*fun)());
-        void execute();
+        FunctionKeybinding(void (*fun)(uint32_t));
+        void execute(uint32_t);
     private:
-        void (*funk)();
+        void (*funk)(uint32_t);
         
     };   
 }
