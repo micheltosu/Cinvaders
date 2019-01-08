@@ -14,6 +14,8 @@ namespace ToMingine {
         
         rect.x = x;
         rect.y = y;
+		rect.w = sprite->getRect()->w;
+		rect.h = sprite->getRect()->h;
 		
 	}
 

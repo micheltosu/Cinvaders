@@ -23,6 +23,15 @@ void Scene::setBackground(std::string filename) {
 void Scene::addObject(GameObject * go){
 	gameObjects.push_back(go);
 }
+void Scene::removeObject(GameObject* go){
+	for (auto currentObject : gameObjects) {
+		if (currentObject == go) {
+			gameObjects.remove(currentObject);
+			delete go;
+			break;
+		}
+	}
+}
 bool Scene::run(){
 	
 	SDL_Event event;

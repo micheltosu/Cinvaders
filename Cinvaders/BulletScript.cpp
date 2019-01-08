@@ -16,8 +16,8 @@ void BulletScript::run(){
 	else if (dir == 4)
 		ro->move(-10, 0);
 
-	if (ro->getRect()->x > GameEngine::getInstance().window_width);
-	if (ro->getRect()->y > GameEngine::getInstance().window_height);
+	if (ro->getRect()->x > GameEngine::getInstance().window_width)
+		GameEngine::getInstance().getCurrentScene()->removeObject(ro);
+	if (ro->getRect()->y > GameEngine::getInstance().window_height)
+		GameEngine::getInstance().getCurrentScene()->removeObject(ro);
 }
-
-
