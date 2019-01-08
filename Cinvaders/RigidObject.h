@@ -13,22 +13,23 @@
 #include "GameObject.h"
 
 namespace ToMingine {
-	
-	class RigidObject :	public GameObject {
-	public:
+    
+    class RigidObject :    public GameObject {
+    public:
 		RigidObject(std::string path, Type t);
+        RigidObject(Sprite* spr, Type t);
 		RigidObject(std::string path, Type t, int x, int y);
-		~RigidObject();
+        RigidObject(Sprite* spr, Type t, int x, int y);
+        ~RigidObject();
+        
 
-		
+        bool requestMove(int, int);
 
-		bool requestMove(int, int);
+        void move(int x, int y);
 
-		void move(int x, int y);
-
-	private:
-		const int SPEED = 1;
-	};
+    private:
+        const int SPEED = 1;
+    };
 
 }
 #endif

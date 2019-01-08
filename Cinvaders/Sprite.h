@@ -24,14 +24,13 @@ class GameObject;
     
 class Sprite {
 public:
-    void draw();
+    virtual void draw();
     void addGameObject(GameObject*);
     
     Sprite(std::string);
     virtual ~Sprite();
 	const SDL_Rect* getRect() { return &rect; }
-private:
-    int width, height;
+protected:
     SDL_Rect rect;
     
     Sprite(const Sprite&) = delete;
