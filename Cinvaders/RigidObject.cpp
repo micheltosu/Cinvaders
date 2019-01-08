@@ -11,7 +11,7 @@ namespace ToMingine {
 
 	bool RigidObject::requestMove(int x, int y){
 		SDL_Rect* otherRect;
-		std::list<GameObject*>* gameObjects = GameEngine::getInstance().getCurrentScene().getGameObjects();
+		std::list<GameObject*>* gameObjects = GameEngine::getInstance().getCurrentScene()->getGameObjects();
 		for (GameObject* go : *gameObjects) {
 			otherRect = go->getRect();
 			if (go != this) {

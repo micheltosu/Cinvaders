@@ -15,6 +15,7 @@ public:
 	void run();
 	void moveUp();
 	void keyBoardEvent(Uint32);
+	void shoot();
 	int x = 0, y = 0;
 
 private:
