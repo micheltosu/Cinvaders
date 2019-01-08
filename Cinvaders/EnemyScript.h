@@ -1,9 +1,22 @@
+#ifndef ENEMY_SCRIPT_H
+#define ENEMY_SCRIPT_H
+
+
+#include "RigidObject.h"
 #include "Script.h"
 
 using namespace ToMingine;
 class EnemyScript : public Script {
 public:
-	EnemyScript();
+	EnemyScript(RigidObject* ro);
 	~EnemyScript();
+private:
+	RigidObject* ro;
+	void run();
+	const int DELAY = 1;
+	const int tickInterval = 1000 / DELAY;
+	int x, y;
+	Uint32 nextTick = SDL_GetTicks() + tickInterval;
 };
 
+#endif // !ENEMY_SCRIPT_H

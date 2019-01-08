@@ -19,13 +19,16 @@ namespace ToMingine {
 		
 	}
 
-	GameObject::~GameObject() {	}
+	GameObject::~GameObject() {
+		delete script;
+		delete sprite;
+	}
 
 	void GameObject::tick() {
-		if (script != nullptr) {
+		draw();
+		if (script) {
 			script->run();
 		}
-		draw();
 	}
 
 	void GameObject::keyBoardEvent(Uint32 key) {

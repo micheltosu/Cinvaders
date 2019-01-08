@@ -7,7 +7,7 @@ namespace ToMingine {
 
 	RigidObject::RigidObject(std::string path, Type t, int x, int y) : GameObject(new Sprite(path), t, x, y) { }
 
-	RigidObject::~RigidObject() { }
+	RigidObject::~RigidObject() {}
 
 	bool RigidObject::requestMove(int x, int y){
 		SDL_Rect* otherRect;
@@ -22,6 +22,7 @@ namespace ToMingine {
 					getRect()->x + getRect()->w + x >= otherRect->x 
 					) {
 					GameEngine::getInstance().getCurrentScene()->removeObject(go);
+					GameEngine::getInstance().getCurrentScene()->removeObject(this);
 					return false;
 				}
 			}

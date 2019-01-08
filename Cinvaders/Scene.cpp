@@ -24,14 +24,10 @@ void Scene::addObject(GameObject * go){
 	gameObjects.push_back(go);
 }
 void Scene::removeObject(GameObject* go){
-	for (auto currentObject : gameObjects) {
-		if (currentObject == go) {
-			gameObjects.remove(currentObject);
-			delete go;
-			break;
-		}
-	}
+	toRemove.push_back(go);
+	
 }
+
 bool Scene::run(){
 	
 	SDL_Event event;
@@ -68,6 +64,22 @@ bool Scene::run(){
 		go->tick();
 	}
 	
+	if (toRemove.size() > 0) {
+		for (auto go : toRemove) {
+			std::list<GameObject*>::iterator i = gameObjects.begin();
+			while (i != gameObjects.end()) {
+				if (*i == go) {
+					auto* i2 = *i;
+					gameObjects.erase(i++);
+					delete i2;
+					break;
+				}
+			i++;
+			}
+		}
+		toRemove.clear();
+	}
+
 	for (GameObject* go : gameObjects) {
 		go->keyBoardEvent(key);
 	}
