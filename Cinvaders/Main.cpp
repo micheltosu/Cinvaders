@@ -20,8 +20,8 @@ int main(int argc, char** argv) {
 	ge.addScene(&myScene);
 	ge.addScene(&myScene2);
 
-	RigidObject* player = new RigidObject("Resources/Image/ship.png");
-	RigidObject* enemy = new RigidObject("Resources/Image/ship.png", 300, 300);
+	RigidObject* player = new RigidObject("Resources/Image/ship.png", PLAYER);
+	RigidObject* enemy = new RigidObject("Resources/Image/ship.png", ENEMY, 300, 300);
 	PlayerScript* s = new PlayerScript(player);
 	PlayerScript* s2 = new PlayerScript(enemy);
 

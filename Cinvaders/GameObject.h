@@ -8,12 +8,12 @@
 
 namespace ToMingine {
 
+enum Type { PLAYER, ENEMY, AMMO, NIL };
 class GameObject {
-
 public:
     GameObject();
-    GameObject(Sprite* spr);
-    GameObject(Sprite* spr, int x, int y);
+    GameObject(Sprite* spr, Type t);
+    GameObject(Sprite* spr, Type t, int x, int y);
     ~GameObject();
 
     void addScript(Script* s) { script = s; }
@@ -21,9 +21,11 @@ public:
     void keyBoardEvent(Uint32);
 
     SDL_Rect* getRect() { return &rect; }
+	Type getType() { return type; }
 
 protected:
     SDL_Rect rect;
+	Type type;
 
 private:
     void draw();

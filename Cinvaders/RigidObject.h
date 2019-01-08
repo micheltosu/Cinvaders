@@ -13,12 +13,14 @@
 #include "GameObject.h"
 
 namespace ToMingine {
+	
 	class RigidObject :	public GameObject {
-
 	public:
-		RigidObject(std::string path);
-		RigidObject(std::string path, int x, int y);
+		RigidObject(std::string path, Type t);
+		RigidObject(std::string path, Type t	, int x, int y);
 		~RigidObject();
+
+		
 
 		bool requestMove(int, int);
 

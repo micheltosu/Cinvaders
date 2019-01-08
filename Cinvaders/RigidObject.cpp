@@ -3,9 +3,9 @@
 
 namespace ToMingine {
 
-	RigidObject::RigidObject(std::string path):GameObject(new Sprite(path)) { }
+	RigidObject::RigidObject(std::string path, Type t):GameObject(new Sprite(path), t) { }
 
-	RigidObject::RigidObject(std::string path, int x, int y) : GameObject(new Sprite(path), x, y) { }
+	RigidObject::RigidObject(std::string path, Type t, int x, int y) : GameObject(new Sprite(path), t, x, y) { }
 
 	RigidObject::~RigidObject() { }
 
@@ -14,13 +14,14 @@ namespace ToMingine {
 		std::list<GameObject*>* gameObjects = GameEngine::getInstance().getCurrentScene()->getGameObjects();
 		for (GameObject* go : *gameObjects) {
 			otherRect = go->getRect();
-			if (go != this) {
+			if (go != this && type != go->getType()) {
 				if (
 					otherRect->y + otherRect->h >= getRect()->y + y &&
 					getRect()->y + otherRect->h + y >= otherRect->y &&
 					otherRect->x + otherRect->w >= getRect()->x + x &&
 					getRect()->x + getRect()->w + x >= otherRect->x 
 					) {
+					GameEngine::getInstance().getCurrentScene()->removeObject(go);
 					return false;
 				}
 			}
