@@ -15,6 +15,7 @@
 #endif
 
 #include "GameObject.h"
+#include "TextBox.h"
 
 namespace ToMingine {
 class Inputfield : public GameObject {
@@ -22,11 +23,10 @@ public:
     Inputfield(std::string path, int size = 12);
     Inputfield(std::string path, int size, int x, int y, int w, int h);
     ~Inputfield();
-    
-    void draw();
-private:
-    TTF_Font* font;
+	private:
     bool focus;
+    TextBox *box;
+
     
     Inputfield(const Inputfield&) = delete;
     const Inputfield& operator=(const Inputfield&) = delete;
