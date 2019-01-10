@@ -18,6 +18,7 @@
 
 #include "GameObject.h"
 #include "RigidObject.h"
+#include "PhysicsObject.h"
 #include "KeyboardManager.h"
 #include "Scene.h"
 #include <iostream>

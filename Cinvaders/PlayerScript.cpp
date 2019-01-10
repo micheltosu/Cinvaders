@@ -22,7 +22,7 @@ void PlayerScript::run() {
 	if (ro->getRect()->y < 0 - ro->getRect()->h)
 		ro->getRect()->y = GameEngine::getInstance().window_height;
 	prePos = *ro->getRect();
-	ro->move(x, y); 
+	ro->requestMove(x, y); 
 	if (prePos.x == ro->getRect()->x && prePos.y == ro->getRect()->y) { x = 0; y = 0; }
 
 }
