@@ -6,6 +6,7 @@
 #include "AnimatedSprite.h"
 #include "FunctionKeybinding.h"
 #include "MemberFunctionKeybinding.h"
+#include "Inputfield.h"
 
 using namespace std;
 using namespace ToMingine;
@@ -47,6 +48,10 @@ int main(int argc, char** argv) {
     GameEngine::getInstance().keyboardManager()->addListener(player);
     // End keybindings
     
+    
+    // TextBox
+    Inputfield* inField = new Inputfield("Resources/Fonts/Pixeled.ttf", 15, 100,100,200,50);
+    myScene.addObject(inField);
     
     ge.run();
 
