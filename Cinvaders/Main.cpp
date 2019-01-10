@@ -34,9 +34,9 @@ int main(int argc, char** argv) {
 	enemy3->addScript(new EnemyScript(enemy3));
 	enemy4->addScript(new EnemyScript(enemy4));
 	myScene.addObject(player);
-	//myScene.addObject(enemy);
+	myScene.addObject(enemy);
 	myScene.addObject(enemy2);
-	//myScene.addObject(enemy3);
+	myScene.addObject(enemy3);
 	myScene.addObject(enemy4);
 
     // Keybindings
