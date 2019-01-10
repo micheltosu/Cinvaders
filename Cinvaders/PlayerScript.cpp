@@ -39,10 +39,8 @@ void PlayerScript::keyBoardEvent(Uint32 key) {
         x = y = 0;
 }
 
-void PlayerScript::collision(Type t){
-	x *= -1 * 0.2;
-	y *= -1 * 0.2;
-
+void PlayerScript::collision(Type t) {
+	
 }
 
 

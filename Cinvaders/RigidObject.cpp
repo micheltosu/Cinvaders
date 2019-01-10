@@ -14,7 +14,7 @@ namespace ToMingine {
 		script->collision(t);
 	}
 
-    bool RigidObject::requestMove(int x, int y){
+    GameObject* RigidObject::requestMove(int x, int y){
         SDL_Rect* otherRect;
         std::list<GameObject*>* gameObjects = GameEngine::getInstance().getCurrentScene()->getGameObjects();
         for (GameObject* go : *gameObjects) {
@@ -27,14 +27,15 @@ namespace ToMingine {
                     getRect()->x + getRect()->w + x >= otherRect->x 
                     ) {
 					collision(go->getType());
-					go->collision(type);
-                    return false;
+					if(go->hasScript())
+						go->collision(type);
+                    return go;
                 }
             }
         }
 		rect.x += x * SPEED;
 		rect.y += y * SPEED;
-        return true;
+        return nullptr;
     }
 
     void RigidObject::move(int x, int y) {        

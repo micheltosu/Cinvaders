@@ -24,7 +24,7 @@ namespace ToMingine {
         
 		void collision(Type t);
 
-        bool requestMove(int, int);
+        GameObject* requestMove(int, int);
 
         void move(int x, int y);
 

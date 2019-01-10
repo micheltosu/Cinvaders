@@ -12,9 +12,27 @@ namespace ToMingine {
 	PhysicsObject::PhysicsObject(Sprite * spr, Type t, int x, int y): RigidObject(spr, t, x, y) {}
 
 	PhysicsObject::~PhysicsObject()	{}
-	bool PhysicsObject::requestMove(int* x, int* y){
+	GameObject* PhysicsObject::requestMove(int* x, int* y){
 		*y += gravity;
-		RigidObject::requestMove(*x, *y);
-		return false;
+		GameObject* go = RigidObject::requestMove(*x, *y);
+		if (go) {
+			bounce(go, x, y);
+		}
+		return nullptr;
+	}
+	void PhysicsObject::bounce(GameObject* go, int* x, int* y){
+		if ((go->getRect()->x < (getRect()->x + getRect()->w) && (go->getRect()->x + go->getRect()->w) > getRect()->x) &&
+			(go->getRect()->y > (getRect()->y + getRect()->h) || (go->getRect()->y + go->getRect()->h) < getRect()->y)
+			) {
+			*y *= -1 * elasticity;
+		}
+		if ((go->getRect()->y < (getRect()->y + getRect()->h) && (go->getRect()->y + go->getRect()->h) > getRect()->y) &&
+			(go->getRect()->x > (getRect()->x + getRect()->w) || (go->getRect()->x + go->getRect()->w) < getRect()->x)
+			) {
+			*x *= -1 * elasticity;
+		}
+
+			
+			
 	}
 }

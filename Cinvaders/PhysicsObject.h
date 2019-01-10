@@ -12,10 +12,13 @@ public:
 	PhysicsObject(Sprite* spr, Type t, int x, int y);
 	~PhysicsObject();
 
-	bool requestMove(int*, int*);
+	GameObject* requestMove(int*, int*);
 	void setGravity(int g) { gravity = g; }
-
+	void setElasticity(int e) { elasticity = e; }
 private:
+	void bounce(GameObject*, int* x, int* y);
+	double elasticity = 0.5;
+	GameObject* collisionObject;
 	int gravity = 1;
 };
 

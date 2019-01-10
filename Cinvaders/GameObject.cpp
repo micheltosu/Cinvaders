@@ -37,6 +37,12 @@ namespace ToMingine {
             script->keyBoardEvent(key);
     }
 
+	bool GameObject::hasScript(){
+		if (script)
+			return true;
+		return false;
+	}
+
     void GameObject::draw() {
         if (sprite != nullptr) sprite->draw();
     }

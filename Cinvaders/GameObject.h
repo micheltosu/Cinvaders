@@ -7,7 +7,7 @@
 
 namespace ToMingine {
 
-enum Type { PLAYER, ENEMY, AMMO, NIL };
+enum Type { PLAYER, ENEMY, AMMO, WALL };
 class Script;
 class GameObject {
 public:
@@ -16,14 +16,14 @@ public:
     GameObject(Sprite* spr, Type t, int x, int y);
     ~GameObject();
 
-    void addScript(Script* s) { script = s; }
+	void addScript(Script* s) { script = s; }
     void tick();
     void keyBoardEvent(Uint32);
 
     SDL_Rect* getRect() { return &rect; }
 	Type getType() { return type; }
 	virtual void collision(Type) {}
-
+	bool hasScript();
 protected:
     SDL_Rect rect;
 	Type type;

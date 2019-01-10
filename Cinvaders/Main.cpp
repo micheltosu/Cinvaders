@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
 	RigidObject* enemy2 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 200);
 	RigidObject* enemy3 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 600, 200);
 	RigidObject* enemy4 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 700, 200);
-	GameObject* wall = new GameObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), NIL, 700, 700);
+	RigidObject* wall = new RigidObject(new AnimatedSprite("Resources/Image/wall.png", 3, 1), WALL, 0, 500);
 
     PlayerScript* ps = new PlayerScript(player);
 	player->addScript(ps);
