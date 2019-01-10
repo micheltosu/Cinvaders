@@ -20,13 +20,7 @@ namespace ToMingine {
         
         SDL_Texture* textTxt = SDL_CreateTextureFromSurface(renderer, txtSurf);
         
-        SDL_RenderCopy(renderer, textTxt, NULL, &rect);
-        for (int i = 0; i < text.length(); i++) {
-            
-        }
-        
-        //std::cout << "TB draw" << std::endl;
-        
+        SDL_RenderCopy(renderer, textTxt, NULL, &rect);      
     }
     
     TextBox::~TextBox() {
