@@ -1,19 +1,6 @@
 #ifndef INPUTFIELD_H
 #define INPUTFIELD_H
 
-#ifdef _WIN32
-
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-
-
-#elif defined (__APPLE__)
-#include <SDL2/SDL.h>
-#include <SDL2_image/SDL_image.h>
-#include <SDL2_ttf/SDL_ttf.h>
-#endif
-
 #include "GameObject.h"
 #include "TextBox.h"
 
