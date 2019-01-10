@@ -14,10 +14,10 @@ public:
     GameObject();
     GameObject(Sprite* spr, Type t);
     GameObject(Sprite* spr, Type t, int x, int y);
-    ~GameObject();
+    virtual ~GameObject();
 
     void addScript(Script* s) { script = s; }
-    void tick();
+    virtual void tick();
     void keyBoardEvent(Uint32);
 
     SDL_Rect* getRect() { return &rect; }
