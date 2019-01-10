@@ -44,7 +44,7 @@ void PlayerScript::keyBoardEvent(Uint32 key) {
 void PlayerScript::shoot(Uint32){
 	int x = ro->getRect()->x +(ro->getRect()->w / 2);
 	int y = ro->getRect()->y -(ro->getRect()->h / 2);
-	RigidObject* bullet = new RigidObject("Resources/Image/laser.png", PLAYER, x-1, y);
+	RigidObject* bullet = new RigidObject("Resources/Image/laser.png", AMMO, x-1, y);
 	bullet->addScript(new BulletScript(1, bullet));
 	GameEngine::getInstance().getCurrentScene()->addObject(bullet);
 }

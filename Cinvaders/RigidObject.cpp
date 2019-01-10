@@ -1,5 +1,6 @@
 #include "RigidObject.h"
 #include "GameEngine.h"
+#include "Script.h"
 
 namespace ToMingine {
     RigidObject::RigidObject(Sprite* spr, Type t) : GameObject(spr, t) {};
@@ -8,6 +9,10 @@ namespace ToMingine {
     RigidObject::RigidObject(std::string path, Type t, int x, int y) : RigidObject(new Sprite(path), t, x, y) { }
     
     RigidObject::~RigidObject() { }
+
+	void RigidObject::collision(Type t)	{ 
+		script->collision(t);
+	}
 
     bool RigidObject::requestMove(int x, int y){
         SDL_Rect* otherRect;
@@ -21,19 +26,19 @@ namespace ToMingine {
                     otherRect->x + otherRect->w >= getRect()->x + x &&
                     getRect()->x + getRect()->w + x >= otherRect->x 
                     ) {
-                    GameEngine::getInstance().getCurrentScene()->removeObject(go);
-					GameEngine::getInstance().getCurrentScene()->removeObject(this);
+					collision(go->getType());
+					go->collision(type);
                     return false;
                 }
             }
         }
+		rect.x += x * SPEED;
+		rect.y += y * SPEED;
         return true;
     }
 
     void RigidObject::move(int x, int y) {        
-        if (requestMove(x, y)) {
-            rect.x += x * SPEED;
-            rect.y += y * SPEED;
-        }
+		rect.x += x * SPEED;
+		rect.y += y * SPEED;
     }
 }

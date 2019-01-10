@@ -22,6 +22,7 @@ namespace ToMingine {
         RigidObject(Sprite* spr, Type t, int x, int y);
         ~RigidObject();
         
+		void collision(Type t);
 
         bool requestMove(int, int);
 

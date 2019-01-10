@@ -3,12 +3,12 @@
 
 #include <string>
 #include <vector>
-#include "Script.h"
 #include "Sprite.h"
 
 namespace ToMingine {
 
 enum Type { PLAYER, ENEMY, AMMO, NIL };
+class Script;
 class GameObject {
 public:
     GameObject();
@@ -22,10 +22,12 @@ public:
 
     SDL_Rect* getRect() { return &rect; }
 	Type getType() { return type; }
+	virtual void collision(Type) {}
 
 protected:
     SDL_Rect rect;
 	Type type;
+    Script* script = nullptr;
 
 private:
     void draw();
@@ -33,7 +35,6 @@ private:
     int width, height; // The gameObject width and height
     int xPos, yPos; // The gameOject's position
 
-    Script* script = nullptr;
     Sprite* sprite = nullptr;
     
 

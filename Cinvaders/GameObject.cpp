@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "GameEngine.h"
+#include "Script.h"
 
 
 namespace ToMingine {

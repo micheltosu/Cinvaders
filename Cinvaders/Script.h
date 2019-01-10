@@ -7,14 +7,14 @@
 #include <SDL2/SDL.h>
 #endif
 
-#include <map>
-#include <iostream>
+#include "GameEngine.h"
 
 namespace ToMingine {
 	class Script {
 	public:
 		virtual void run() = 0;
 		virtual void keyBoardEvent(Uint32) {};
+		virtual void collision(Type t) {};
 	};
 }
 #endif
