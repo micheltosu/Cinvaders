@@ -15,16 +15,6 @@ namespace ToMingine {
         
     }
     
-    void Inputfield::tick() {
-        std::cout << "tick" << std::endl;
-        if (dynamicSize) {
-            rect.h = box->getTextHeight();
-            rect.w = box->getTextWidth();
-            box->setWidth(rect.w);
-            box->setHeight(rect.h);
-        }
-    }
-    
     Inputfield::~Inputfield() {
         delete renOb;
         
