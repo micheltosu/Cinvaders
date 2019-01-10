@@ -44,6 +44,7 @@ int main(int argc, char** argv) {
     MemberFunctionKeybinding<PlayerScript>* mk = new MemberFunctionKeybinding<PlayerScript>(ps, &PlayerScript::shoot);
     GameEngine::getInstance().keyboardManager()->addBinding(sk, mk);
     
+    GameEngine::getInstance().keyboardManager()->addListener(player);
     // End keybindings
     
     
