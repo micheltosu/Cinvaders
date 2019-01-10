@@ -10,8 +10,10 @@ public:
     Inputfield(std::string path, int size = 12);
     Inputfield(std::string path, int size, int x, int y, int w, int h);
     ~Inputfield();
-	private:
-    bool focus;
+    
+    void tick();
+private:
+    bool focus, dynamicSize = true;
     TextBox *box;
 
     

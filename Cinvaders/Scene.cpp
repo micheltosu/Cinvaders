@@ -1,7 +1,8 @@
 #include "Scene.h"
 #include "GameEngine.h"
 #include <iostream>
-
+#include <typeinfo>
+#include "InputField.h" // temp
 namespace ToMingine {
 
 Scene::Scene(){}
