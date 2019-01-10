@@ -7,6 +7,6 @@ namespace ToMingine {
     }
     
     RenderedObject::~RenderedObject() {
-        
+        delete texture;
     }
 }
