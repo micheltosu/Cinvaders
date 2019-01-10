@@ -17,10 +17,13 @@ namespace ToMingine {
         SDL_RenderFillRect(renderer, &rect);
         
         SDL_Surface* txtSurf = TTF_RenderText_Solid(font, text.c_str(), fontColor);
-        
         SDL_Texture* textTxt = SDL_CreateTextureFromSurface(renderer, txtSurf);
         
-        SDL_RenderCopy(renderer, textTxt, NULL, &rect);      
+        textWidth = txtSurf->w;
+        textHeight = txtSurf->h;
+        
+        SDL_RenderCopy(renderer, textTxt, NULL, &rect);
+        SDL_FreeSurface(txtSurf);
     }
     
     TextBox::~TextBox() {
