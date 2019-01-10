@@ -3,15 +3,13 @@
 #include "BulletScript.h"
 #include <iostream>
 
+
 PlayerScript::PlayerScript(RigidObject* ro){
 	this->ro = ro;
-	SDL_Keycode sk = SDLK_w;
-	//GameEngine::getInstance().keyboardManager()->addBinding(sk, moveUp);
+	
 }
 
-
 PlayerScript::~PlayerScript() { }
-
 
 void PlayerScript::run() {
 		
@@ -30,21 +28,20 @@ void PlayerScript::run() {
 }
 
 void PlayerScript::keyBoardEvent(Uint32 key) {
-	if (key == SDLK_s)
-		y += 1;
-	if (key == SDLK_w)
-		y -= 1;
-	if (key == SDLK_d)
-		x += 1;
-	if (key == SDLK_a)
-		x -= 1;
-	if (key == SDLK_q)
-		x = y = 0;
-	if (key == SDLK_SPACE)
-		shoot();
+    if (key == SDLK_s)
+        y += 1;
+    if (key == SDLK_w)
+        y -= 1;
+    if (key == SDLK_d)
+        x += 1;
+    if (key == SDLK_a)
+        x -= 1;
+    if (key == SDLK_q)
+        x = y = 0;
 }
 
-void PlayerScript::shoot(){
+
+void PlayerScript::shoot(Uint32){
 	int x = ro->getRect()->x +(ro->getRect()->w / 2);
 	int y = ro->getRect()->y -(ro->getRect()->h / 2);
 	RigidObject* bullet = new RigidObject("Resources/Image/laser.png", PLAYER, x-1, y);

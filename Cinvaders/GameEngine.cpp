@@ -7,7 +7,6 @@ namespace ToMingine {
 		
 		while (!quit) {
 			Uint32 nextTick = SDL_GetTicks() + tickInterval;
-			keyMan->tick();
 			if (currentScene->run())
 				nextScene();
 			SDL_RenderPresent(renderer);

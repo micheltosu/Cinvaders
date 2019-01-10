@@ -17,6 +17,7 @@
 
 #include <list>
 #include "GameObject.h"
+#include "KeyboardManager.h"
 
 namespace ToMingine {
 class Scene{
@@ -35,6 +36,7 @@ private:
 	std::list<GameObject*> toRemove;
 	Uint32 key = 0;
 	int keysPressed = 0;
+    KeyboardManager* keyMan;
 
 };
 }
