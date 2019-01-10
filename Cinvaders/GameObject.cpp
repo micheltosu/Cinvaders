@@ -24,6 +24,9 @@ namespace ToMingine {
 	GameObject::~GameObject() {
 		delete script;
 		delete renOb;
+        
+        script = nullptr;
+        renOb = nullptr;
 	}
 
     void GameObject::tick() {
