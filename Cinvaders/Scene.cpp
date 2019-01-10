@@ -70,12 +70,6 @@ bool Scene::run(){
         }
         toRemove.clear();
     }
-
-    for (GameObject* go : gameObjects) {
-        go->keyBoardEvent(key);
-    }
-
-
     return false;
 }
 }
