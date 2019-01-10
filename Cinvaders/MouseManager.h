@@ -4,7 +4,7 @@
 namespace ToMingine {
     class MouseManager {
         
-    }
+    };
 }
 
 #endif /* MouseManager_hpp */
