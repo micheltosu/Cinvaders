@@ -30,10 +30,11 @@ namespace ToMingine {
 	}
 
     void GameObject::tick() {
-		draw();
         if (script) {
             script->run();
         }
+        draw();
+
     }
 
     void GameObject::keyBoardEvent(Uint32 key) {
