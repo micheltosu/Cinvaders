@@ -6,7 +6,7 @@
 
 PlayerScript::PlayerScript(PhysicsObject* ro){
 	this->ro = ro;
-	
+	ro->setElasticity(1);
 }
 
 PlayerScript::~PlayerScript() { }
@@ -35,8 +35,12 @@ void PlayerScript::keyBoardEvent(Uint32 key) {
         x += 1;
     if (key == SDLK_a)
         x -= 1;
-    if (key == SDLK_q)
-        x = y = 0;
+	if (key == SDLK_q) {
+		if (x > 0) x--;
+		if (x < 0) x++;
+		if (y > 0) y--;
+		if (y < 0) y++;
+	}
 }
 
 void PlayerScript::collision(Type t) {

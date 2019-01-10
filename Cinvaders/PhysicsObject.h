@@ -14,7 +14,7 @@ public:
 
 	GameObject* requestMove(int*, int*);
 	void setGravity(int g) { gravity = g; }
-	void setElasticity(int e) { elasticity = e; }
+	void setElasticity(double e) { elasticity = e; }
 private:
 	void bounce(GameObject*, int* x, int* y);
 	double elasticity = 0.5;
