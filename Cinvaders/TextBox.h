@@ -24,13 +24,20 @@ public:
     ~TextBox();
     
     void draw();
+    void setHeight(int h) { rect.h = h; }
+    void setWidth(int w) { rect.w = w; }
+    
+    int getTextWidth() { return textWidth; }
+    int getTextHeight() { return textHeight; }
     
 private:
     TextBox(const TextBox&) = delete;
     const TextBox& operator=(const TextBox&) = delete;
     TTF_Font* font;
     SDL_Color fontColor = {0,0,0};
-    std::string text = "Player X";
+    std::string text = "--------------Player XXX-------------";
+    
+    int textWidth, textHeight;
 };
 
 }
