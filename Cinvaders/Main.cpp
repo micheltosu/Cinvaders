@@ -41,19 +41,9 @@ int main(int argc, char** argv) {
 
     // Keybindings
     SDL_Keycode sk = SDLK_SPACE;
-    SDL_Keycode right = SDLK_d;
-    SDL_Keycode left = SDLK_a;
-    SDL_Keycode up = SDLK_w;
-    SDL_Keycode down = SDLK_s;
-    
     MemberFunctionKeybinding<PlayerScript>* mk = new MemberFunctionKeybinding<PlayerScript>(ps, &PlayerScript::shoot);
-    MemberFunctionKeybinding<PlayerScript>* player_move = new MemberFunctionKeybinding<PlayerScript>(ps, &PlayerScript::move);
-    
     GameEngine::getInstance().keyboardManager()->addBinding(sk, mk);
-    GameEngine::getInstance().keyboardManager()->addBinding(right, player_move);
-    GameEngine::getInstance().keyboardManager()->addBinding(left, player_move);
-    GameEngine::getInstance().keyboardManager()->addBinding(up, player_move);
-    GameEngine::getInstance().keyboardManager()->addBinding(down, player_move);
+    
     // End keybindings
     
     
