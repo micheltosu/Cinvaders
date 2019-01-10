@@ -26,6 +26,8 @@ public:
 protected:
     SDL_Rect rect;
 	Type type;
+    Script* script = nullptr;
+    RenderedObject* renOb = nullptr;
 
 private:
     void draw();
@@ -33,8 +35,7 @@ private:
     int width, height; // The gameObject width and height
     int xPos, yPos; // The gameOject's position
 
-    Script* script = nullptr;
-    Sprite* sprite = nullptr;
+    
     
 
 };
