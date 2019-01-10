@@ -15,11 +15,6 @@ namespace ToMingine {
         
     }
     
-//    void Inputfield::draw() {
-//        if (renOb)
-//            renOb->draw();
-//    }
-//    
     Inputfield::~Inputfield() {
         delete renOb;
         
