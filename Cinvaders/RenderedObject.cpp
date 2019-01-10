@@ -7,6 +7,9 @@ namespace ToMingine {
     }
     
     RenderedObject::~RenderedObject() {
-        delete texture;
+        if(texture) {
+            SDL_DestroyTexture(texture);
+            texture = nullptr;
+        }
     }
 }
