@@ -12,7 +12,11 @@ public:
 	PhysicsObject(Sprite* spr, Type t, int x, int y);
 	~PhysicsObject();
 
-	bool requestMove(int, int);
+	bool requestMove(int*, int*);
+	void setGravity(int g) { gravity = g; }
+
+private:
+	int gravity = 1;
 };
 
 }

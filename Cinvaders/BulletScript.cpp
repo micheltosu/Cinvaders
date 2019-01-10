@@ -9,7 +9,7 @@ BulletScript::~BulletScript(){
 
 void BulletScript::run(){
 	if (dir == 1)
-		ro->requestMove(0, -10);
+		ro->move(0, -10);
 	else if (dir == 2)
 		ro->requestMove(10, 0);
 	else if (dir == 3)

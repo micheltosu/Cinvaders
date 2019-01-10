@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-PlayerScript::PlayerScript(RigidObject* ro){
+PlayerScript::PlayerScript(PhysicsObject* ro){
 	this->ro = ro;
 	
 }
@@ -22,8 +22,7 @@ void PlayerScript::run() {
 	if (ro->getRect()->y < 0 - ro->getRect()->h)
 		ro->getRect()->y = GameEngine::getInstance().window_height;
 	prePos = *ro->getRect();
-	ro->requestMove(x, y); 
-	if (prePos.x == ro->getRect()->x && prePos.y == ro->getRect()->y) { x = 0; y = 0; }
+	ro->requestMove(&x, &y); 
 
 }
 
@@ -31,7 +30,7 @@ void PlayerScript::keyBoardEvent(Uint32 key) {
     if (key == SDLK_s)
         y += 1;
     if (key == SDLK_w)
-        y -= 1;
+        y -= 2;
     if (key == SDLK_d)
         x += 1;
     if (key == SDLK_a)
@@ -40,11 +39,17 @@ void PlayerScript::keyBoardEvent(Uint32 key) {
         x = y = 0;
 }
 
+void PlayerScript::collision(Type t){
+	x *= -1 * 0.2;
+	y *= -1 * 0.2;
+
+}
+
 
 void PlayerScript::shoot(Uint32){
 	int x = ro->getRect()->x +(ro->getRect()->w / 2);
 	int y = ro->getRect()->y -(ro->getRect()->h / 2);
-	RigidObject* bullet = new RigidObject("Resources/Image/laser.png", AMMO, x-1, y);
+	RigidObject* bullet = new RigidObject("Resources/Image/laser.png", PLAYER, x-1, y);
 	bullet->addScript(new BulletScript(1, bullet));
 	GameEngine::getInstance().getCurrentScene()->addObject(bullet);
 }

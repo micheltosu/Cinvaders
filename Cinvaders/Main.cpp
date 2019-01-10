@@ -22,11 +22,12 @@ int main(int argc, char** argv) {
 
 	AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1);
 	
-	RigidObject* player = new RigidObject(playerSprite, PLAYER, 500, 550);
+	PhysicsObject* player = new PhysicsObject(playerSprite, PLAYER, 500, 550);
 	RigidObject* enemy = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 30);
 	RigidObject* enemy2 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 200);
 	RigidObject* enemy3 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 600, 200);
 	RigidObject* enemy4 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 700, 200);
+	GameObject* wall = new GameObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), NIL, 700, 700);
 
     PlayerScript* ps = new PlayerScript(player);
 	player->addScript(ps);
@@ -39,6 +40,7 @@ int main(int argc, char** argv) {
 	myScene.addObject(enemy2);
 	myScene.addObject(enemy3);
 	myScene.addObject(enemy4);
+	myScene.addObject(wall);
 
     // Keybindings
     SDL_Keycode sk = SDLK_SPACE;

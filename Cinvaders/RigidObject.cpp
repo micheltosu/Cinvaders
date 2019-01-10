@@ -38,7 +38,9 @@ namespace ToMingine {
     }
 
     void RigidObject::move(int x, int y) {        
-		rect.x += x * SPEED;
-		rect.y += y * SPEED;
+		if (requestMove(x, y)) {
+			rect.x += x * SPEED;
+			rect.y += y * SPEED;
+		}
     }
 }
