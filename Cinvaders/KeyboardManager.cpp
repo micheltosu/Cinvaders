@@ -3,18 +3,29 @@
 #include <list>
 namespace ToMingine {
     void KeyboardManager::tick() {
-        for (std::set<SDL_Keycode>::iterator it = pressedKey.begin(); it != pressedKey.end(); it++) {
-            // Sparar listan för att förkorta nedan uttryck
-            if (bindings.find(*it) != bindings.end()) {
-                std::list<KeybindingBase* > bindingsList = bindings.find(*it)->second;
+        // for all pressed keys.
+        for (std::set<SDL_Keycode>::iterator keyIt = pressedKey.begin(); keyIt != pressedKey.end(); keyIt++) {
+
+            //If bindings for the key exists
+            if (bindings.find(*keyIt) != bindings.end()) {
+                std::list<KeybindingBase* > bindingsList = bindings.find(*keyIt)->second;
                 
+                // For all keybindings
                 for (std::list<KeybindingBase* >::iterator bIt = bindingsList.begin() ; bIt != bindingsList.end(); bIt++) {
                     
-                    (*bIt)->execute(*it);
-                }
-            }
+                    (*bIt)->execute(*keyIt);
+                } // End all keybindings
+                
+                
+            } // End if binding for key exists
             
-        }
+            // For all listeners
+            for (GameObject* oPoint : listeners) {
+                oPoint->keyBoardEvent(*keyIt);
+            } // End for all listeners
+            
+        } // end for pressed keys
+        
     }
     
     void KeyboardManager::keyPressed(SDL_Keycode& key) {
@@ -36,8 +47,14 @@ namespace ToMingine {
         
         auto *vec = &(bindings.at(key));
         vec->push_back(binding);
-        
-        //std::cout << "Bindings for: " << key << " is now: " << bindings.at(key).size() << std::endl;
+    }
+    
+    void KeyboardManager::addListener(GameObject *obj) {
+        listeners.insert(obj);
+    }
+    
+    void KeyboardManager::removeListener(GameObject* obj) {
+        listeners.erase(obj);
     }
     
     void KeyboardManager::removeBinding(SDL_Keycode& key, KeybindingBase* binding) {
