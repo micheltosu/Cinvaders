@@ -6,7 +6,7 @@
 namespace ToMingine {
 
     Sprite::Sprite(std::string path) {
-        SDL_Surface *surface = IMG_Load(path.c_str());
+        surface = IMG_Load(path.c_str());
         if (!surface) {
             throw std::runtime_error("Could not load file: " + path);
         }
@@ -15,8 +15,6 @@ namespace ToMingine {
 
         rect.h = surface->h;
         rect.w = surface->w;
-        
-        SDL_FreeSurface(surface);
         
     }
     

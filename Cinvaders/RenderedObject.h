@@ -22,13 +22,15 @@ public:
     virtual void draw() = 0;
     
     const SDL_Rect* getRect() { return &rect; }
-    
+
+	SDL_Surface* getSurface() { return surface; }
     
 
 protected:
     SDL_Renderer* renderer;
     SDL_Texture* texture;
     SDL_Rect rect;
+	SDL_Surface* surface;
     
 };
 }

@@ -26,6 +26,8 @@ public:
 
     SDL_Rect* getRect() { return &rect; }
     Type getType() { return type; }
+	SDL_Surface* getSurface () { return renOb->getSurface(); }
+
     virtual void collision(Type) {}
     bool hasScript();
 protected:
