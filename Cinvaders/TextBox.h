@@ -38,7 +38,7 @@ private:
     const TextBox& operator=(const TextBox&) = delete;
     TTF_Font* font;
     SDL_Color fontColor = {0,0,0};
-    std::string text = "-----Player XXX----";
+    std::string text = "Input text here";
     
     int textWidth, textHeight;
 };

@@ -41,6 +41,12 @@ namespace ToMingine {
     
     }
     
+    void KeyboardManager::handleEvent(SDL_TextInputEvent& tev) {
+        for (GameObject* oPoint : listeners) {
+            oPoint->textInputEvent(tev);
+        } // End for all listeners
+    }
+    
     void KeyboardManager::keyPressed(SDL_Keycode& key) {
         pressedKey.insert(key);
     }

@@ -42,6 +42,12 @@ namespace ToMingine {
         if (script != nullptr)
             script->keyBoardEvent(kev);
     }
+    
+    void GameObject::textInputEvent(const SDL_TextInputEvent& tev) {
+        if (script != nullptr)
+            script->textInputEvent(tev);
+    }
+
 
 	bool GameObject::hasScript(){
 		if (script)

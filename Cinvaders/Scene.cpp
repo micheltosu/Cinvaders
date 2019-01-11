@@ -46,6 +46,9 @@ bool Scene::run(){
         case SDL_MOUSEBUTTONUP:
             mouseMan->handleEvent(event.button);
             break;
+        case SDL_TEXTINPUT:
+            keyMan->handleEvent(event.text);
+            break;
         } // switch end
         
     } // event loop

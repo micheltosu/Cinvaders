@@ -12,12 +12,14 @@ public:
     ~Inputfield();
     
     void mouseButtonEvent(const SDL_MouseButtonEvent& mev) override;
+    void textInputEvent(const SDL_TextInputEvent& tev) override;
     void keyBoardEvent(const SDL_KeyboardEvent&) override;
     void tick() override;
 private:
-    bool focus, dynamicSize = true;
+    bool focus = false, dynamicSize = true;
     TextBox *box;
 
+    void toggleFocus();
     
     Inputfield(const Inputfield&) = delete;
     const Inputfield& operator=(const Inputfield&) = delete;

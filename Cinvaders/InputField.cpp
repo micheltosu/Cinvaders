@@ -1,6 +1,7 @@
 #include "Inputfield.h"
 #include "GameEngine.h"
 #include <iostream>
+#include <string>
 namespace ToMingine {
     
     Inputfield::Inputfield(std::string path, int size) : Inputfield(path, size, 200, 200, 200,50) {}
@@ -21,9 +22,17 @@ namespace ToMingine {
            mev.clicks == 1 &&
            (mev.x >= rect.x && mev.x <= (rect.x + rect.w)) &&
            (mev.y >= rect.y && mev.y <= (rect.y + rect.h))) {
-            focus = !focus;
-            std::cout << "inputfield: Focus changed" << std::endl;
-        }
+            toggleFocus();
+        } else if (focus &&
+                   (mev.x > rect.x || mev.x < rect.x || mev.y > rect.y || mev.y < rect.y))
+            toggleFocus();
+    }
+    
+    void Inputfield::textInputEvent(const SDL_TextInputEvent& tev) {
+        if(!focus) return;
+        std::string inputChar(tev.text);
+        box->addText(inputChar);
+        
     }
     
     void Inputfield::keyBoardEvent(const SDL_KeyboardEvent& kev) {
@@ -31,11 +40,9 @@ namespace ToMingine {
 
         if (kev.type == SDL_KEYDOWN) {
             char pressedKey = kev.keysym.sym;
-            std::cout << "Charcode: " << kev.keysym.sym << ", repeat: " << kev.repeat + 1 << std::endl;
-            if ((kev.repeat == 0) && (kev.repeat % 10 == 0)) {
                 switch (kev.keysym.sym) {
                     case SDLK_ESCAPE:
-                        focus = !focus;
+                        toggleFocus();
                         break;
                     case SDLK_BACKSPACE:
                         box->backSpace();
@@ -44,21 +51,16 @@ namespace ToMingine {
                         //Fire some event
                         break;
                 }
-                // Alphabetic chars are handled below
-                if (pressedKey > 96 && pressedKey < 123) {
-                    if (kev.keysym.mod & (KMOD_SHIFT)) {
-                        pressedKey -= 32; // Translate to upper case.
-                        std::cout << "Charcode and mod: " << (kev.keysym.sym | kev.keysym.mod) << std::endl;
-                        
-                    }
-                    std::cout << pressedKey << std::endl;
-                    box->addChar(pressedKey);
-                } else if (pressedKey <= 96 && pressedKey >= 32){
-                    box->addChar(pressedKey);
-
-                }
             }
         }
+    
+    void Inputfield::toggleFocus() {
+        focus = !focus;
+        
+        if (focus)
+            SDL_StartTextInput();
+        else
+            SDL_StopTextInput();
     }
     
     void Inputfield::tick() {
