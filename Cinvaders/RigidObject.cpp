@@ -14,6 +14,10 @@ namespace ToMingine {
 		script->collision(t);
 	}
 
+	bool RigidObject::pixelDetection(RigidObject *){
+		return false;
+	}
+
     GameObject* RigidObject::requestMove(int x, int y){
         SDL_Rect* otherRect;
         std::list<GameObject*>* gameObjects = GameEngine::getInstance().getCurrentScene()->getGameObjects();
@@ -26,10 +30,15 @@ namespace ToMingine {
                     otherRect->x + otherRect->w >= getRect()->x + x &&
                     getRect()->x + getRect()->w + x >= otherRect->x 
                     ) {
-					collision(go->getType());
-					if(go->hasScript())
-						go->collision(type);
-                    return go;
+					RigidObject* ro;
+					if (ro = dynamic_cast<RigidObject*>(go)) {
+						if (pixelDetection(ro)) {
+							collision(go->getType());
+								if (go->hasScript())
+									go->collision(type);
+								return go;
+						}
+					}
                 }
             }
         }

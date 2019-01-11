@@ -24,6 +24,8 @@ namespace ToMingine {
         
 		void collision(Type t);
 
+		bool pixelDetection(RigidObject*);
+
         GameObject* requestMove(int, int);
 
         void move(int x, int y);
