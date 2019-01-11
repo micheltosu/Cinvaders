@@ -9,6 +9,7 @@ Scene::Scene(){}
 Scene::Scene(std::string bgPath){
     setBackground(bgPath);
     keyMan = GameEngine::getInstance().keyboardManager();
+    mouseMan = GameEngine::getInstance().mouseManager();
 }
 
 
