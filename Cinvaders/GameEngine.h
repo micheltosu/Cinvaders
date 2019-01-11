@@ -53,6 +53,7 @@ namespace ToMingine {
 		int window_height = 720;
 
 		KeyboardManager *keyboardManager() { return keyMan; }
+        MouseManager *mouseManager() { return mouseMan; }
 	private:
 		GameEngine();
 		const int FPS = 40;
