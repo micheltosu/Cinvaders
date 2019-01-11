@@ -15,6 +15,9 @@ public:
     GameObject(Sprite* spr, Type t);
     GameObject(Sprite* spr, Type t, int x, int y);
     ~GameObject();
+	
+	GameObject(const GameObject& other) = delete;
+	const GameObject& operator=(const GameObject& other) = delete;
 
 	void addScript(Script* s) { script = s; }
     void tick();
@@ -31,6 +34,7 @@ protected:
 
 private:
     void draw();
+	
     
     int width, height; // The gameObject width and height
     int xPos, yPos; // The gameOject's position
