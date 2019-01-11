@@ -18,7 +18,7 @@ public:
 	
 	GameObject(const GameObject& other) = delete;
 	const GameObject& operator=(const GameObject& other) = delete;
-
+	
     void addScript(Script* s) { script = s; }
     virtual void tick();
     virtual void keyBoardEvent(Uint32);

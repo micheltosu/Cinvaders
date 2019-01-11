@@ -14,7 +14,19 @@ namespace ToMingine {
 		script->collision(t);
 	}
 
-	bool RigidObject::pixelDetection(RigidObject *){
+	bool RigidObject::pixelDetection(RigidObject * ro){
+		int smallestX = rect.x < ro->getRect()->x ? rect.x : ro->getRect()->x;
+		int smallestY = rect.y < ro->getRect()->y ? rect.y : ro->getRect()->y;
+		int biggestH = rect.y + rect.h > ro->getRect()->y + ro->getRect()->h ? rect.y + rect.h : ro->getRect()->y + ro->getRect()->h;
+		int biggestW = rect.y + rect.w > ro->getRect()->y + ro->getRect()->w ? rect.y + rect.w : ro->getRect()->y + ro->getRect()->w;
+
+		int width = biggestW - smallestX;
+		int height = biggestH - smallestY;
+		std::cout << width << ":" << height << std::endl;
+
+		int size = (width * height) % 8 == 0? (width * height) / 8 : ((width * height) / 8) + 1;
+		Uint8* area = new Uint8[size];
+
 		return false;
 	}
 

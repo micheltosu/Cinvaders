@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 	AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1);
 	
 	PhysicsObject* player = new PhysicsObject(playerSprite, PLAYER, 500, 550);
-	RigidObject* enemy = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 30);
+	RigidObject* enemy = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 400, 400);
 	RigidObject* enemy2 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 200);
 	RigidObject* enemy3 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 600, 200);
 	RigidObject* enemy4 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 700, 200);
@@ -39,11 +39,11 @@ int main(int argc, char** argv) {
 	enemy4->addScript(new EnemyScript(enemy4));
 	myScene.addObject(player);
 	myScene.addObject(enemy);
-	myScene.addObject(enemy2);
+	/*myScene.addObject(enemy2);
 	myScene.addObject(enemy3);
 	myScene.addObject(enemy4);
 	myScene.addObject(wall);
-	myScene.addObject(sidewall);
+	myScene.addObject(sidewall);*/
 
     // Keybindings
     SDL_Keycode sk = SDLK_SPACE;
