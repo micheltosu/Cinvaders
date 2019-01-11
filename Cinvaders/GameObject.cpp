@@ -10,26 +10,32 @@ namespace ToMingine {
     GameObject::GameObject(Sprite* spr, Type t, int x, int y) {
         
         type = t;
-        sprite = spr;
-        sprite->addGameObject(this);
+        
+        spr->addGameObject(this);
+        renOb = spr;
+        
         
         rect.x = x;
         rect.y = y;
-        rect.w = sprite->getRect()->w;
-        rect.h = sprite->getRect()->h;
+        rect.w = renOb->getRect()->w;
+        rect.h = renOb->getRect()->h;
         
     }
 
 	GameObject::~GameObject() {
 		delete script;
-		delete sprite;
+		delete renOb;
+        
+        script = nullptr;
+        renOb = nullptr;
 	}
 
     void GameObject::tick() {
-		draw();
         if (script) {
             script->run();
         }
+        draw();
+
     }
 
     void GameObject::keyBoardEvent(Uint32 key) {
@@ -44,7 +50,7 @@ namespace ToMingine {
 	}
 
     void GameObject::draw() {
-        if (sprite != nullptr) sprite->draw();
+        if (renOb != nullptr) renOb->draw();
     }
 
 

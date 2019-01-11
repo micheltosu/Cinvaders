@@ -9,6 +9,7 @@ Scene::Scene(){}
 Scene::Scene(std::string bgPath){
     setBackground(bgPath);
     keyMan = GameEngine::getInstance().keyboardManager();
+    mouseMan = GameEngine::getInstance().mouseManager();
 }
 
 
@@ -41,8 +42,11 @@ bool Scene::run(){
 			keyMan->keyPressed(event.key.keysym.sym);
             break;
         case SDL_KEYUP:
-
             keyMan->keyReleased(event.key.keysym.sym);
+            break;
+        case SDL_MOUSEBUTTONDOWN:
+        case SDL_MOUSEBUTTONUP:
+            mouseMan->handleEvent(event.button);
             break;
         } // switch end
         

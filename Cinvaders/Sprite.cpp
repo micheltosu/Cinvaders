@@ -10,7 +10,7 @@ namespace ToMingine {
         if (!surface) {
             throw std::runtime_error("Could not load file: " + path);
         }
-        renderer = GameEngine::getInstance().getRen();
+        
         texture = SDL_CreateTextureFromSurface(renderer, surface);
 
         rect.h = surface->h;
@@ -32,7 +32,7 @@ namespace ToMingine {
     }
     
     Sprite::~Sprite(){
-		SDL_DestroyTexture(texture);
+		
         
     }
     

@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <string>
+#include "RenderedObject.h"
 
 #ifdef _WIN32
 
@@ -22,22 +23,21 @@ namespace ToMingine {
 
 class GameObject;
     
-class Sprite {
+class Sprite : public RenderedObject {
 public:
-    virtual void draw();
+    
+    void draw();
     void addGameObject(GameObject*);
     
     Sprite(std::string);
-    virtual ~Sprite();
+    ~Sprite();
 	const SDL_Rect* getRect() { return &rect; }
-protected:
-    SDL_Rect rect;
-    
+
+protected:    
     Sprite(const Sprite&) = delete;
     const Sprite& operator=(const Sprite&) = delete;
     
-    SDL_Renderer* renderer;
-    SDL_Texture* texture;
+    
     GameObject* go;
 
 };

@@ -5,23 +5,31 @@
 #ifdef _WIN32
 
 #include <SDL.h>
-#include <SDL_image.h>
+
 
 #elif defined (__APPLE__)
 #include <SDL2/SDL.h>
-#include <SDL2_image/SDL_image.h>
+
 
 #endif
 namespace ToMingine {
 
 
 class RenderedObject {
-    public:
-    virtual void draw();
-    RenderedObject(SDL_Renderer *);
+public:
+    RenderedObject();
+    virtual ~RenderedObject();
+    virtual void draw() = 0;
+    
+    const SDL_Rect* getRect() { return &rect; }
+    
+    
 
-    private:
-    SDL_Renderer *rend;
+protected:
+    SDL_Renderer* renderer;
+    SDL_Texture* texture;
+    SDL_Rect rect;
+    
 };
 }
 #endif

@@ -18,6 +18,7 @@
 #include <list>
 #include "GameObject.h"
 #include "KeyboardManager.h"
+#include "MouseManager.h"
 
 namespace ToMingine {
 class Scene{
@@ -37,6 +38,7 @@ private:
 	Uint32 key = 0;
 	int keysPressed = 0;
     KeyboardManager* keyMan;
+    MouseManager* mouseMan;
 
 };
 }
