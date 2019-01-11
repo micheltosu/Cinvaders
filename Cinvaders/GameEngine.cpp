@@ -61,6 +61,7 @@ namespace ToMingine {
 		}
 
 		keyMan = new KeyboardManager();
+        mouseMan = new MouseManager();
 	}
 
 	GameEngine::~GameEngine() {

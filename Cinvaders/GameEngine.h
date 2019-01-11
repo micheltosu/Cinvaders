@@ -19,6 +19,7 @@
 #include "GameObject.h"
 #include "RigidObject.h"
 #include "KeyboardManager.h"
+#include "MouseManager.h"
 #include "Scene.h"
 #include <iostream>
 #include <string>
@@ -60,6 +61,7 @@ namespace ToMingine {
 		SDL_Renderer *renderer;
 		
 		KeyboardManager *keyMan;
+        MouseManager *mouseMan;
 		std::list<Scene*> scenes;
 		
 		Scene* currentScene;
