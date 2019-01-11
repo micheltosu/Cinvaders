@@ -1,11 +1,3 @@
-//
-//  AnimatedSprite.hpp
-//  CINVADERS
-//
-//  Created by Michel Tosu on 2019-01-08.
-//  Copyright © 2019 Michel Tosu. All rights reserved.
-//
-
 #ifndef ANIMATEDSPRITE_H
 #define ANIMATEDSPRITE_H
 

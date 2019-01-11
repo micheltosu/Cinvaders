@@ -12,6 +12,7 @@ public:
 	BulletScript(int dir, RigidObject* ro);
 	~BulletScript();
 	void run();
+	void collision(Type t);
 private:
 	RigidObject* ro;
 	int dir;

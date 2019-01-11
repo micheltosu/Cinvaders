@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "GameEngine.h"
+#include "Script.h"
 
 
 namespace ToMingine {
@@ -41,6 +42,12 @@ namespace ToMingine {
         if (script != nullptr)
             script->keyBoardEvent(key);
     }
+
+	bool GameObject::hasScript(){
+		if (script)
+			return true;
+		return false;
+	}
 
     void GameObject::draw() {
         if (renOb != nullptr) renOb->draw();

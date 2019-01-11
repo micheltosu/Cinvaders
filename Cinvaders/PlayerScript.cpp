@@ -4,9 +4,9 @@
 #include <iostream>
 
 
-PlayerScript::PlayerScript(RigidObject* ro){
+PlayerScript::PlayerScript(PhysicsObject* ro){
 	this->ro = ro;
-	
+	ro->setElasticity(0.3);
 }
 
 PlayerScript::~PlayerScript() { }
@@ -22,8 +22,7 @@ void PlayerScript::run() {
 	if (ro->getRect()->y < 0 - ro->getRect()->h)
 		ro->getRect()->y = GameEngine::getInstance().window_height;
 	prePos = *ro->getRect();
-	ro->move(x, y); 
-	if (prePos.x == ro->getRect()->x && prePos.y == ro->getRect()->y) { x = 0; y = 0; }
+	ro->requestMove(&x, &y); 
 
 }
 
@@ -31,13 +30,21 @@ void PlayerScript::keyBoardEvent(Uint32 key) {
     if (key == SDLK_s)
         y += 1;
     if (key == SDLK_w)
-        y -= 1;
+        y -= 2;
     if (key == SDLK_d)
         x += 1;
     if (key == SDLK_a)
         x -= 1;
-    if (key == SDLK_q)
-        x = y = 0;
+	if (key == SDLK_q) {
+		if (x > 0) x--;
+		if (x < 0) x++;
+		if (y > 0) y--;
+		if (y < 0) y++;
+	}
+}
+
+void PlayerScript::collision(Type t) {
+	
 }
 
 

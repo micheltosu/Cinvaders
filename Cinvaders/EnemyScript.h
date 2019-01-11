@@ -17,6 +17,7 @@ private:
 	const int tickInterval = 1000 / DELAY;
 	int x, y;
 	Uint32 nextTick = SDL_GetTicks() + tickInterval;
+	void collision(Type t);
 };
 
 #endif // !ENEMY_SCRIPT_H
