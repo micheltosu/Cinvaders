@@ -26,11 +26,39 @@ namespace ToMingine {
         }
     }
     
-    void Inputfield::keyBoardEvent(Uint32 key) {
+    void Inputfield::keyBoardEvent(const SDL_KeyboardEvent& kev) {
         if (!focus) return;
-        std::string keyName = SDL_GetKeyName(key);
-        
-        box->addText(keyName);
+
+        if (kev.type == SDL_KEYDOWN) {
+            char pressedKey = kev.keysym.sym;
+            std::cout << "Charcode: " << kev.keysym.sym << ", repeat: " << kev.repeat + 1 << std::endl;
+            if ((kev.repeat == 0) && (kev.repeat % 10 == 0)) {
+                switch (kev.keysym.sym) {
+                    case SDLK_ESCAPE:
+                        focus = !focus;
+                        break;
+                    case SDLK_BACKSPACE:
+                        box->backSpace();
+                        break;
+                    case SDLK_RETURN:
+                        //Fire some event
+                        break;
+                }
+                // Alphabetic chars are handled below
+                if (pressedKey > 96 && pressedKey < 123) {
+                    if (kev.keysym.mod & (KMOD_SHIFT)) {
+                        pressedKey -= 32; // Translate to upper case.
+                        std::cout << "Charcode and mod: " << (kev.keysym.sym | kev.keysym.mod) << std::endl;
+                        
+                    }
+                    std::cout << pressedKey << std::endl;
+                    box->addChar(pressedKey);
+                } else if (pressedKey <= 96 && pressedKey >= 32){
+                    box->addChar(pressedKey);
+
+                }
+            }
+        }
     }
     
     void Inputfield::tick() {

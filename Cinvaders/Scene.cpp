@@ -49,6 +49,7 @@ bool Scene::run(){
         } // switch end
         
     } // event loop
+    
     keyMan->tick();
 
     SDL_RenderClear(GameEngine::getInstance().getRen());

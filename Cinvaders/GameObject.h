@@ -21,7 +21,7 @@ public:
 
     void addScript(Script* s) { script = s; }
     virtual void tick();
-    virtual void keyBoardEvent(const SDL_KeyboardEvent&) {};
+    virtual void keyBoardEvent(const SDL_KeyboardEvent&) ;
     virtual void mouseButtonEvent(const SDL_MouseButtonEvent&) {};
 
     SDL_Rect* getRect() { return &rect; }

@@ -12,7 +12,7 @@ public:
     ~Inputfield();
     
     void mouseButtonEvent(const SDL_MouseButtonEvent& mev) override;
-    void keyBoardEvent(Uint32) override;
+    void keyBoardEvent(const SDL_KeyboardEvent&) override;
     void tick() override;
 private:
     bool focus, dynamicSize = true;
