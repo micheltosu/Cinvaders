@@ -38,9 +38,9 @@ namespace ToMingine {
 
     }
 
-    void GameObject::keyBoardEvent(Uint32 key) {
+    void GameObject::keyBoardEvent(const SDL_KeyboardEvent& kev) {
         if (script != nullptr)
-            script->keyBoardEvent(key);
+            script->keyBoardEvent(kev);
     }
 
 	bool GameObject::hasScript(){

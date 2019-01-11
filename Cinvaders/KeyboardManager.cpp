@@ -19,13 +19,26 @@ namespace ToMingine {
                 
             } // End if binding for key exists
             
-            // For all listeners
-            for (GameObject* oPoint : listeners) {
-                oPoint->keyBoardEvent(*keyIt);
-            } // End for all listeners
+            
             
         } // end for pressed keys
         
+    }
+    
+    void KeyboardManager::handleEvent(SDL_KeyboardEvent& kev) {
+        switch (kev.type) {
+            case SDL_KEYDOWN:
+                keyPressed(kev.keysym.sym);
+                break;
+            case SDL_KEYUP:
+                keyReleased(kev.keysym.sym);
+                break;
+        }
+        // For all listeners
+        for (GameObject* oPoint : listeners) {
+            oPoint->keyBoardEvent(kev);
+        } // End for all listeners
+    
     }
     
     void KeyboardManager::keyPressed(SDL_Keycode& key) {

@@ -39,10 +39,8 @@ bool Scene::run(){
             GameEngine::getInstance().Quit();
             break;
         case SDL_KEYDOWN:
-			keyMan->keyPressed(event.key.keysym.sym);
-            break;
         case SDL_KEYUP:
-            keyMan->keyReleased(event.key.keysym.sym);
+            keyMan->handleEvent(event.key);
             break;
         case SDL_MOUSEBUTTONDOWN:
         case SDL_MOUSEBUTTONUP:
