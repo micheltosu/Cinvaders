@@ -11,7 +11,9 @@ public:
     Inputfield(std::string path, int size, int x, int y, int w, int h);
     ~Inputfield();
     
-    void tick();
+    void mouseButtonEvent(const SDL_MouseButtonEvent& mev) override;
+    void keyBoardEvent(Uint32) override;
+    void tick() override;
 private:
     bool focus, dynamicSize = true;
     TextBox *box;

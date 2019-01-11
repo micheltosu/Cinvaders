@@ -26,6 +26,7 @@ public:
     void draw();
     void setHeight(int h) { rect.h = h; }
     void setWidth(int w) { rect.w = w; }
+    void addText(std::string txt);
     
     int getTextWidth() { return textWidth; }
     int getTextHeight() { return textHeight; }

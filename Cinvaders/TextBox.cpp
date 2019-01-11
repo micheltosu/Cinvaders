@@ -12,6 +12,10 @@ namespace ToMingine {
         font = TTF_OpenFont(path.c_str(), size);
     }
     
+    void TextBox::addText(std::string txt) {
+        text.append(txt);
+    }
+    
     void TextBox::draw() {
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 150);
         SDL_RenderFillRect(renderer, &rect);
