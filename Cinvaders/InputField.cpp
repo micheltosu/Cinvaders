@@ -65,10 +65,9 @@ namespace ToMingine {
     
     void Inputfield::tick() {
         if (dynamicSize) {
-            rect.h = box->getTextHeight();
-            rect.w = box->getTextWidth();
-            box->setWidth(rect.w);
-            box->setHeight(rect.h);
+            box->resize();
+            rect = box->getRect();
+            
         }
         
         GameObject::tick();

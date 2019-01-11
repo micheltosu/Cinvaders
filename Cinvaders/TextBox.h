@@ -20,7 +20,7 @@ namespace ToMingine {
     
 class TextBox : public RenderedObject {
 public:
-    TextBox(std::string, int size, SDL_Rect& parentRect);
+    TextBox(std::string, int size, SDL_Rect& parentRect, int boxPadding = 10);
     ~TextBox();
     
     void draw();
@@ -29,18 +29,23 @@ public:
     void addText(std::string txt);
     void addChar(char);
     void backSpace();
+    void resize();
     
-    int getTextWidth() { return textWidth; }
-    int getTextHeight() { return textHeight; }
+    int getTextWidth() { return textRect.w; }
+    int getTextHeight() { return textRect.h; }
+    int getPadding() { return padding; }
+    SDL_Rect getRect() {return SDL_Rect(rect); }
     
 private:
+    
     TextBox(const TextBox&) = delete;
     const TextBox& operator=(const TextBox&) = delete;
     TTF_Font* font;
     SDL_Color fontColor = {0,0,0};
     std::string text = "Input text here";
     
-    int textWidth, textHeight;
+    int padding;
+    SDL_Rect textRect;
 };
 
 }
