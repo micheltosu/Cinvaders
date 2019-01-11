@@ -13,7 +13,7 @@
 namespace ToMingine {
     class MouseManager {
     public:
-        MouseManager();
+        MouseManager() {};
         
         void addListener(GameObject*);
         void removeListener(GameObject*);
