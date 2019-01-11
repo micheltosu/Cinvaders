@@ -13,7 +13,7 @@ namespace ToMingine {
         box = new TextBox(path, size, rect);
         renOb = box;
         GameEngine::getInstance().mouseManager()->addListener(this);
-        GameEngine::getInstance().keyboardManager()->addListener(this)
+        GameEngine::getInstance().keyboardManager()->addListener(this);
     }
     
     void Inputfield::mouseButtonEvent(const SDL_MouseButtonEvent& mev) {
