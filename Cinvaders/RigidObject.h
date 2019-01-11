@@ -26,6 +26,9 @@ namespace ToMingine {
 
 		bool pixelDetection(RigidObject*);
 
+		std::vector<bool> getMask(SDL_Surface*, int, int);
+
+
         GameObject* requestMove(int, int);
 
         void move(int x, int y);

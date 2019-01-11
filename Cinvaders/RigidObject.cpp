@@ -1,6 +1,7 @@
 #include "RigidObject.h"
 #include "GameEngine.h"
 #include "Script.h"
+#include <vector>
 
 namespace ToMingine {
     RigidObject::RigidObject(Sprite* spr, Type t) : GameObject(spr, t) {};
@@ -22,12 +23,44 @@ namespace ToMingine {
 
 		int width = biggestW - smallestX;
 		int height = biggestH - smallestY;
-		std::cout << width << ":" << height << std::endl;
 
-		int size = (width * height) % 8 == 0? (width * height) / 8 : ((width * height) / 8) + 1;
-		Uint8* area = new Uint8[size];
+		int thisX = rect.x - smallestX;
+		int thisY = rect.y - smallestY;
+		int otherX = ro->getRect()->x - smallestX;
+		int otherY = ro->getRect()->y - smallestY;
+
+		int size = width * height;
+		std::vector<bool> area(size);
+		std::vector<bool> mask1 = getMask(getSurface(), width, height);
+		std::vector<bool> mask2 = getMask(ro->getSurface(), width, height);
+		
+
+
 
 		return false;
+	}
+
+	std::vector<bool> RigidObject::getMask(SDL_Surface* surf, int x, int y){
+		std::vector<bool> mask(x*y);
+		for (int row = 0; row <= surf->h; row++) {
+			int column = 0;
+			for (int pixel = 0; pixel < surf->w; pixel += surf->format->BitsPerPixel) {
+				if (surf->format->BitsPerPixel) {
+					Uint32* pixels = static_cast<Uint32*>(surf->pixels);
+					if (pixels[row + 1 * pixel] & surf->format->Amask) {
+						mask[column*row] = 1;
+					}
+					else {
+						mask[column*row] = 0;
+					}
+				}
+			}
+			//förskjut sista biten.
+				column++;
+		}
+		
+		
+		return std::vector<bool>();
 	}
 
     GameObject* RigidObject::requestMove(int x, int y){
