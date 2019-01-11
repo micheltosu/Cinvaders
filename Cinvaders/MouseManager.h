@@ -15,7 +15,8 @@ namespace ToMingine {
     public:
         MouseManager();
         
-
+        void addListener(GameObject*);
+        void removeListener(GameObject*);
         void handleEvent(SDL_MouseButtonEvent&);
     private:
         void buttonPressed(SDL_MouseButtonEvent&);

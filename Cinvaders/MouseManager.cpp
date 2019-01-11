@@ -14,6 +14,14 @@ namespace ToMingine {
         
     }
     
+    void MouseManager::addListener(GameObject* go) {
+        listeners.insert(go);
+    }
+    
+    void MouseManager::removeListener(GameObject* go) {
+        listeners.erase(go);
+    }
+    
     void MouseManager::buttonPressed(SDL_MouseButtonEvent& mev) {
         
     }
