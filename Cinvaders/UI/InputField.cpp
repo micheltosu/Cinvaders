@@ -11,7 +11,7 @@ namespace ToMingine {
         rect.w = w;
         rect.h = h;
         
-        box = new TextBox(path, size, rect);
+        box = new EditableTextBox(path, size, rect);
         renOb = box;
         GameEngine::getInstance().mouseManager()->addListener(this);
         GameEngine::getInstance().keyboardManager()->addListener(this);

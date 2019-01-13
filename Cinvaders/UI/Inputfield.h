@@ -2,7 +2,7 @@
 #define INPUTFIELD_H
 
 #include "GameObject.h"
-#include "TextBox.h"
+#include "EditableTextBox.h"
 
 namespace ToMingine {
 class Inputfield : public GameObject {
@@ -19,7 +19,7 @@ public:
     void tick() override;
 private:
     bool focus = false, dynamicSize = true;
-    TextBox *box;
+    EditableTextBox *box;
 
     void toggleFocus();
     

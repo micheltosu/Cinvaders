@@ -9,8 +9,8 @@ namespace ToMingine {
         textSpacing = advance - em;
         
         padding = boxPadding;
-        rect = { parentRect.x, parentRect.y, parentRect.h + padding, parentRect.w + padding };
-        textRect = { parentRect.x + (padding), parentRect.x + (padding/2), parentRect.h, parentRect.w};
+        rect = { parentRect.x, parentRect.y, parentRect.w + padding, parentRect.h + padding,};
+        textRect = { parentRect.x + (padding), parentRect.y + (padding/2), parentRect.w, parentRect.h};
         
         colorFg = {0,0,0,255};
         colorBg = {255,255,255,255};
@@ -27,31 +27,12 @@ namespace ToMingine {
     void TextBox::setText(std::string txt) {
         text = txt;
     }
-    
-    void TextBox::addText(std::string txt) {
-        text.append(txt);
-    }
-    
-    void TextBox::addChar(char ch)  {
-        text.push_back(ch);
-    }
-    
-    void TextBox::backSpace() {
-        text.pop_back();
-    }
-    
-    void TextBox::updateCursor() {
-        cursorRect.w = 2;
-        cursorRect.h = textRect.h;
-        cursorRect.y = textRect.y;
-        cursorRect.x = textRect.x + textRect.w + textSpacing;
+
+    void TextBox::resize() {
     }
     
     void TextBox::draw() {
-        
-        
         std::string drawText = !text.empty() ? text : text.append(" "); // Don't want zero length
-        
         SDL_Surface* txtSurf = TTF_RenderText_Solid(font, drawText.c_str(), colorFg);
         SDL_Texture* textTxt = SDL_CreateTextureFromSurface(renderer, txtSurf);
         
@@ -60,8 +41,7 @@ namespace ToMingine {
         rect.h = txtSurf->h + padding;
         rect.w = txtSurf->w  + (em * 1.5);
 
-        
-        
+
         SDL_SetRenderDrawColor(renderer, colorBg.r, colorBg.g, colorBg.b, colorBg.a);
         SDL_RenderFillRect(renderer, &rect);
         
@@ -70,24 +50,7 @@ namespace ToMingine {
         
         SDL_RenderCopy(renderer, textTxt, NULL, &textRect);
         SDL_FreeSurface(txtSurf);
-        
-        if (showCursor) {
-            updateCursor();
 
-            if (SDL_GetTicks() - lastBlink > cursBlinkSpd) {
-                visible = !visible;
-                lastBlink = SDL_GetTicks();
-            }
-            
-            if (visible)
-                SDL_RenderFillRect(renderer, &cursorRect);
-
-        }
-    }
-    
-    void TextBox::resize() {
-        
-        
     }
     
     TextBox::~TextBox() {
