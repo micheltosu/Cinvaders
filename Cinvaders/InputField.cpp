@@ -23,7 +23,7 @@ namespace ToMingine {
            (mev.x >= rect.x && mev.x <= (rect.x + rect.w)) &&
            (mev.y >= rect.y && mev.y <= (rect.y + rect.h))) {
             toggleFocus();
-        } else if (focus && mev.type == SDL_MOUSEBUTTONUP && 
+        } else if (focus && mev.type == SDL_MOUSEBUTTONUP &&
                    (mev.x > rect.x || mev.x < rect.x || mev.y > rect.y || mev.y < rect.y))
             toggleFocus();
     }
@@ -46,10 +46,7 @@ namespace ToMingine {
                         break;
                     case SDLK_BACKSPACE:
                         box->backSpace();
-                        break;
-                    case SDLK_RETURN:
-                        //Fire some event
-                        break;
+                        break;
                 }
             }
         }
