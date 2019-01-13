@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
 
     PlayerScript* ps = new PlayerScript(player);
 	player->addScript(ps);
-	enemy->addScript(new EnemyScript(enemy));
+	//enemy->addScript(new EnemyScript(enemy));
 	enemy2->addScript(new EnemyScript(enemy2));
 	enemy3->addScript(new EnemyScript(enemy3));
 	enemy4->addScript(new EnemyScript(enemy4));

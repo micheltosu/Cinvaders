@@ -31,6 +31,8 @@ namespace ToMingine {
 
         GameObject* requestMove(int, int);
 
+		int GetAlphaXY(SDL_Surface* surface, int x, int y);
+
         void move(int x, int y);
 
     private:

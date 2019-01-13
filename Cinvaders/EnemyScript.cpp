@@ -22,6 +22,6 @@ void EnemyScript::run(){
 }
 
 void EnemyScript::collision(Type t){
-	if (t == PLAYER)
-		GameEngine::getInstance().getCurrentScene()->removeObject(ro);
+	/*if (t == PLAYER)
+		GameEngine::getInstance().getCurrentScene()->removeObject(ro);*/
 }

@@ -29,39 +29,61 @@ namespace ToMingine {
 		int otherX = ro->getRect()->x - smallestX;
 		int otherY = ro->getRect()->y - smallestY;
 
-		int size = width * height;
-		std::vector<bool> area(size);
 		std::vector<bool> mask1 = getMask(getSurface(), width, height);
-		std::vector<bool> mask2 = getMask(ro->getSurface(), width, height);
-		
+		std::vector<bool>mask2 = getMask(ro->getSurface(), width, height);
 
-
-
-		return false;
+		for (int b = 0; b <= mask1.size(); b++) {
+			if (mask1.at(b) && mask2.at(b)) {
+				std::cout << "Collision! ";
+				return false;
+			}
+		}
+		return true;
 	}
 
 	std::vector<bool> RigidObject::getMask(SDL_Surface* surf, int x, int y){
 		std::vector<bool> mask(x*y);
+
 		for (int row = 0; row <= surf->h; row++) {
-			int column = 0;
-			for (int pixel = 0; pixel < surf->w; pixel += surf->format->BitsPerPixel) {
-				if (surf->format->BitsPerPixel) {
-					Uint32* pixels = static_cast<Uint32*>(surf->pixels);
-					if (pixels[row + 1 * pixel] & surf->format->Amask) {
-						mask[column*row] = 1;
-					}
-					else {
-						mask[column*row] = 0;
-					}
+			for (int p = 0; p < surf->w; p += surf->format->BitsPerPixel) {
+				Uint32* pixels = static_cast<Uint32*>(surf->pixels);
+				if (GetAlphaXY(surf,x,y)) {
+					mask.push_back(false);
+				}
+				else {
+					mask.push_back(true);
 				}
 			}
-			//förskjut sista biten.
-				column++;
+			for (int lastBit = x - surf->w; lastBit < x; lastBit++) {
+				mask.push_back(false);
+			}
 		}
-		
-		
-		return std::vector<bool>();
+		return mask;
 	}
+
+
+	//https://stackoverflow.com/questions/28098164/alpha-value-of-pixel-color-and-per-pixel-collision-using-sdl
+	int RigidObject::GetAlphaXY(SDL_Surface* surface, int x, int y){
+		// get the specific pixel for checking the alpha value at x/y
+
+		SDL_PixelFormat* pixelFormat = surface->format;
+		int bpp = pixelFormat->BytesPerPixel;
+
+		Uint8* p = (Uint8*)surface->pixels + y * surface->pitch + x * bpp;
+
+		// ! here the game crashes
+		Uint32 pixelColor = *p;
+
+		// get the RGBA values
+
+		Uint8 red, green, blue, alpha;
+
+		// this function fails, sometimes the game crashes here
+		SDL_GetRGBA(pixelColor, pixelFormat, &red, &green, &blue, &alpha);
+
+		return alpha;
+	}
+
 
     GameObject* RigidObject::requestMove(int x, int y){
         SDL_Rect* otherRect;
