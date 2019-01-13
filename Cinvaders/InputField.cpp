@@ -56,6 +56,7 @@ namespace ToMingine {
     
     void Inputfield::toggleFocus() {
         focus = !focus;
+        box->toggleCursor();
         
         if (focus)
             SDL_StartTextInput();

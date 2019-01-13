@@ -32,6 +32,7 @@ public:
     void addChar(char);
     void backSpace();
     void resize();
+    void toggleCursor() { showCursor = !showCursor; }
     
     int getTextWidth() { return textRect.w; }
     int getTextHeight() { return textRect.h; }
@@ -42,15 +43,20 @@ public:
     
     
 private:
-    
+    void updateCursor();
+
     TextBox(const TextBox&) = delete;
     const TextBox& operator=(const TextBox&) = delete;
     TTF_Font* font;
     SDL_Color fontColor = {0,0,0};
     std::string text = "Input text here";
     
+    int em;
     int padding;
+    int textSpacing;
+    bool showCursor = false;
     SDL_Rect textRect;
+    SDL_Rect cursorRect;
     SDL_Color colorFg, colorBg;
 };
 

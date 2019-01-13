@@ -3,14 +3,19 @@
 
 namespace ToMingine {
     TextBox::TextBox(std::string path, int size, SDL_Rect& parentRect, int boxPadding) {
-    
+        int minX, minY, maxY, advance;
+        font = TTF_OpenFont(path.c_str(), size);
+        TTF_GlyphMetrics(font, 'M', &minX, &em, &minY, &maxY, &advance);
+        textSpacing = advance - em;
+        
         padding = boxPadding;
         rect = { parentRect.x, parentRect.y, parentRect.h + padding, parentRect.w + padding };
-        textRect = { parentRect.x + (padding/2), parentRect.x + (padding/2), parentRect.h, parentRect.w};
+        textRect = { parentRect.x + (padding), parentRect.x + (padding/2), parentRect.h, parentRect.w};
         
-        font = TTF_OpenFont(path.c_str(), size);
         colorFg = {0,0,0,255};
         colorBg = {255,255,255,255};
+        
+        
     }
     
     void TextBox::setColorFg(SDL_Color &other) {
@@ -33,12 +38,15 @@ namespace ToMingine {
         text.pop_back();
     }
     
+    void TextBox::updateCursor() {
+        cursorRect.w = 2;
+        cursorRect.h = textRect.h;
+        cursorRect.y = textRect.y;
+        cursorRect.x = textRect.x + textRect.w + textSpacing;
+    }
+    
     void TextBox::draw() {
-        SDL_SetRenderDrawColor(renderer, colorBg.r, colorBg.g, colorBg.b, colorBg.a);
-        SDL_RenderFillRect(renderer, &rect);
         
-        SDL_SetRenderDrawColor(renderer, colorFg.r, colorFg.g, colorFg.b, colorFg.a);
-        SDL_RenderDrawRect(renderer, &rect);
         
         std::string drawText = !text.empty() ? text : text.append(" "); // Don't want zero length
         
@@ -48,11 +56,23 @@ namespace ToMingine {
         textRect.h = txtSurf->h;
         textRect.w = txtSurf->w;
         rect.h = txtSurf->h + padding;
-        rect.w = txtSurf->w + padding;
+        rect.w = txtSurf->w  + (em * 1.5);
 
+        
+        
+        SDL_SetRenderDrawColor(renderer, colorBg.r, colorBg.g, colorBg.b, colorBg.a);
+        SDL_RenderFillRect(renderer, &rect);
+        
+        SDL_SetRenderDrawColor(renderer, colorFg.r, colorFg.g, colorFg.b, colorFg.a);
+        SDL_RenderDrawRect(renderer, &rect);
         
         SDL_RenderCopy(renderer, textTxt, NULL, &textRect);
         SDL_FreeSurface(txtSurf);
+        
+        if (showCursor) {
+            updateCursor();
+            SDL_RenderFillRect(renderer, &cursorRect);
+        }
     }
     
     void TextBox::resize() {
