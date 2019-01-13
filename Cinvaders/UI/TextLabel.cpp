@@ -7,7 +7,7 @@
 
 namespace ToMingine {
     TextLabel::TextLabel(std::string pth, int size) : TextLabel(pth, size, 500, 500, 100, 25, 10) {}
-    TextLabel::TextLabel(std::string pth, int size, int x, int y, int w, int h, int pad = 10) {
+    TextLabel::TextLabel(std::string pth, int size, int x, int y, int w, int h, int pad) {
         rect = {x, y, w, h};
         
         box = new TextBox(pth, size, rect, pad);

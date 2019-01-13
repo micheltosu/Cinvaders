@@ -14,7 +14,7 @@ class TextLabel : public GameObject {
 public:
     ~TextLabel();
     TextLabel(std::string, int size);
-    TextLabel(std::string, int size, int x, int y, int w, int h, int pad);
+    TextLabel(std::string, int size, int x, int y, int w, int h, int pad = 10);
     
     
     void setText(std::string);
