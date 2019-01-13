@@ -26,6 +26,8 @@ public:
     void draw();
     void setHeight(int h) { rect.h = h; }
     void setWidth(int w) { rect.w = w; }
+    void setColorFg(SDL_Color&);
+    void setColorBg(SDL_Color&);
     void addText(std::string txt);
     void addChar(char);
     void backSpace();
@@ -35,6 +37,9 @@ public:
     int getTextHeight() { return textRect.h; }
     int getPadding() { return padding; }
     SDL_Rect getRect() {return SDL_Rect(rect); }
+    SDL_Color getColorFg() { return colorFg; }
+    SDL_Color getColorBg() { return colorBg; }
+    
     
 private:
     
@@ -46,6 +51,7 @@ private:
     
     int padding;
     SDL_Rect textRect;
+    SDL_Color colorFg, colorBg;
 };
 
 }
