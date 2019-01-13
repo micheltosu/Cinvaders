@@ -11,13 +11,17 @@ public:
     Inputfield(std::string path, int size, int x, int y, int w, int h);
     ~Inputfield();
     
+    std::string getText();
+    
     void mouseButtonEvent(const SDL_MouseButtonEvent& mev) override;
-    void keyBoardEvent(Uint32) override;
+    void textInputEvent(const SDL_TextInputEvent& tev) override;
+    void keyBoardEvent(const SDL_KeyboardEvent&) override;
     void tick() override;
 private:
-    bool focus, dynamicSize = true;
+    bool focus = false, dynamicSize = true;
     TextBox *box;
 
+    void toggleFocus();
     
     Inputfield(const Inputfield&) = delete;
     const Inputfield& operator=(const Inputfield&) = delete;

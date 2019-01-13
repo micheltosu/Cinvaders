@@ -24,6 +24,8 @@ public:
     void tick();
     void keyPressed(SDL_Keycode&);
     void keyReleased(SDL_Keycode&);
+    void handleEvent(SDL_KeyboardEvent&);
+    void handleEvent(SDL_TextInputEvent&);
     void addBinding(SDL_Keycode&, KeybindingBase*);
     void removeBinding(SDL_Keycode&, KeybindingBase*);
     void addListener(GameObject*);

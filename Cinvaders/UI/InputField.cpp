@@ -1,6 +1,7 @@
 #include "Inputfield.h"
 #include "GameEngine.h"
 #include <iostream>
+#include <string>
 namespace ToMingine {
     
     Inputfield::Inputfield(std::string path, int size) : Inputfield(path, size, 200, 200, 200,50) {}
@@ -21,24 +22,50 @@ namespace ToMingine {
            mev.clicks == 1 &&
            (mev.x >= rect.x && mev.x <= (rect.x + rect.w)) &&
            (mev.y >= rect.y && mev.y <= (rect.y + rect.h))) {
-            focus = !focus;
-            std::cout << "inputfield: Focus changed" << std::endl;
-        }
+            toggleFocus();
+        } else if (focus && mev.type == SDL_MOUSEBUTTONUP && 
+                   (mev.x > rect.x || mev.x < rect.x || mev.y > rect.y || mev.y < rect.y))
+            toggleFocus();
     }
     
-    void Inputfield::keyBoardEvent(Uint32 key) {
-        if (!focus) return;
-        std::string keyName = SDL_GetKeyName(key);
+    void Inputfield::textInputEvent(const SDL_TextInputEvent& tev) {
+        if(!focus) return;
+        std::string inputChar(tev.text);
+        box->addText(inputChar);
         
-        box->addText(keyName);
+    }
+    
+    void Inputfield::keyBoardEvent(const SDL_KeyboardEvent& kev) {
+        if (!focus) return;
+
+        if (kev.type == SDL_KEYDOWN) {
+                switch (kev.keysym.sym) {
+                    case SDLK_ESCAPE:
+                        toggleFocus();
+                        break;
+                    case SDLK_BACKSPACE:
+                        box->backSpace();
+                        break;
+                    
+                }
+            }
+        }
+    
+    void Inputfield::toggleFocus() {
+        focus = !focus;
+        box->toggleCursor();
+        
+        if (focus)
+            SDL_StartTextInput();
+        else
+            SDL_StopTextInput();
     }
     
     void Inputfield::tick() {
         if (dynamicSize) {
-            rect.h = box->getTextHeight();
-            rect.w = box->getTextWidth();
-            box->setWidth(rect.w);
-            box->setHeight(rect.h);
+            box->resize();
+            rect = box->getRect();
+            
         }
         
         GameObject::tick();

@@ -13,7 +13,8 @@ namespace ToMingine {
 	class Script {
 	public:
 		virtual void run() = 0;
-		virtual void keyBoardEvent(Uint32) {};
+		virtual void keyBoardEvent(const SDL_KeyboardEvent&) {};
+        virtual void textInputEvent(const SDL_TextInputEvent&) {};
 		virtual void collision(Type t) {};
 	};
 }
