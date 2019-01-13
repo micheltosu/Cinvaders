@@ -24,6 +24,10 @@ namespace ToMingine {
         colorBg = {other.r, other.g, other.b, other.r};
     }
     
+    void TextBox::setText(std::string txt) {
+        text = txt;
+    }
+    
     void TextBox::addText(std::string txt) {
         text.append(txt);
     }
