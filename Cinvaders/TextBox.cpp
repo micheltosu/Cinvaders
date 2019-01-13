@@ -70,8 +70,15 @@ namespace ToMingine {
         SDL_FreeSurface(txtSurf);
         
         if (showCursor) {
-            updateCursor();
-            SDL_RenderFillRect(renderer, &cursorRect);
+            if (SDL_GetTicks() - lastBlink > cursBlinkSpd) {
+                updateCursor();
+                visible = !visible;
+                lastBlink = SDL_GetTicks();
+            }
+            
+            if (visible)
+                SDL_RenderFillRect(renderer, &cursorRect);
+
         }
     }
     

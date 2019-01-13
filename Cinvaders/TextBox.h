@@ -54,7 +54,8 @@ private:
     int em;
     int padding;
     int textSpacing;
-    bool showCursor = false;
+    int cursBlinkSpd = 500, lastBlink = 0;
+    bool showCursor = false, visible = false;
     SDL_Rect textRect;
     SDL_Rect cursorRect;
     SDL_Color colorFg, colorBg;
