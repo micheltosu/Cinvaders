@@ -14,8 +14,6 @@ namespace ToMingine {
         
         colorFg = {0,0,0,255};
         colorBg = {255,255,255,255};
-        
-        
     }
     
     void TextBox::setColorFg(SDL_Color &other) {
@@ -70,8 +68,9 @@ namespace ToMingine {
         SDL_FreeSurface(txtSurf);
         
         if (showCursor) {
+            updateCursor();
+
             if (SDL_GetTicks() - lastBlink > cursBlinkSpd) {
-                updateCursor();
                 visible = !visible;
                 lastBlink = SDL_GetTicks();
             }
