@@ -23,7 +23,7 @@ namespace ToMingine {
            (mev.x >= rect.x && mev.x <= (rect.x + rect.w)) &&
            (mev.y >= rect.y && mev.y <= (rect.y + rect.h))) {
             toggleFocus();
-        } else if (focus && mev.type == SDL_MOUSEBUTTONUP &&
+        } else if (focus && mev.type == SDL_MOUSEBUTTONUP && 
                    (mev.x > rect.x || mev.x < rect.x || mev.y > rect.y || mev.y < rect.y))
             toggleFocus();
     }
@@ -39,14 +39,14 @@ namespace ToMingine {
         if (!focus) return;
 
         if (kev.type == SDL_KEYDOWN) {
-            char pressedKey = kev.keysym.sym;
                 switch (kev.keysym.sym) {
                     case SDLK_ESCAPE:
                         toggleFocus();
                         break;
                     case SDLK_BACKSPACE:
                         box->backSpace();
-                        break;
+                        break;
+                    
                 }
             }
         }
