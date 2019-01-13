@@ -40,6 +40,7 @@ public:
     SDL_Rect getRect() {return SDL_Rect(rect); }
     SDL_Color getColorFg() { return colorFg; }
     SDL_Color getColorBg() { return colorBg; }
+    std::string getText() { return text; }
     
     
 private:

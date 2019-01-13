@@ -11,6 +11,8 @@ public:
     Inputfield(std::string path, int size, int x, int y, int w, int h);
     ~Inputfield();
     
+    std::string getText();
+    
     void mouseButtonEvent(const SDL_MouseButtonEvent& mev) override;
     void textInputEvent(const SDL_TextInputEvent& tev) override;
     void keyBoardEvent(const SDL_KeyboardEvent&) override;
