@@ -26,7 +26,6 @@ protected:
 private:
     std::string text;
     TextBox* box;
-    RenderedObject* renObj;
     TextLabel(const TextLabel&) = delete;
     const TextLabel& operator= (const TextLabel&) = delete;
 

@@ -11,7 +11,7 @@ namespace ToMingine {
         rect = {x, y, w, h};
         
         box = new TextBox(pth, size, rect, pad);
-        renObj = box;
+        renOb = box;
     }
     
     void TextLabel::setText(std::string str) {
@@ -22,7 +22,7 @@ namespace ToMingine {
         
         delete box;
         box = nullptr;
-        renObj = nullptr;
+        renOb = nullptr;
         
     }
     
