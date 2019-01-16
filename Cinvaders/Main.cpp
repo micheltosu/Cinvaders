@@ -8,6 +8,7 @@
 #include "MemberFunctionKeybinding.h"
 #include "Inputfield.h"
 #include "TextLabel.h"
+#include "Button.h"
 
 using namespace std;
 using namespace ToMingine;
@@ -63,7 +64,14 @@ int main(int argc, char** argv) {
     TextLabel* txtLbl = new TextLabel("Resources/Fonts/Pixeled.ttf", 20, 300, 75, 300, 50);
     txtLbl->setText("C Invaders");
     myScene.addObject(txtLbl);
+    
+    
+    //Button
+    auto buttonFunk = []()->void{ std::cout << "I WAS HIT!" << std::endl; };
+    SDL_Rect btnPos = {900,550,100,50};
+    Button btn("Resources/Fonts/Pixeled.ttf", "Click me!", buttonFunk ,btnPos);
+    myScene.addObject(&btn);
+    
     ge.run();
-
     return 0;
 }
