@@ -7,10 +7,12 @@ namespace ToMingine {
         font = TTF_OpenFont(path.c_str(), size);
         TTF_GlyphMetrics(font, 'M', &minX, &em, &minY, &maxY, &advance);
         textSpacing = advance - em;
-        
         padding = boxPadding;
+        
+        txtSurf = TTF_RenderText_Solid(font, text.c_str(), colorFg);
+        
         rect = { parentRect.x, parentRect.y, parentRect.w + padding, parentRect.h + padding,};
-        textRect = { parentRect.x + (padding), parentRect.y + (padding/2), parentRect.w, parentRect.h};
+        textRect = { parentRect.x + (padding/ 2), parentRect.y + (padding/2), 0, parentRect.h};
         
         colorFg = {0,0,0,255};
         colorBg = {255,255,255,255};
@@ -26,22 +28,25 @@ namespace ToMingine {
     
     void TextBox::setText(std::string txt) {
         text = txt;
+        updateTextSurface();
     }
 
     void TextBox::resize() {
     }
     
+    void TextBox::updateTextSurface() {
+        SDL_FreeSurface(txtSurf);
+        txtSurf = TTF_RenderText_Solid(font, text.c_str(), colorFg);
+        
+        if(txtSurf->w != textRect.w)
+            textRect.w = txtSurf->w;
+        if(txtSurf->h != textRect.h)
+            textRect.h = txtSurf->h;
+    }
+    
     void TextBox::draw() {
-        std::string drawText = !text.empty() ? text : text.append(" "); // Don't want zero length
-        SDL_Surface* txtSurf = TTF_RenderText_Solid(font, drawText.c_str(), colorFg);
         SDL_Texture* textTxt = SDL_CreateTextureFromSurface(renderer, txtSurf);
         
-        textRect.h = txtSurf->h;
-        textRect.w = txtSurf->w;
-        rect.h = txtSurf->h + padding;
-        rect.w = txtSurf->w  + (em * 1.5);
-
-
         SDL_SetRenderDrawColor(renderer, colorBg.r, colorBg.g, colorBg.b, colorBg.a);
         SDL_RenderFillRect(renderer, &rect);
         
@@ -49,12 +54,11 @@ namespace ToMingine {
         SDL_RenderDrawRect(renderer, &rect);
         
         SDL_RenderCopy(renderer, textTxt, NULL, &textRect);
-        SDL_FreeSurface(txtSurf);
-
+        SDL_DestroyTexture(textTxt);
     }
     
     TextBox::~TextBox() {
         delete font;
-        
+        SDL_FreeSurface(txtSurf);
     }
 }

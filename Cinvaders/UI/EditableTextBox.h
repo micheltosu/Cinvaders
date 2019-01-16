@@ -25,9 +25,10 @@ public:
 
     
 protected:
+    void updateTextSurface() override;
     void updateCursor();
     int cursBlinkSpd = 500, lastBlink = 0;
-    bool showCursor = false, visible = false;
+    bool showCursor = false, cursorVisible = false;
     SDL_Rect cursorRect;
 
 };

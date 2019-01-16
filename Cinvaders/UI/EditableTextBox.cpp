@@ -28,19 +28,32 @@ namespace ToMingine {
         cursorRect.y = textRect.y;
         cursorRect.x = textRect.x + textRect.w + textSpacing;
     }
+
+    void EditableTextBox::updateTextSurface() {
+        std::string drawText = !text.empty() ? text : text.append(" "); // Don't want zero length
+        TextBox::updateTextSurface();
+//
+//        SDL_FreeSurface(txtSurf);
+//        txtSurf = TTF_RenderText_Solid(font, drawText.c_str(), colorFg);
+    }
+
     
     void EditableTextBox::draw() {
+        updateTextSurface();
         TextBox::draw();
+        
+        rect.h = textRect.h + padding;
+        rect.w = textRect.w  + (em * 1.5);
         
         if (showCursor) {
             updateCursor();
             
             if (SDL_GetTicks() - lastBlink > cursBlinkSpd) {
-                visible = !visible;
+                cursorVisible = !cursorVisible;
                 lastBlink = SDL_GetTicks();
             }
             
-            if (visible)
+            if (cursorVisible)
                 SDL_RenderFillRect(renderer, &cursorRect);
             
         }

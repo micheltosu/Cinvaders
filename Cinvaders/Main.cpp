@@ -7,6 +7,7 @@
 #include "FunctionKeybinding.h"
 #include "MemberFunctionKeybinding.h"
 #include "Inputfield.h"
+#include "TextLabel.h"
 
 using namespace std;
 using namespace ToMingine;
@@ -58,6 +59,10 @@ int main(int argc, char** argv) {
     Inputfield* inField = new Inputfield("Resources/Fonts/Pixeled.ttf", 15, 100,100,200,50);
     myScene.addObject(inField);
     
+    // TextLabel
+    TextLabel* txtLbl = new TextLabel("Resources/Fonts/Pixeled.ttf", 20, 300, 75, 300, 50);
+    txtLbl->setText("C Invaders");
+    myScene.addObject(txtLbl);
     ge.run();
 
     return 0;

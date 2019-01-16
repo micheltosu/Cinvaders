@@ -40,7 +40,7 @@ public:
     
     
 protected:
-    
+    virtual void updateTextSurface();
     TextBox(const TextBox&) = delete;
     const TextBox& operator=(const TextBox&) = delete;
     TTF_Font* font;
@@ -52,7 +52,7 @@ protected:
     int textSpacing;
     SDL_Color colorFg, colorBg;
     SDL_Rect textRect;
-
+    SDL_Surface* txtSurf;
 };
 
 }
