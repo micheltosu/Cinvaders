@@ -29,7 +29,6 @@ public:
     void setColorFg(SDL_Color&);
     void setColorBg(SDL_Color&);
     void setText(std::string txt);
-    void addText(std::string txt);
     virtual void resize();
     
     const int getPadding() const { return padding; }

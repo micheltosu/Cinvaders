@@ -16,9 +16,8 @@ public:
     TextLabel(std::string, int size);
     TextLabel(std::string, int size, int x, int y, int w, int h, int pad = 10);
     
-    
     void setText(std::string);
-    std::string getText();
+    const std::string getText() const;
     
 protected:
     std::string text;

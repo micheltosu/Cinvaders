@@ -5,7 +5,9 @@
 namespace ToMingine {
     
     Inputfield::Inputfield(std::string path, int size) : Inputfield(path, size, 200, 200, 200,50) {}
-    Inputfield::Inputfield(std::string path, int size, int x, int y, int w, int h) {
+    Inputfield::Inputfield(std::string path, int size, int x, int y, int w, int h) :
+        TextLabel(path, size, x, y, w, h) {
+            
         rect.x = x;
         rect.y = y;
         rect.w = w;
@@ -31,7 +33,7 @@ namespace ToMingine {
     void Inputfield::textInputEvent(const SDL_TextInputEvent& tev) {
         if(!focus) return;
         std::string inputChar(tev.text);
-        box->addText(inputChar);
+        dynamic_cast<EditableTextBox*>(box)->addText(inputChar);
         
     }
     
@@ -44,7 +46,7 @@ namespace ToMingine {
                         toggleFocus();
                         break;
                     case SDLK_BACKSPACE:
-                        box->backSpace();
+                        dynamic_cast<EditableTextBox*>(box)->backSpace();
                         break;
                     
                 }
@@ -53,7 +55,7 @@ namespace ToMingine {
     
     void Inputfield::toggleFocus() {
         focus = !focus;
-        box->toggleCursor();
+        dynamic_cast<EditableTextBox*>(box)->toggleCursor();
         
         if (focus)
             SDL_StartTextInput();
@@ -72,13 +74,8 @@ namespace ToMingine {
     }
     
     Inputfield::~Inputfield() {
-        delete renOb;
         GameEngine::getInstance().mouseManager()->removeListener(this);
-
-        
-        renOb = nullptr;
-        box = nullptr; // samma objekt som renOb;
-        
+       
     }
     
     
