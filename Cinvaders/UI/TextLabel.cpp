@@ -21,6 +21,14 @@ namespace ToMingine {
         rect = box->getRect();
     }
     
+    void TextLabel::setBgColor(SDL_Color &col) {
+        box->setColorBg(col);
+    }
+    
+    void TextLabel::setFgColor(SDL_Color &col) {
+        box->setColorFg(col);
+    }
+    
     TextLabel::~TextLabel() {
         
         delete box;
