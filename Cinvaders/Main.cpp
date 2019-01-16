@@ -7,6 +7,8 @@
 #include "FunctionKeybinding.h"
 #include "MemberFunctionKeybinding.h"
 #include "Inputfield.h"
+#include "TextLabel.h"
+#include "Button.h"
 
 using namespace std;
 using namespace ToMingine;
@@ -58,7 +60,22 @@ int main(int argc, char** argv) {
     Inputfield* inField = new Inputfield("Resources/Fonts/Pixeled.ttf", 15, 100,100,200,50);
     myScene.addObject(inField);
     
+    // TextLabel
+    TextLabel* txtLbl = new TextLabel("Resources/Fonts/Pixeled.ttf", 20, 300, 75, 300, 50);
+    txtLbl->setText("C Invaders");
+    myScene.addObject(txtLbl);
+    
+    
+    //Button
+    SDL_Color fgColor = {71,255,39,255};
+    SDL_Color bgColor = {0,0,0,255};
+    auto buttonFunk = []()->void{ std::cout << "I WAS HIT!" << std::endl; };
+    SDL_Rect btnPos = {900,550,100,50};
+    Button btn("Resources/Fonts/Pixeled.ttf", "Click me!", buttonFunk ,btnPos);
+    btn.setFgColor(fgColor);
+    btn.setBgColor(bgColor);
+    myScene.addObject(&btn);
+    
     ge.run();
-
     return 0;
 }

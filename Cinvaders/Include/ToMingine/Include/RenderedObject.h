@@ -27,7 +27,7 @@ public:
 
 protected:
     SDL_Renderer* renderer;
-    SDL_Texture* texture;
+    SDL_Texture* texture = nullptr;
     SDL_Rect rect;
     
 };
