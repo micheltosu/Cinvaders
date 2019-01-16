@@ -32,19 +32,17 @@ public:
     void addText(std::string txt);
     virtual void resize();
     
-    int getPadding() { return padding; }
-    SDL_Rect getRect() {return SDL_Rect(rect); }
-    SDL_Color getColorFg() { return colorFg; }
-    SDL_Color getColorBg() { return colorBg; }
-    std::string getText() { return text; }
+    const int getPadding() const { return padding; }
+    const SDL_Rect getRect() const {return SDL_Rect(rect); }
+    const SDL_Color getColorFg() const { return colorFg; }
+    const SDL_Color getColorBg() const { return colorBg; }
+    const std::string getText() const { return text; }
     
     
 protected:
     virtual void updateTextSurface();
     TextBox(const TextBox&) = delete;
     const TextBox& operator=(const TextBox&) = delete;
-    TTF_Font* font;
-    std::string text = "Textbox";
     
     int em;
     int padding;
@@ -52,6 +50,8 @@ protected:
     SDL_Color colorFg, colorBg;
     SDL_Rect textRect;
     SDL_Surface* txtSurf;
+    TTF_Font* font;
+    std::string text = "Textbox";
 };
 
 }
