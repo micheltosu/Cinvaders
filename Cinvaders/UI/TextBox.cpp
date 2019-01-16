@@ -20,10 +20,12 @@ namespace ToMingine {
     
     void TextBox::setColorFg(SDL_Color &other) {
         colorFg = {other.r, other.g, other.b, other.a};
+        updateTextSurface();
     }
     
     void TextBox::setColorBg(SDL_Color &other) {
-        colorBg = {other.r, other.g, other.b, other.r};
+        colorBg = {other.r, other.g, other.b, other.a};
+        updateTextSurface();
     }
     
     void TextBox::setText(std::string txt) {
