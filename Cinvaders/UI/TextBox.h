@@ -23,13 +23,13 @@ public:
     TextBox(std::string, int size, SDL_Rect& parentRect, int boxPadding = 10);
     ~TextBox();
     
-    void draw();
     void setHeight(int h) { rect.h = h; }
     void setWidth(int w) { rect.w = w; }
     void setColorFg(SDL_Color&);
     void setColorBg(SDL_Color&);
     void setText(std::string txt);
     virtual void resize();
+    virtual void draw();
     
     const int getPadding() const { return padding; }
     const SDL_Rect getRect() const {return SDL_Rect(rect); }
