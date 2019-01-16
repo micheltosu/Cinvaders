@@ -67,9 +67,13 @@ int main(int argc, char** argv) {
     
     
     //Button
+    SDL_Color fgColor = {71,255,39,255};
+    SDL_Color bgColor = {0,0,0,255};
     auto buttonFunk = []()->void{ std::cout << "I WAS HIT!" << std::endl; };
     SDL_Rect btnPos = {900,550,100,50};
     Button btn("Resources/Fonts/Pixeled.ttf", "Click me!", buttonFunk ,btnPos);
+    btn.setFgColor(fgColor);
+    btn.setBgColor(bgColor);
     myScene.addObject(&btn);
     
     ge.run();
