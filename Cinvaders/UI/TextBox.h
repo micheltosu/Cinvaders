@@ -44,7 +44,6 @@ protected:
     TextBox(const TextBox&) = delete;
     const TextBox& operator=(const TextBox&) = delete;
     TTF_Font* font;
-    SDL_Color fontColor = {0,0,0};
     std::string text = "Textbox";
     
     int em;
