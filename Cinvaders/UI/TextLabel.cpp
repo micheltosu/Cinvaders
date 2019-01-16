@@ -16,6 +16,7 @@ namespace ToMingine {
     
     void TextLabel::setText(std::string str) {
         box->setText(str);
+        box->resize();
     }
     
     TextLabel::~TextLabel() {

@@ -32,6 +32,7 @@ namespace ToMingine {
     }
 
     void TextBox::resize() {
+        rect = {rect.x, rect.y, textRect.w + padding, textRect.h + padding};
     }
     
     void TextBox::updateTextSurface() {
