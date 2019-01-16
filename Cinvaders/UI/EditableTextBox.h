@@ -22,6 +22,7 @@ public:
     int getTextHeight() { return textRect.h; }
 
     void draw() override;
+    void resize() override;
 
     
 protected:

@@ -37,6 +37,10 @@ namespace ToMingine {
 //        txtSurf = TTF_RenderText_Solid(font, drawText.c_str(), colorFg);
     }
 
+    void EditableTextBox::resize() {
+        int newW = showCursor ? padding * 2 : padding;
+        rect = {rect.x, rect.y, textRect.w + newW, textRect.h + padding};
+    }
     
     void EditableTextBox::draw() {
         updateTextSurface();

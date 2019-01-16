@@ -30,7 +30,7 @@ public:
     void setColorBg(SDL_Color&);
     void setText(std::string txt);
     void addText(std::string txt);
-    void resize();
+    virtual void resize();
     
     int getPadding() { return padding; }
     SDL_Rect getRect() {return SDL_Rect(rect); }
