@@ -1,6 +1,4 @@
 #include "EnemyScript.h"
-#include <stdlib.h>
-
 
 
 EnemyScript::EnemyScript(RigidObject* ro): ro(ro){ }

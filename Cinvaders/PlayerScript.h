@@ -1,10 +1,8 @@
 #ifndef PLAYER_SCRIPT_H
 #define PLAYER_SCRIPT_H
-#include "RigidObject.h"
-#include "Script.h"
-#include "GameObject.h"
-#include <iostream>
 
+#include <iostream>
+#include "ToMingine.h"
 
 using namespace ToMingine;
 class PlayerScript : public Script {

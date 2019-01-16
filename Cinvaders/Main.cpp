@@ -1,14 +1,10 @@
 #include <string>
 #include <iostream>
-#include "GameEngine.h"
+
+#include "ToMingine.h"
+
 #include "PlayerScript.h"
 #include "EnemyScript.h"
-#include "AnimatedSprite.h"
-#include "FunctionKeybinding.h"
-#include "MemberFunctionKeybinding.h"
-#include "Inputfield.h"
-#include "TextLabel.h"
-#include "Button.h"
 
 using namespace std;
 using namespace ToMingine;

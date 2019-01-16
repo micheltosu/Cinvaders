@@ -1,9 +1,5 @@
 #include "PlayerScript.h"
-#include "GameEngine.h"
 #include "BulletScript.h"
-#include <iostream>
-
-
 PlayerScript::PlayerScript(PhysicsObject* ro){
 	this->ro = ro;
 	ro->setElasticity(0.3);

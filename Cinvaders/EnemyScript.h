@@ -1,9 +1,7 @@
 #ifndef ENEMY_SCRIPT_H
 #define ENEMY_SCRIPT_H
 
-
-#include "RigidObject.h"
-#include "Script.h"
+#include "ToMingine.h"
 
 using namespace ToMingine;
 class EnemyScript : public Script {
