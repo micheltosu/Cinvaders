@@ -21,11 +21,11 @@ public:
     std::string getText();
     
 protected:
-    
-    
-private:
     std::string text;
     TextBox* box;
+    
+private:
+    
     TextLabel(const TextLabel&) = delete;
     const TextLabel& operator= (const TextLabel&) = delete;
 
