@@ -14,8 +14,8 @@ namespace ToMingine {
     
     void Button::mouseButtonEvent(const SDL_MouseButtonEvent &mev) {
         if (mev.type == SDL_MOUSEBUTTONUP &&
-            (mev.x >= rect.x || mev.x <= (rect.x + rect.w)) &&
-            (mev.y >= rect.y || mev.y <= (rect.y + rect.h))) {
+            (mev.x >= rect.x && mev.x <= (rect.x + rect.w)) &&
+            (mev.y >= rect.y && mev.y <= (rect.y + rect.h))) {
             callback();
         }
     }
