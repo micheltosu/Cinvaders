@@ -7,10 +7,12 @@ namespace ToMingine {
         font = TTF_OpenFont(path.c_str(), size);
         TTF_GlyphMetrics(font, 'M', &minX, &em, &minY, &maxY, &advance);
         textSpacing = advance - em;
-        
         padding = boxPadding;
-        rect = { parentRect.x, parentRect.y, parentRect.h + padding, parentRect.w + padding };
-        textRect = { parentRect.x + (padding), parentRect.x + (padding/2), parentRect.h, parentRect.w};
+        
+        txtSurf = TTF_RenderText_Solid(font, text.c_str(), colorFg);
+        
+        rect = { parentRect.x, parentRect.y, parentRect.w + padding, parentRect.h + padding,};
+        textRect = { parentRect.x + (padding/ 2), parentRect.y + (padding/2), 0, parentRect.h};
         
         colorFg = {0,0,0,255};
         colorBg = {255,255,255,255};
@@ -18,45 +20,35 @@ namespace ToMingine {
     
     void TextBox::setColorFg(SDL_Color &other) {
         colorFg = {other.r, other.g, other.b, other.a};
+        updateTextSurface();
     }
     
     void TextBox::setColorBg(SDL_Color &other) {
-        colorBg = {other.r, other.g, other.b, other.r};
+        colorBg = {other.r, other.g, other.b, other.a};
+        updateTextSurface();
     }
     
-    void TextBox::addText(std::string txt) {
-        text.append(txt);
+    void TextBox::setText(std::string txt) {
+        text = txt;
+        updateTextSurface();
+    }
+
+    void TextBox::resize() {
+        rect = {rect.x, rect.y, textRect.w + padding, textRect.h + padding};
     }
     
-    void TextBox::addChar(char ch)  {
-        text.push_back(ch);
-    }
-    
-    void TextBox::backSpace() {
-        text.pop_back();
-    }
-    
-    void TextBox::updateCursor() {
-        cursorRect.w = 2;
-        cursorRect.h = textRect.h;
-        cursorRect.y = textRect.y;
-        cursorRect.x = textRect.x + textRect.w + textSpacing;
+    void TextBox::updateTextSurface() {
+        SDL_FreeSurface(txtSurf);
+        txtSurf = TTF_RenderText_Solid(font, text.c_str(), colorFg);
+        
+        if(txtSurf->w != textRect.w)
+            textRect.w = txtSurf->w;
+        if(txtSurf->h != textRect.h)
+            textRect.h = txtSurf->h;
     }
     
     void TextBox::draw() {
-        
-        
-        std::string drawText = !text.empty() ? text : text.append(" "); // Don't want zero length
-        
-        SDL_Surface* txtSurf = TTF_RenderText_Solid(font, drawText.c_str(), colorFg);
         SDL_Texture* textTxt = SDL_CreateTextureFromSurface(renderer, txtSurf);
-        
-        textRect.h = txtSurf->h;
-        textRect.w = txtSurf->w;
-        rect.h = txtSurf->h + padding;
-        rect.w = txtSurf->w  + (em * 1.5);
-
-        
         
         SDL_SetRenderDrawColor(renderer, colorBg.r, colorBg.g, colorBg.b, colorBg.a);
         SDL_RenderFillRect(renderer, &rect);
@@ -65,29 +57,11 @@ namespace ToMingine {
         SDL_RenderDrawRect(renderer, &rect);
         
         SDL_RenderCopy(renderer, textTxt, NULL, &textRect);
-        SDL_FreeSurface(txtSurf);
-        
-        if (showCursor) {
-            updateCursor();
-
-            if (SDL_GetTicks() - lastBlink > cursBlinkSpd) {
-                visible = !visible;
-                lastBlink = SDL_GetTicks();
-            }
-            
-            if (visible)
-                SDL_RenderFillRect(renderer, &cursorRect);
-
-        }
-    }
-    
-    void TextBox::resize() {
-        
-        
+        SDL_DestroyTexture(textTxt);
     }
     
     TextBox::~TextBox() {
         delete font;
-        
+        SDL_FreeSurface(txtSurf);
     }
 }

@@ -23,43 +23,34 @@ public:
     TextBox(std::string, int size, SDL_Rect& parentRect, int boxPadding = 10);
     ~TextBox();
     
-    void draw();
     void setHeight(int h) { rect.h = h; }
     void setWidth(int w) { rect.w = w; }
     void setColorFg(SDL_Color&);
     void setColorBg(SDL_Color&);
-    void addText(std::string txt);
-    void addChar(char);
-    void backSpace();
-    void resize();
-    void toggleCursor() { showCursor = !showCursor; }
+    void setText(std::string txt);
+    virtual void resize();
+    virtual void draw();
     
-    int getTextWidth() { return textRect.w; }
-    int getTextHeight() { return textRect.h; }
-    int getPadding() { return padding; }
-    SDL_Rect getRect() {return SDL_Rect(rect); }
-    SDL_Color getColorFg() { return colorFg; }
-    SDL_Color getColorBg() { return colorBg; }
-    std::string getText() { return text; }
+    const int getPadding() const { return padding; }
+    const SDL_Rect getRect() const {return SDL_Rect(rect); }
+    const SDL_Color getColorFg() const { return colorFg; }
+    const SDL_Color getColorBg() const { return colorBg; }
+    const std::string getText() const { return text; }
     
     
-private:
-    void updateCursor();
-
+protected:
+    virtual void updateTextSurface();
     TextBox(const TextBox&) = delete;
     const TextBox& operator=(const TextBox&) = delete;
-    TTF_Font* font;
-    SDL_Color fontColor = {0,0,0};
-    std::string text = "Input text here";
     
     int em;
     int padding;
     int textSpacing;
-    int cursBlinkSpd = 500, lastBlink = 0;
-    bool showCursor = false, visible = false;
-    SDL_Rect textRect;
-    SDL_Rect cursorRect;
     SDL_Color colorFg, colorBg;
+    SDL_Rect textRect;
+    SDL_Surface* txtSurf;
+    TTF_Font* font;
+    std::string text = "Textbox";
 };
 
 }
