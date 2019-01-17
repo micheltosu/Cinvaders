@@ -12,11 +12,18 @@
 namespace ToMingine {
 	class Script {
 	public:
+        virtual ~Script() {}
 		virtual void run() = 0;
 		virtual void keyBoardEvent(const SDL_KeyboardEvent&) {};
         virtual void textInputEvent(const SDL_TextInputEvent&) {};
 		virtual void collision(Type t) {};
         virtual GameObject* getGameObject() = 0;
+        
+    protected:
+        Script() {}
+    private:
+        Script(const Script&) = delete;
+        const Script& operator=(const Script&) = delete;
 	};
 }
 #endif
