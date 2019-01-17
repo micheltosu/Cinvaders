@@ -12,7 +12,7 @@ public:
 	~PlayerScript();
 	void run();
 	void moveUp();
-    void keyBoardEvent(Uint32);
+    void keyBoardEvent(const SDL_KeyboardEvent&) override;
 	void collision(Type t);
 	void shoot(uint32_t);
 	int x = 0, y = 0;

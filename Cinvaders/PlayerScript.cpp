@@ -21,23 +21,23 @@ void PlayerScript::run() {
 	ro->requestMove(&x, &y); 
 
 }
-
-void PlayerScript::keyBoardEvent(Uint32 key) {
-    if (key == SDLK_s)
+void PlayerScript::keyBoardEvent(const SDL_KeyboardEvent& kev) {
+    if (kev.keysym.sym == SDLK_s)
         y += 1;
-    if (key == SDLK_w)
+    if (kev.keysym.sym == SDLK_w)
         y -= 2;
-    if (key == SDLK_d)
+    if (kev.keysym.sym == SDLK_d)
         x += 1;
-    if (key == SDLK_a)
+    if (kev.keysym.sym == SDLK_a)
         x -= 1;
-	if (key == SDLK_q) {
-		if (x > 0) x--;
-		if (x < 0) x++;
-		if (y > 0) y--;
-		if (y < 0) y++;
-	}
-}
+    if (kev.keysym.sym == SDLK_q) {
+        if (x > 0) x--;
+        if (x < 0) x++;
+        if (y > 0) y--;
+        if (y < 0) y++;
+    }
+};
+
 
 void PlayerScript::collision(Type t) {
 	
