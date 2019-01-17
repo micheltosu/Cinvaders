@@ -13,7 +13,7 @@ namespace ToMingine {
 
 	PhysicsObject::~PhysicsObject()	{}
 	GameObject* PhysicsObject::requestMove(int* x, int* y){
-		*y += gravity;
+		//*y += gravity;
 		GameObject* go = RigidObject::requestMove(*x, *y);
 		if (go) {
 			bounce(go, x, y);
@@ -21,6 +21,7 @@ namespace ToMingine {
 		return nullptr;
 	}
 	void PhysicsObject::bounce(GameObject* go, int* x, int* y){
+
 		if ((go->getRect()->x < (getRect()->x + getRect()->w) && (go->getRect()->x + go->getRect()->w) > getRect()->x) &&
 			(go->getRect()->y > (getRect()->y + getRect()->h) || (go->getRect()->y + go->getRect()->h) < getRect()->y)
 			) {

@@ -18,11 +18,11 @@ namespace ToMingine {
 		script->collision(t);
 	}
 
-	bool RigidObject::pixelDetection(RigidObject * ro){
-		int leftX = Maximum(rect.x, ro->getRect()->x);
-		int leftY = Maximum(rect.y, ro->getRect()->y);
-		int rightX = Minimum(rect.x + rect.w, ro->getRect()->x + ro->getRect()->w);
-		int rightY = Minimum(rect.y + rect.h, ro->getRect()->y + ro->getRect()->h);
+	bool RigidObject::pixelDetection(RigidObject * ro, int movex, int movey){
+		int leftX = Maximum(rect.x+movex, ro->getRect()->x);
+		int leftY = Maximum(rect.y+movey, ro->getRect()->y);
+		int rightX = Minimum(rect.x + rect.w + movex, ro->getRect()->x + ro->getRect()->w);
+		int rightY = Minimum(rect.y + rect.h + movey, ro->getRect()->y + ro->getRect()->h);
 
 
 		int width = rightX - leftX;
@@ -30,8 +30,8 @@ namespace ToMingine {
 
 		SDL_Rect collisionRect = { leftX, leftY, width, height };
 
-		int o1XOffset = Maximum(collisionRect.x, rect.x) - Minimum(collisionRect.x, rect.x);
-		int o1YOffset = Maximum(collisionRect.y, rect.y) - Minimum(collisionRect.y, rect.y);
+		int o1XOffset = Maximum(collisionRect.x, rect.x+movex) - Minimum(collisionRect.x, rect.x+movex);
+		int o1YOffset = Maximum(collisionRect.y, rect.y+movey) - Minimum(collisionRect.y, rect.y+movey);
 		int o2XOffset = Maximum(collisionRect.x, ro->getRect()->x) - Minimum(collisionRect.x, ro->getRect()->x);
 		int o2YOffset = Maximum(collisionRect.y, ro->getRect()->y) - Minimum(collisionRect.y, ro->getRect()->y);
 
@@ -39,33 +39,12 @@ namespace ToMingine {
 			for (int c = 0; c < collisionRect.w; c++) {
 				int o1A = GetAlphaXY(c + o1XOffset, r + o1YOffset);
 				int o2A = ro->GetAlphaXY(c + o2XOffset, r + o2YOffset);
-				if (o1A&&o2A)
+				if (o1A && o2A)
 					return true;
 			}
 		}
 		return false;
 	}
-
-	//std::vector<bool> RigidObject::getMask(SDL_Surface* surf, int x, int y){
-	//	std::vector<bool> mask(x*y);
-
-	//	for (int row = 0; row <= surf->h; row++) {
-	//		for (int p = 0; p < surf->w; p += surf->format->BitsPerPixel) {
-	//			Uint32* pixels = static_cast<Uint32*>(surf->pixels);
-	//			if (GetAlphaXY(surf,x,y)) {
-	//				mask.push_back(false);
-	//			}
-	//			else {
-	//				mask.push_back(true);
-	//			}
-	//		}
-	//		for (int lastBit = x - surf->w; lastBit < x; lastBit++) {
-	//			mask.push_back(false);
-	//		}
-	//	}
-	//	return mask;
-	//}
-
 
 	int RigidObject::GetAlphaXY(int x, int y){
 		
@@ -79,7 +58,7 @@ namespace ToMingine {
 	}
 
 
-    GameObject* RigidObject::requestMove(int x, int y){
+    GameObject* RigidObject::requestMove(int& x, int& y){
         SDL_Rect* otherRect;
         std::list<GameObject*>* gameObjects = GameEngine::getInstance().getCurrentScene()->getGameObjects();
         for (GameObject* go : *gameObjects) {
@@ -93,7 +72,13 @@ namespace ToMingine {
                     ) {
 					RigidObject* ro;
 					if (ro = dynamic_cast<RigidObject*>(go)) {
-						if (pixelDetection(ro)) {
+						while (pixelDetection(ro,x,y) && (x != 0 || y !=0 )) {
+							if (x != 0)
+								x += x > 0 ? -1 : 1;
+							if (y != 0)
+								y += y > 0 ? -1 : 1;
+						}
+						if (pixelDetection(ro, x, y)) {
 							collision(go->getType());
 								if (go->hasScript())
 									go->collision(type);
