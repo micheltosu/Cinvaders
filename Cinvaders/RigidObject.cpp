@@ -18,7 +18,7 @@ namespace ToMingine {
 		script->collision(t);
 	}
 
-	bool RigidObject::pixelDetection(RigidObject * ro, int movex, int movey){
+	bool RigidObject::pixelDetection(RigidObject * ro, int movex, int movey, Direction& dir){
 		int leftX = Maximum(rect.x+movex, ro->getRect()->x);
 		int leftY = Maximum(rect.y+movey, ro->getRect()->y);
 		int rightX = Minimum(rect.x + rect.w + movex, ro->getRect()->x + ro->getRect()->w);
@@ -35,12 +35,28 @@ namespace ToMingine {
 		int o2XOffset = Maximum(collisionRect.x, ro->getRect()->x) - Minimum(collisionRect.x, ro->getRect()->x);
 		int o2YOffset = Maximum(collisionRect.y, ro->getRect()->y) - Minimum(collisionRect.y, ro->getRect()->y);
 
+
 		for (int r = 0; r < collisionRect.h; r++) {
 			for (int c = 0; c < collisionRect.w; c++) {
 				int o1A = GetAlphaXY(c + o1XOffset, r + o1YOffset);
 				int o2A = ro->GetAlphaXY(c + o2XOffset, r + o2YOffset);
-				if (o1A && o2A)
+				if (o1A && o2A) {
+					//if((o1s pixel till vänster||o1s pixel till höger)&&
+					//	(!o1s pixel ovan || !o1 pixel under);
+					if ((GetAlphaXY(c - 1 + o1XOffset, r + o1YOffset) || GetAlphaXY(c + 1 + o1XOffset, r + o1YOffset))
+						&&(!(GetAlphaXY(c + o1XOffset, r -1 + o1YOffset)) || !(GetAlphaXY(c + o1XOffset, r + 1 + o1YOffset)))){
+						//std::cout << "vert! ";
+						dir = VERT;
+					}
+					/*if ((!(GetAlphaXY(c - 1 + o1XOffset, r + o1YOffset)) || !(GetAlphaXY(c + 1 + o1XOffset, r + o1YOffset)))
+						&& (GetAlphaXY(c + o1XOffset, r - 1 + o1YOffset) || GetAlphaXY(c + o1XOffset, r + 1 + o1YOffset))) */
+					else {
+						//std::cout << "horiz! ";
+						dir = HORIZ;
+					}
+
 					return true;
+				}
 			}
 		}
 		return false;
@@ -58,7 +74,7 @@ namespace ToMingine {
 	}
 
 
-    GameObject* RigidObject::requestMove(int& x, int& y){
+    GameObject* RigidObject::requestMove(int& x, int& y, Direction& dir){
         SDL_Rect* otherRect;
         std::list<GameObject*>* gameObjects = GameEngine::getInstance().getCurrentScene()->getGameObjects();
         for (GameObject* go : *gameObjects) {
@@ -74,7 +90,7 @@ namespace ToMingine {
 					if (ro = dynamic_cast<RigidObject*>(go)) {
 						int tempx = x;
 						int tempy = y;
-						while (pixelDetection(ro,x,y) && (x != 0 || y !=0 )) {
+						while (pixelDetection(ro,x,y,dir) && (x != 0 || y !=0 )) {
 							if (x != 0)
 								x += x > 0 ? -1 : 1;
 							if (y != 0)
@@ -86,7 +102,7 @@ namespace ToMingine {
 							y = tempy;
 						}
 
-						if (pixelDetection(ro, x, y)) {
+						if (pixelDetection(ro, x, y,dir)) {
 							collision(go->getType());
 								if (go->hasScript())
 									go->collision(type);

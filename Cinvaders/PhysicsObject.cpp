@@ -13,17 +13,18 @@ namespace ToMingine {
 
 	PhysicsObject::~PhysicsObject()	{}
 	GameObject* PhysicsObject::requestMove(int* x, int* y){
+		Direction dir;
 		//*y += gravity;
-		GameObject* go = RigidObject::requestMove(*x, *y);
+		GameObject* go = RigidObject::requestMove(*x, *y, dir);
 		if (go) {
-			bounce(go, x, y);
+			bounce(go, x, y, dir);
 		}
 		return nullptr;
 	}
-	void PhysicsObject::bounce(GameObject* go, int* x, int* y){
-
-		*y *= -1 * elasticity;
-		*x *= -1 * elasticity;	
-
+	void PhysicsObject::bounce(GameObject* go, int* x, int* y, Direction dir){
+		if(dir == VERT)
+			*x *= -1 * elasticity;
+		if(dir == HORIZ)
+			*y *= -1 * elasticity;
 	}
 }
