@@ -14,7 +14,7 @@
 
 namespace ToMingine {
     
-    class RigidObject :    public GameObject {
+    class RigidObject : public GameObject {
     public:
 		RigidObject(std::string path, Type t);
         RigidObject(Sprite* spr, Type t);
@@ -22,21 +22,15 @@ namespace ToMingine {
         RigidObject(Sprite* spr, Type t, int x, int y);
         ~RigidObject();
         
-		void collision(Type t);
-
-		bool pixelDetection(RigidObject*);
-
-		//std::vector<bool> getMask(SDL_Surface*, int, int);
-
-
-        GameObject* requestMove(int, int);
-
-		int GetAlphaXY(int x, int y);
-
         void move(int x, int y);
+		void collision(Type t);
+        int GetAlphaXY(int x, int y);
+		bool pixelDetection(RigidObject*);
+        GameObject* requestMove(int, int);
 
     private:
         const int SPEED = 1;
+        
     };
 
 }
