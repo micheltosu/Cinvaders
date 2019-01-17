@@ -22,18 +22,8 @@ namespace ToMingine {
 	}
 	void PhysicsObject::bounce(GameObject* go, int* x, int* y){
 
-		if ((go->getRect()->x < (getRect()->x + getRect()->w) && (go->getRect()->x + go->getRect()->w) > getRect()->x) &&
-			(go->getRect()->y > (getRect()->y + getRect()->h) || (go->getRect()->y + go->getRect()->h) < getRect()->y)
-			) {
-			*y *= -1 * elasticity;
-		}
-		if ((go->getRect()->y < (getRect()->y + getRect()->h) && (go->getRect()->y + go->getRect()->h) > getRect()->y) &&
-			(go->getRect()->x > (getRect()->x + getRect()->w) || (go->getRect()->x + go->getRect()->w) < getRect()->x)
-			) {
-			*x *= -1 * elasticity;
-		}
+		*y *= -1 * elasticity;
+		*x *= -1 * elasticity;	
 
-			
-			
 	}
 }

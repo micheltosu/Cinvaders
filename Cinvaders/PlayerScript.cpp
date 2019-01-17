@@ -6,7 +6,7 @@
 
 PlayerScript::PlayerScript(PhysicsObject* ro){
 	this->ro = ro;
-	ro->setElasticity(0.3);
+	ro->setElasticity(1);
 }
 
 PlayerScript::~PlayerScript() { }
