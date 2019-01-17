@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
     // Keybindings
     SDL_Keycode sk = SDLK_SPACE;
     MemberFunctionKeybinding<PlayerScript>* mk = new MemberFunctionKeybinding<PlayerScript>(ps, &PlayerScript::shoot);
-    GameEngine::getInstance().keyboardManager()->addBinding(sk, mk);
+    GameEngine::getInstance().keyboardManager()->addBinding<PlayerScript>(sk, mk);
     
     GameEngine::getInstance().keyboardManager()->addListener(player);
     // End keybindings

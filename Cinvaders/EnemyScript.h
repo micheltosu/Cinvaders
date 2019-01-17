@@ -8,6 +8,8 @@ class EnemyScript : public Script {
 public:
 	EnemyScript(RigidObject* ro);
 	~EnemyScript();
+    
+    GameObject *getGameObject() override { return ro; }
 private:
 	RigidObject* ro;
 	void run();

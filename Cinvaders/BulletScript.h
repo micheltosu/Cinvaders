@@ -10,6 +10,7 @@ public:
 	~BulletScript();
 	void run();
 	void collision(Type t);
+    GameObject* getGameObject() { return ro; }
 private:
 	RigidObject* ro;
 	int dir;

@@ -15,6 +15,8 @@ public:
     void keyBoardEvent(const SDL_KeyboardEvent&) override;
 	void collision(Type t);
 	void shoot(uint32_t);
+    GameObject* getGameObject() override { return ro; }
+    
 	int x = 0, y = 0;
 
 private:

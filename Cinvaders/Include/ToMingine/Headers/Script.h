@@ -16,6 +16,7 @@ namespace ToMingine {
 		virtual void keyBoardEvent(const SDL_KeyboardEvent&) {};
         virtual void textInputEvent(const SDL_TextInputEvent&) {};
 		virtual void collision(Type t) {};
+        virtual GameObject* getGameObject() = 0;
 	};
 }
 #endif

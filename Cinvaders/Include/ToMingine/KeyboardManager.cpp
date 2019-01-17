@@ -57,18 +57,7 @@ namespace ToMingine {
         pressedKey.erase(key);
     }
     
-    void KeyboardManager::addBinding(SDL_Keycode& key, KeybindingBase* binding ) {
-        if(bindings.find(key) == bindings.end()) {
-            auto newList = new std::list<KeybindingBase* >();
-            auto newPair = new std::pair<SDL_Keycode, std::list<KeybindingBase* >>(key, *newList );
-            
-            
-            bindings.insert(*newPair);
-        }
-        
-        auto *vec = &(bindings.at(key));
-        vec->push_back(binding);
-    }
+    
     
     void KeyboardManager::addListener(GameObject *obj) {
         listeners.insert(obj);
@@ -79,16 +68,31 @@ namespace ToMingine {
     }
     
     void KeyboardManager::removeBindingsFor(GameObject * obj) {
-        for (auto &kPair : bindings) {
-            for( auto it = kPair.second.begin(); it != kPair.second.end(); it++) {
-                if (MemberFunctionKeybinding<PlayerScript>* memberFBind = dynamic_cast<MemberFunctionKeybinding<PlayerScript>*>(*it)) {
-                    if (memberFBind->isBindingForObj(dynamic_cast<PlayerScript*>(obj->script))) {
-                        kPair.second.erase(it);
-                        
+        std::set<KeybindingBase*> toRemove;
+        
+        //För varje pair i objToBindMap
+        for (auto oIt = objToBindMap.begin(); oIt != objToBindMap.end(); oIt++) {
+            //Om ett par gäller för det objekt som ska få sina bindningar rensade.
+            if (oIt->second == obj) {
+                //För varje keycode som har bindings
+                for (auto &kPair : bindings) {
+                    //För varje binding i listan
+                    for(auto kbIt = kPair.second.begin(); kbIt != kPair.second.end(); ++kbIt) {
+                        if(*kbIt == oIt->first) {
+                            toRemove.insert(oIt->first);
+                            kPair.second.erase(kbIt);
+                        }
                     }
                 }
             }
+            
+            
+            
         }
+        
+        for (KeybindingBase* kb : toRemove)
+            objToBindMap.erase(kb);
+        
     }
     
     void KeyboardManager::removeBinding(SDL_Keycode& key, KeybindingBase* binding) {
