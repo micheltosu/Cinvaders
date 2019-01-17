@@ -3,9 +3,7 @@
 
 BulletScript::BulletScript(int dir, RigidObject* ro):dir(dir), ro(ro){}
 
-BulletScript::~BulletScript(){
-	delete (ro);
-}
+BulletScript::~BulletScript(){}
 
 void BulletScript::run(){
 	if (dir == 1)
