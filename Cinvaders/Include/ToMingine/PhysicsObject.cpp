@@ -11,7 +11,9 @@ namespace ToMingine {
 
 	PhysicsObject::PhysicsObject(Sprite * spr, Type t, int x, int y): RigidObject(spr, t, x, y) {}
 
-	PhysicsObject::~PhysicsObject()	{}
+	PhysicsObject::~PhysicsObject()	{
+        collisionObject = nullptr;
+    }
 	GameObject* PhysicsObject::requestMove(int* x, int* y){
 		*y += gravity;
 		GameObject* go = RigidObject::requestMove(*x, *y);
