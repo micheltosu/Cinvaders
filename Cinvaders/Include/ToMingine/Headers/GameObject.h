@@ -18,7 +18,7 @@ public:
 	
 	GameObject(const GameObject& other) = delete;
 	const GameObject& operator=(const GameObject& other) = delete;
-
+	
     void addScript(Script* s) { script = s; }
     virtual void tick();
     virtual void keyBoardEvent(const SDL_KeyboardEvent&) ;
@@ -27,6 +27,8 @@ public:
 
     SDL_Rect* getRect() { return &rect; }
     Type getType() { return type; }
+	SDL_Surface* getSurface () { return renOb->getSurface(); }
+
     virtual void collision(Type) {}
     bool hasScript();
 protected:

@@ -24,7 +24,14 @@ namespace ToMingine {
         
 		void collision(Type t);
 
+		bool pixelDetection(RigidObject*);
+
+		//std::vector<bool> getMask(SDL_Surface*, int, int);
+
+
         GameObject* requestMove(int, int);
+
+		int GetAlphaXY(int x, int y);
 
         void move(int x, int y);
 
