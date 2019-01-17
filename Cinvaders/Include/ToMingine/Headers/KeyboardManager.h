@@ -30,6 +30,7 @@ public:
     void removeBinding(SDL_Keycode&, KeybindingBase*);
     void addListener(GameObject*);
     void removeListener(GameObject*);
+    void removeBindingsFor(GameObject*);
     
 private:
     std::set<SDL_Keycode> pressedKey;

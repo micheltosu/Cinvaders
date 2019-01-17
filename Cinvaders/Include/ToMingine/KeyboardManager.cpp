@@ -1,4 +1,6 @@
 #include "KeyboardManager.h"
+#include "MemberFunctionKeybinding.h"
+#include "PlayerScript.h"
 #include <iostream>
 #include <list>
 namespace ToMingine {
@@ -74,6 +76,19 @@ namespace ToMingine {
     
     void KeyboardManager::removeListener(GameObject* obj) {
         listeners.erase(obj);
+    }
+    
+    void KeyboardManager::removeBindingsFor(GameObject * obj) {
+        for (auto &kPair : bindings) {
+            for( auto it = kPair.second.begin(); it != kPair.second.end(); it++) {
+                if (MemberFunctionKeybinding<PlayerScript>* memberFBind = dynamic_cast<MemberFunctionKeybinding<PlayerScript>*>(*it)) {
+                    if (memberFBind->isBindingForObj(dynamic_cast<PlayerScript*>(obj->script))) {
+                        kPair.second.erase(it);
+                        
+                    }
+                }
+            }
+        }
     }
     
     void KeyboardManager::removeBinding(SDL_Keycode& key, KeybindingBase* binding) {

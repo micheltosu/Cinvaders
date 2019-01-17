@@ -40,6 +40,7 @@ void PlayerScript::keyBoardEvent(const SDL_KeyboardEvent& kev) {
 
 
 void PlayerScript::collision(Type t) {
+    GameEngine::getInstance().destroyGameOject(ro );
 	
 }
 

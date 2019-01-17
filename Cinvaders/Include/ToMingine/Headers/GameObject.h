@@ -31,10 +31,10 @@ public:
 
     virtual void collision(Type) {}
     bool hasScript();
+    Script* script = nullptr;
 protected:
     SDL_Rect rect;
     Type type;
-    Script* script = nullptr;
     RenderedObject* renOb = nullptr;
 
 private:
