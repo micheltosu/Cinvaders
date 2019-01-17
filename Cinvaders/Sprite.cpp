@@ -17,6 +17,14 @@ namespace ToMingine {
         rect.w = surface->w;
         
     }
+
+	unsigned long int Sprite::getPixel(int x, int y) {
+		int bytes = (y*surface->w + x)*surface->format->BytesPerPixel;
+
+		char* pixels = static_cast<char*>(surface->pixels);
+
+		return pixels[bytes];
+	}
     
      void Sprite::draw() {
          rect.x = go->getRect()->x;

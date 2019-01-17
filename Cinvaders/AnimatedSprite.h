@@ -10,7 +10,8 @@ public:
     void draw();
     
     AnimatedSprite(std::string path, int num, int seconds);
-    
+	unsigned long int getPixel(int, int) override;
+
 protected:
     int frames, framesPerImage;
     int currentFrame = 1;

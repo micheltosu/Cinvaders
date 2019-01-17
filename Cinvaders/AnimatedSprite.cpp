@@ -20,6 +20,22 @@ AnimatedSprite::AnimatedSprite(std::string path, int num, int seconds = 1) : Spr
     frameRect.w = rect.w;
     
 }
+
+unsigned long int AnimatedSprite::getPixel(int x, int y){
+	int bytes = (y*surface->w + (frameRect.w * currentFrame) + x);
+	if (surface->format->BitsPerPixel == 8) {
+		char* pixels = static_cast<char*>(surface->pixels);
+		return pixels[bytes];
+	}
+	if (surface->format->BitsPerPixel == 16) {
+		unsigned short* pixels = static_cast<unsigned short*>(surface->pixels);
+		return pixels[bytes];
+	}
+	if (surface->format->BitsPerPixel == 32) {
+		unsigned int* pixels = static_cast<unsigned int*>(surface->pixels); 
+		return pixels[bytes];
+	}
+}
     
 void AnimatedSprite::draw() {
 

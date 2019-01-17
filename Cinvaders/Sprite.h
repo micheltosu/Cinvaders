@@ -33,6 +33,8 @@ public:
     ~Sprite();
 	const SDL_Rect* getRect() { return &rect; }
 
+	virtual unsigned long int getPixel(int, int);
+
 protected:    
     Sprite(const Sprite&) = delete;
     const Sprite& operator=(const Sprite&) = delete;

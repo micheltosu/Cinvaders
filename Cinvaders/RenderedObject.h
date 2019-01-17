@@ -24,6 +24,8 @@ public:
     const SDL_Rect* getRect() { return &rect; }
 
 	SDL_Surface* getSurface() { return surface; }
+
+	//virtual unsigned long int getPixel(int, int) = 0;
     
 
 protected:

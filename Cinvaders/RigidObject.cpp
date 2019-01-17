@@ -3,6 +3,9 @@
 #include "Script.h"
 #include <vector>
 
+#define Maximum(a, b) ((a > b) ? a : b)
+#define Minimum(a, b) ((a < b) ? a : b)
+
 namespace ToMingine {
     RigidObject::RigidObject(Sprite* spr, Type t) : GameObject(spr, t) {};
     RigidObject::RigidObject(Sprite* spr, Type t, int x, int y) : GameObject(spr, t, x, y) {};
@@ -16,70 +19,61 @@ namespace ToMingine {
 	}
 
 	bool RigidObject::pixelDetection(RigidObject * ro){
-		int smallestX = rect.x < ro->getRect()->x ? rect.x : ro->getRect()->x;
-		int smallestY = rect.y < ro->getRect()->y ? rect.y : ro->getRect()->y;
-		int biggestH = rect.y + rect.h > ro->getRect()->y + ro->getRect()->h ? rect.y + rect.h : ro->getRect()->y + ro->getRect()->h;
-		int biggestW = rect.y + rect.w > ro->getRect()->y + ro->getRect()->w ? rect.y + rect.w : ro->getRect()->y + ro->getRect()->w;
+		int leftX = Maximum(rect.x, ro->getRect()->x);
+		int leftY = Maximum(rect.y, ro->getRect()->y);
+		int rightX = Minimum(rect.x + rect.w, ro->getRect()->x + ro->getRect()->w);
+		int rightY = Minimum(rect.y + rect.h, ro->getRect()->y + ro->getRect()->h);
 
-		int width = biggestW - smallestX;
-		int height = biggestH - smallestY;
 
-		int thisX = rect.x - smallestX;
-		int thisY = rect.y - smallestY;
-		int otherX = ro->getRect()->x - smallestX;
-		int otherY = ro->getRect()->y - smallestY;
+		int width = rightX - leftX;
+		int height = rightY - leftY;
 
-		std::vector<bool> mask1 = getMask(getSurface(), width, height);
-		std::vector<bool>mask2 = getMask(ro->getSurface(), width, height);
+		SDL_Rect collisionRect = { leftX, leftY, width, height };
 
-		for (int b = 0; b <= mask1.size(); b++) {
-			if (mask1.at(b) && mask2.at(b)) {
-				std::cout << "Collision! ";
-				return false;
+		int o1XOffset = Maximum(collisionRect.x, rect.x) - Minimum(collisionRect.x, rect.x);
+		int o1YOffset = Maximum(collisionRect.y, rect.y) - Minimum(collisionRect.y, rect.y);
+		int o2XOffset = Maximum(collisionRect.x, ro->getRect()->x) - Minimum(collisionRect.x, ro->getRect()->x);
+		int o2YOffset = Maximum(collisionRect.y, ro->getRect()->y) - Minimum(collisionRect.y, ro->getRect()->y);
+
+		for (int r = 0; r < collisionRect.h; r++) {
+			for (int c = 0; c < collisionRect.w; c++) {
+				int o1A = GetAlphaXY(c + o1XOffset, r + o1YOffset);
+				int o2A = ro->GetAlphaXY(c + o2XOffset, r + o2YOffset);
+				if (o1A&&o2A)
+					return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
-	std::vector<bool> RigidObject::getMask(SDL_Surface* surf, int x, int y){
-		std::vector<bool> mask(x*y);
+	//std::vector<bool> RigidObject::getMask(SDL_Surface* surf, int x, int y){
+	//	std::vector<bool> mask(x*y);
 
-		for (int row = 0; row <= surf->h; row++) {
-			for (int p = 0; p < surf->w; p += surf->format->BitsPerPixel) {
-				Uint32* pixels = static_cast<Uint32*>(surf->pixels);
-				if (GetAlphaXY(surf,x,y)) {
-					mask.push_back(false);
-				}
-				else {
-					mask.push_back(true);
-				}
-			}
-			for (int lastBit = x - surf->w; lastBit < x; lastBit++) {
-				mask.push_back(false);
-			}
-		}
-		return mask;
-	}
+	//	for (int row = 0; row <= surf->h; row++) {
+	//		for (int p = 0; p < surf->w; p += surf->format->BitsPerPixel) {
+	//			Uint32* pixels = static_cast<Uint32*>(surf->pixels);
+	//			if (GetAlphaXY(surf,x,y)) {
+	//				mask.push_back(false);
+	//			}
+	//			else {
+	//				mask.push_back(true);
+	//			}
+	//		}
+	//		for (int lastBit = x - surf->w; lastBit < x; lastBit++) {
+	//			mask.push_back(false);
+	//		}
+	//	}
+	//	return mask;
+	//}
 
 
-	//https://stackoverflow.com/questions/28098164/alpha-value-of-pixel-color-and-per-pixel-collision-using-sdl
-	int RigidObject::GetAlphaXY(SDL_Surface* surface, int x, int y){
-		// get the specific pixel for checking the alpha value at x/y
-
-		SDL_PixelFormat* pixelFormat = surface->format;
-		int bpp = pixelFormat->BytesPerPixel;
-
-		Uint8* p = (Uint8*)surface->pixels + y * surface->pitch + x * bpp;
-
-		// ! here the game crashes
-		Uint32 pixelColor = *p;
-
-		// get the RGBA values
+	int RigidObject::GetAlphaXY(int x, int y){
+		
+		unsigned long int pixel = dynamic_cast<Sprite*>(renOb)->getPixel(x, y);
 
 		Uint8 red, green, blue, alpha;
 
-		// this function fails, sometimes the game crashes here
-		SDL_GetRGBA(pixelColor, pixelFormat, &red, &green, &blue, &alpha);
+		SDL_GetRGBA(pixel, getSurface()->format, &red, &green, &blue, &alpha);
 
 		return alpha;
 	}
