@@ -35,6 +35,7 @@ unsigned long int AnimatedSprite::getPixel(int x, int y){
 		unsigned int* pixels = static_cast<unsigned int*>(surface->pixels); 
 		return pixels[bytes];
 	}
+    return 0;
 }
     
 void AnimatedSprite::draw() {
