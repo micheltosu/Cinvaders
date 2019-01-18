@@ -21,6 +21,14 @@ namespace ToMingine {
         rect.h = renOb->getRect()->h;
         
     }
+    
+    GameObject* GameObject::create(Sprite* spr, Type t) {
+        return new GameObject(spr, t);
+    }
+    
+    GameObject* GameObject::create(Sprite *spr, Type t, int x, int y) {
+        return new GameObject(spr, t, x, y);
+    }
 
 	GameObject::~GameObject() {
 		delete script;

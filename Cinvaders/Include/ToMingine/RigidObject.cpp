@@ -9,10 +9,11 @@
 namespace ToMingine {
     RigidObject::RigidObject(Sprite* spr, Type t) : GameObject(spr, t) {};
     RigidObject::RigidObject(Sprite* spr, Type t, int x, int y) : GameObject(spr, t, x, y) {};
-    RigidObject::RigidObject(std::string path, Type t): RigidObject(new Sprite(path), t) { }
-    RigidObject::RigidObject(std::string path, Type t, int x, int y) : RigidObject(new Sprite(path), t, x, y) { }
-    
     RigidObject::~RigidObject() { }
+    
+    RigidObject* RigidObject::create(Sprite *spr, Type t, int x, int y) {
+        return new RigidObject(spr, t, x, y);
+    }
 
 	void RigidObject::collision(Type t)	{ 
 		script->collision(t);
