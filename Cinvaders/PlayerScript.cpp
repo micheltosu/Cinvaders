@@ -17,7 +17,6 @@ void PlayerScript::run() {
         ro->getRect()->y = 0 - ro->getRect()->h;
     if (ro->getRect()->y < 0 - ro->getRect()->h)
         ro->getRect()->y = GameEngine::getInstance().window_height;
-    prePos = *ro->getRect();
     ro->requestMove(&x, &y); 
 
 }
@@ -43,7 +42,6 @@ void PlayerScript::keyBoardEvent(const SDL_KeyboardEvent& kev) {
 
 void PlayerScript::collision(Type t) {
     if (t == WALL ) {
-        y = -1;
         isOnWall = true;
     }
 }

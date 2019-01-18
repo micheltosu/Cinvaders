@@ -27,6 +27,7 @@ void BulletScript::run(){
 }
 
 void BulletScript::collision(Type t){
+	std::cout << "bullet hit!" << std::endl;
 	if (t == ENEMY)
 		GameEngine::getInstance().destroyGameOject(ro);
 }

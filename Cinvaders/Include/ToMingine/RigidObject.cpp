@@ -16,7 +16,8 @@ namespace ToMingine {
     }
 
 	void RigidObject::collision(Type t)	{ 
-		script->collision(t);
+		if(script != nullptr)
+			script->collision(t);
 	}
 
 	bool RigidObject::pixelDetection(RigidObject * ro, int movex, int movey, Direction& dir){
@@ -89,24 +90,17 @@ namespace ToMingine {
                     ) {
 					RigidObject* ro;
 					if (ro = dynamic_cast<RigidObject*>(go)) {
-						
-						if (ro->type == WALL && (y >= 1 || y <= 1)) {	
-							if (PhysicsObject* po = dynamic_cast<PhysicsObject*>(this)) {
-								std::cout << x << "," << y << std::endl;
-								po->bounce(ro, &x, &y, HORIZ);
-								std::cout << x << "," << y << std::endl;
-							}
-							move(x, y);
-							if (hasScript())
-								collision(ro->type);
-							return go;
-						}
-
 						if (pixelDetection(ro, x, y,dir)) {
-							collision(go->getType());
-								if (go->hasScript())
-									go->collision(type);
-								return go;
+							if (ro->type == WALL) {
+								move(x, 0);
+							}
+
+							collision(ro->getType());
+							if (ro->hasScript()) {
+								std::cout << ro->getType() << std::endl;
+								ro->collision(type);
+								}
+								return ro;
 						}
 					}
                 }
