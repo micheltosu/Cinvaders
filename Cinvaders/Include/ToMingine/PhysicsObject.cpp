@@ -10,8 +10,8 @@ namespace ToMingine {
     }
 
 	PhysicsObject::~PhysicsObject()	{
-        collisionObject = nullptr;
     }
+	
 	GameObject* PhysicsObject::requestMove(int* x, int* y){
 		Direction dir;
 		*y += gravity;
@@ -22,7 +22,7 @@ namespace ToMingine {
 		return nullptr;
 	}
 	void PhysicsObject::bounce(GameObject* go, int* x, int* y, Direction dir){
-		if (dir == VERT && go->getType() != WALL) {
+		if (dir == VERT) {
 			*x *= -1 * elasticity;
 		}
 		if(dir == HORIZ)

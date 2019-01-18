@@ -19,11 +19,11 @@ void EnemyScript::run(){
 }
 
 void EnemyScript::shoot(Uint32){
-    int x = ro->getRect()->x +(ro->getRect()->w / 2);
+   /* int x = ro->getRect()->x +(ro->getRect()->w / 2);
     int y = ro->getRect()->y -(ro->getRect()->h / 2);
     RigidObject* bullet = RigidObject::create(new Sprite("Resources/Image/plus bullet.png"), PLAYER, x - 7, y+ ro->getSurface()->h);
     bullet->addScript(new BulletScript(3, bullet));
-    GameEngine::getInstance().getCurrentScene()->addObject(bullet);
+    GameEngine::getInstance().getCurrentScene()->addObject(bullet);*/
 }
 
 void EnemyScript::collision(Type t){

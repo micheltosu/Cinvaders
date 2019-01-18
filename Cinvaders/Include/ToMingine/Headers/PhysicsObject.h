@@ -19,7 +19,6 @@ protected:
     PhysicsObject(Sprite* spr, Type t, int x, int y);
 private:
 	double elasticity = 0.5;
-	GameObject* collisionObject;
 	int gravity = 1;
 };
 
