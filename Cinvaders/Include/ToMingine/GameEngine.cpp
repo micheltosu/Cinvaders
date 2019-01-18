@@ -70,6 +70,9 @@ namespace ToMingine {
 			std::cout << SDL_GetError() << std::endl;
 			exit(-1);
 		}
+        
+        // Stop text input on start.
+        SDL_StopTextInput();
 
 		keyMan = new KeyboardManager();
         mouseMan = new MouseManager();
