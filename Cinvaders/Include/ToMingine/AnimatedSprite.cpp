@@ -40,12 +40,8 @@ unsigned long int AnimatedSprite::getPixel(int x, int y){
 		SDL_UnlockSurface(surface);
 		return pixels[bytes];
 	}
-<<<<<<< HEAD:Cinvaders/Include/ToMingine/AnimatedSprite.cpp
-    return 0;
-=======
 	SDL_UnlockSurface(surface);
 	return 0;
->>>>>>> origin/Pixel_Collision:Cinvaders/AnimatedSprite.cpp
 }
     
 void AnimatedSprite::draw() {
