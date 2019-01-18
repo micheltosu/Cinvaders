@@ -3,7 +3,9 @@
 
 BulletScript::BulletScript(int dir, RigidObject* ro):dir(dir), ro(ro){}
 
-BulletScript::~BulletScript(){}
+BulletScript::~BulletScript(){
+    ro = nullptr;
+}
 
 void BulletScript::run(){
 	if (dir == 1)
