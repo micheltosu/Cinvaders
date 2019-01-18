@@ -14,7 +14,7 @@ namespace ToMingine {
     }
 	GameObject* PhysicsObject::requestMove(int* x, int* y){
 		Direction dir;
-		//*y += gravity;
+		*y += gravity;
 		GameObject* go = RigidObject::requestMove(*x, *y, dir);
 		if (go) {
 			bounce(go, x, y, dir);

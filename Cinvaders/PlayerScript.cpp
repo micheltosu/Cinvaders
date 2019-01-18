@@ -2,7 +2,7 @@
 #include "BulletScript.h"
 PlayerScript::PlayerScript(PhysicsObject* ro){
     this->ro = ro;
-    ro->setElasticity(1);
+    ro->setElasticity(0.5);
 }
 
 PlayerScript::~PlayerScript() { }
@@ -24,8 +24,10 @@ void PlayerScript::run() {
 void PlayerScript::keyBoardEvent(const SDL_KeyboardEvent& kev) {
     if (kev.keysym.sym == SDLK_s)
         y += 1;
-    if (kev.keysym.sym == SDLK_w)
-        y -= 5;
+    if (kev.keysym.sym == SDLK_w && isOnWall){
+        y -= 20;
+        isOnWall = false;
+    }
     if (kev.keysym.sym == SDLK_d)
         x += 1;
     if (kev.keysym.sym == SDLK_a)
@@ -40,7 +42,10 @@ void PlayerScript::keyBoardEvent(const SDL_KeyboardEvent& kev) {
 
 
 void PlayerScript::collision(Type t) {
-    
+    if (t == WALL ) {
+        y = 0;
+        isOnWall = true;
+    }
 }
 
 
