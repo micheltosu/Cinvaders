@@ -6,22 +6,25 @@
 namespace ToMingine {
     void KeyboardManager::tick() {
         // for all pressed keys.
-        for (std::set<SDL_Keycode>::iterator keyIt = pressedKey.begin(); keyIt != pressedKey.end(); keyIt++) {
+        for (std::map<SDL_Keycode, SDL_KeyboardEvent>::iterator keyIt = pressedKey.begin(); keyIt != pressedKey.end(); keyIt++) {
 
             //If bindings for the key exists
-            if (bindings.find(*keyIt) != bindings.end()) {
-                std::list<KeybindingBase* > bindingsList = bindings.find(*keyIt)->second;
+            if (bindings.find(keyIt->first) != bindings.end()) {
+                std::list<KeybindingBase* > bindingsList = bindings.find(keyIt->first)->second;
                 
                 // For all keybindings
                 for (std::list<KeybindingBase* >::iterator bIt = bindingsList.begin() ; bIt != bindingsList.end(); bIt++) {
                     
-                    (*bIt)->execute(*keyIt);
+                    (*bIt)->execute(keyIt->first);
                 } // End all keybindings
                 
                 
             } // End if binding for key exists
             
-            
+            // For all listeners
+            for (GameObject* oPoint : listeners) {
+                oPoint->keyBoardEvent(pressedKey[keyIt->first]);
+            } // End for all listeners
             
         } // end for pressed keys
         
@@ -30,17 +33,12 @@ namespace ToMingine {
     void KeyboardManager::handleEvent(SDL_KeyboardEvent& kev) {
         switch (kev.type) {
             case SDL_KEYDOWN:
-                keyPressed(kev.keysym.sym);
+                keyPressed(kev.keysym.sym, kev);
                 break;
             case SDL_KEYUP:
                 keyReleased(kev.keysym.sym);
                 break;
         }
-        // For all listeners
-        for (GameObject* oPoint : listeners) {
-            oPoint->keyBoardEvent(kev);
-        } // End for all listeners
-    
     }
     
     void KeyboardManager::handleEvent(SDL_TextInputEvent& tev) {
@@ -49,8 +47,9 @@ namespace ToMingine {
         } // End for all listeners
     }
     
-    void KeyboardManager::keyPressed(SDL_Keycode& key) {
-        pressedKey.insert(key);
+    void KeyboardManager::keyPressed(SDL_Keycode& key, SDL_KeyboardEvent &kev) {
+        pressedKey[key] = kev;
+        
     }
     
     void KeyboardManager::keyReleased(SDL_Keycode& key) {

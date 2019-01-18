@@ -23,7 +23,7 @@ class KeyboardManager {
 public:
     KeyboardManager() {};
     void tick();
-    void keyPressed(SDL_Keycode&);
+    void keyPressed(SDL_Keycode&, SDL_KeyboardEvent& kev);
     void keyReleased(SDL_Keycode&);
     void handleEvent(SDL_KeyboardEvent&);
     void handleEvent(SDL_TextInputEvent&);
@@ -35,7 +35,7 @@ public:
     void removeBindingsFor(GameObject*);
     
 private:
-    std::set<SDL_Keycode> pressedKey;
+    std::map<SDL_Keycode, SDL_KeyboardEvent> pressedKey;
     std::set<GameObject *> listeners;
     std::map<SDL_Keycode, std::list<KeybindingBase*>> bindings;
     std::multimap<KeybindingBase*, GameObject*> objToBindMap;
