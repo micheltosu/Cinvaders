@@ -51,7 +51,9 @@ int main(int argc, char** argv) {
     nameInput->setText("Player 1");
     
     SDL_Rect buttonPos = {500,500,100,100};
-    auto updateNameLabel = []() -> void {
+    auto updateNameLabel = [&nameInput, &playerName]() -> void {
+        
+        playerName->setText(nameInput->getText());
         GameEngine::getInstance().nextScene();
         
     };

@@ -19,7 +19,7 @@ public:
     void setFgColor(SDL_Color& col);
     void setBgColor(SDL_Color& col);
     void setText(std::string);
-    const std::string getText() const;
+    virtual std::string getText() const;
     
 protected:
     std::string text;

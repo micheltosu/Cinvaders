@@ -15,6 +15,7 @@ public:
     void textInputEvent(const SDL_TextInputEvent& tev) override;
     void keyBoardEvent(const SDL_KeyboardEvent&) override;
     void tick() override;
+    std::string getText() const override {return box->getText();}
 private:
     bool focus = false, dynamicSize = true;
     void toggleFocus();

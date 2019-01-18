@@ -21,6 +21,10 @@ namespace ToMingine {
         rect = box->getRect();
     }
     
+    std::string TextLabel::getText() const {
+        return text;
+    }
+    
     void TextLabel::setBgColor(SDL_Color &col) {
         box->setColorBg(col);
     }
