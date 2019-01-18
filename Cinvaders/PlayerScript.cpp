@@ -43,7 +43,7 @@ void PlayerScript::keyBoardEvent(const SDL_KeyboardEvent& kev) {
 
 void PlayerScript::collision(Type t) {
     if (t == WALL ) {
-        y = 0;
+        y = -1;
         isOnWall = true;
     }
 }
