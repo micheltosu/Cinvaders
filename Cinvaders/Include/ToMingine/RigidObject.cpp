@@ -91,12 +91,6 @@ namespace ToMingine {
 					if (ro = dynamic_cast<RigidObject*>(go)) {
 						int tempx = x;
 						int tempy = y;
-						while (pixelDetection(ro,x,y,dir) && (x != 0 || y !=0 )) {
-							if (x != 0)
-								x += x > 0 ? -1 : 1;
-							if (y != 0)
-								y += y > 0 ? -1 : 1;
-						}
 
 						if (dynamic_cast<PhysicsObject*>(this)) {
 							x = tempx;
