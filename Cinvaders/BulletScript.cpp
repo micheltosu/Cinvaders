@@ -8,12 +8,14 @@ BulletScript::~BulletScript(){}
 void BulletScript::run(){
 	if (dir == 1)
 		ro->move(0, -10);
-	else if (dir == 2)
-		ro->requestMove(10, 0);
-	else if (dir == 3)
+	else if (dir == 2) {
+		int x = 10, y = 0;
+		ro->requestMove(x, y);
+	}
+	/*else if (dir == 3)
 		ro->requestMove(0, 10);
 	else if (dir == 4)
-		ro->requestMove(-10, 0);
+		ro->requestMove(-10, 0);*/
 
 	if (ro->getRect()->x > GameEngine::getInstance().window_width || ro->getRect()->x < 0) {
 		GameEngine::getInstance().getCurrentScene()->removeObject(ro);

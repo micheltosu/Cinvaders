@@ -58,7 +58,7 @@ namespace ToMingine {
         MouseManager *mouseManager() { return mouseMan; }
 	private:
 		GameEngine();
-		const int FPS = 30;
+		const int FPS = 40;
 		const int tickInterval = 1000 / FPS;
 		SDL_Window *window;
 		SDL_Renderer *renderer;
