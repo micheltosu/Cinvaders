@@ -1,14 +1,10 @@
 #include <string>
 #include <iostream>
-#include "GameEngine.h"
+
+#include "ToMingine.h"
+
 #include "PlayerScript.h"
 #include "EnemyScript.h"
-#include "AnimatedSprite.h"
-#include "FunctionKeybinding.h"
-#include "MemberFunctionKeybinding.h"
-#include "Inputfield.h"
-#include "TextLabel.h"
-#include "Button.h"
 
 using namespace std;
 using namespace ToMingine;
@@ -26,7 +22,7 @@ int main(int argc, char** argv) {
 	AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1);
 	
 	PhysicsObject* player = new PhysicsObject(playerSprite, PLAYER, 500, 550);
-	RigidObject* enemy = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 30);
+	RigidObject* enemy = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 400, 400);
 	RigidObject* enemy2 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 300, 200);
 	RigidObject* enemy3 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 600, 200);
 	RigidObject* enemy4 = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 700, 200);
@@ -35,22 +31,22 @@ int main(int argc, char** argv) {
 
     PlayerScript* ps = new PlayerScript(player);
 	player->addScript(ps);
-	enemy->addScript(new EnemyScript(enemy));
+	//enemy->addScript(new EnemyScript(enemy));
 	enemy2->addScript(new EnemyScript(enemy2));
 	enemy3->addScript(new EnemyScript(enemy3));
 	enemy4->addScript(new EnemyScript(enemy4));
 	myScene.addObject(player);
-	myScene.addObject(enemy);
-	myScene.addObject(enemy2);
-	myScene.addObject(enemy3);
-	myScene.addObject(enemy4);
+	//myScene.addObject(enemy);
+	//myScene.addObject(enemy2);
+	//myScene.addObject(enemy3);
+	//myScene.addObject(enemy4);
 	myScene.addObject(wall);
 	myScene.addObject(sidewall);
 
     // Keybindings
     SDL_Keycode sk = SDLK_SPACE;
     MemberFunctionKeybinding<PlayerScript>* mk = new MemberFunctionKeybinding<PlayerScript>(ps, &PlayerScript::shoot);
-    GameEngine::getInstance().keyboardManager()->addBinding(sk, mk);
+    GameEngine::getInstance().keyboardManager()->addBinding<PlayerScript>(sk, mk);
     
     GameEngine::getInstance().keyboardManager()->addListener(player);
     // End keybindings

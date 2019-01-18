@@ -13,7 +13,7 @@
 #include "GameObject.h"
 
 namespace ToMingine {
-    
+    enum Direction {HORIZ, VERT};
     class RigidObject :    public GameObject {
     public:
 		RigidObject(std::string path, Type t);
@@ -22,14 +22,22 @@ namespace ToMingine {
         RigidObject(Sprite* spr, Type t, int x, int y);
         ~RigidObject();
         
+        void move(int x, int y);
 		void collision(Type t);
 
-        GameObject* requestMove(int, int);
 
-        void move(int x, int y);
+		GameObject* requestMove(int& x, int& y) {
+			Direction dir = HORIZ;
+			return requestMove(x, y, dir);
+		}
 
+	protected:
+		GameObject* requestMove(int&, int&, Direction&);
     private:
+		int GetAlphaXY(int x, int y);
+		bool pixelDetection(RigidObject* ro, int x, int y, Direction&);
         const int SPEED = 1;
+        
     };
 
 }

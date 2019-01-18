@@ -61,7 +61,9 @@ namespace ToMingine {
     }
     
     TextBox::~TextBox() {
-        delete font;
+		TTF_CloseFont(font);
+		font = nullptr;
         SDL_FreeSurface(txtSurf);
+		txtSurf = nullptr;
     }
 }

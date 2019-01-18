@@ -36,6 +36,7 @@ namespace ToMingine {
 
 
 		void run();
+        void destroyGameOject(GameObject *);
 		void addScene(Scene* s);
 		void setCurrentScene(Scene* s) { currentScene = s; }
 		Scene* getCurrentScene() { return currentScene; }

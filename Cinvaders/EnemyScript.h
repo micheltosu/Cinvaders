@@ -1,15 +1,15 @@
 #ifndef ENEMY_SCRIPT_H
 #define ENEMY_SCRIPT_H
 
-
-#include "RigidObject.h"
-#include "Script.h"
+#include "ToMingine.h"
 
 using namespace ToMingine;
 class EnemyScript : public Script {
 public:
 	EnemyScript(RigidObject* ro);
 	~EnemyScript();
+    
+    GameObject *getGameObject() override { return ro; }
 private:
 	RigidObject* ro;
 	void run();

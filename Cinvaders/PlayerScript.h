@@ -1,10 +1,8 @@
 #ifndef PLAYER_SCRIPT_H
 #define PLAYER_SCRIPT_H
-#include "RigidObject.h"
-#include "Script.h"
-#include "GameObject.h"
-#include <iostream>
 
+#include <iostream>
+#include "ToMingine.h"
 
 using namespace ToMingine;
 class PlayerScript : public Script {
@@ -14,9 +12,11 @@ public:
 	~PlayerScript();
 	void run();
 	void moveUp();
-    void keyBoardEvent(Uint32);
+    void keyBoardEvent(const SDL_KeyboardEvent&) override;
 	void collision(Type t);
 	void shoot(uint32_t);
+    GameObject* getGameObject() override { return ro; }
+    
 	int x = 0, y = 0;
 
 private:

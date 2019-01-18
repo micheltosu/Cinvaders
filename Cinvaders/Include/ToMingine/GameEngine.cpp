@@ -16,6 +16,17 @@ namespace ToMingine {
 				SDL_Delay(delay);
 		} // yttre while
 	}
+    
+    void GameEngine::destroyGameOject(GameObject * go) {
+        for (Scene *s : scenes) {
+            s->removeObject(go);
+        }
+        
+        keyMan->removeListener(go);
+        keyMan->removeBindingsFor(go);
+        mouseMan->removeListener(go);
+        
+    }
 
 	void GameEngine::addScene(Scene * s){
 		if (scenes.empty())
@@ -59,6 +70,9 @@ namespace ToMingine {
 			std::cout << SDL_GetError() << std::endl;
 			exit(-1);
 		}
+        
+        // Stop text input on start.
+        SDL_StopTextInput();
 
 		keyMan = new KeyboardManager();
         mouseMan = new MouseManager();

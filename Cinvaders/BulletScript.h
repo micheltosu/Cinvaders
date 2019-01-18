@@ -1,10 +1,7 @@
 #ifndef BULLET_SCRIPT_H
 #define BULLET_SCRIPT_H
 
-#include "Script.h"
-#include "GameEngine.h"
-
-
+#include "ToMingine.h"
 
 using namespace ToMingine;
 class BulletScript : public Script {
@@ -13,6 +10,7 @@ public:
 	~BulletScript();
 	void run();
 	void collision(Type t);
+    GameObject* getGameObject() { return ro; }
 private:
 	RigidObject* ro;
 	int dir;

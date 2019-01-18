@@ -7,6 +7,7 @@ namespace ToMingine {
     class MemberFunctionKeybinding : public KeybindingBase {
     public:
         void execute(uint32_t);
+        T* getObj() { return obj; }
         MemberFunctionKeybinding(T* inObj, void (T::*inFunk)(uint32_t));
         
     private:
