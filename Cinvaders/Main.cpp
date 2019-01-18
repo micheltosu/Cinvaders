@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
     ge.addScene(&myScene);
     ge.addScene(&myScene2);
 
-	AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1);
+	AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/C-ship spritesheet.png", 4, 1);
 	
 	PhysicsObject* player = new PhysicsObject(playerSprite, PLAYER, 500, 550);
 	RigidObject* enemy = new RigidObject(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 400, 400);
