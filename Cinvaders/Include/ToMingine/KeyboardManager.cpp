@@ -77,12 +77,19 @@ namespace ToMingine {
                 //För varje keycode som har bindings
                 for (auto &kPair : bindings) {
                     //För varje binding i listan
+                    typedef std::list<KeybindingBase*>::iterator kbItType;
+                    std::vector<kbItType> removeIterators;
+                    
                     for(auto kbIt = kPair.second.begin(); kbIt != kPair.second.end(); ++kbIt) {
                         if(*kbIt == oIt->first) {
                             toRemove.insert(oIt->first);
-                            kPair.second.erase(kbIt);
+                            removeIterators.push_back(kbIt);
                         }
                     }
+                    
+                    for (kbItType it : removeIterators)
+                        kPair.second.erase(it);
+                    
                 }
             }
             
