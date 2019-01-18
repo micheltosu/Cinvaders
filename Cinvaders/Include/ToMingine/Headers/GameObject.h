@@ -32,6 +32,7 @@ public:
 
     virtual void collision(Type) {}
     bool hasScript();
+    void draw();
 protected:
     GameObject();
     GameObject(Sprite* spr, Type t);
@@ -44,7 +45,7 @@ protected:
 
 
 private:
-    void draw();
+    
     
     
     int width, height; // The gameObject width and height

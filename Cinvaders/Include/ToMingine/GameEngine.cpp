@@ -6,10 +6,17 @@ namespace ToMingine {
 	void GameEngine::run() {
 		
 		while (!quit) {
-			Uint32 nextTick = SDL_GetTicks() + tickInterval;
+            Uint32 sdlTicks = SDL_GetTicks();
+			Uint32 nextTick = sdlTicks + tickInterval;
+            
 			if (currentScene->run())
 				nextScene();
-			SDL_RenderPresent(renderer);
+            if(sdlTicks - lastDraw > (1000/FPS) ) {
+                currentScene->draw();
+                SDL_RenderPresent(renderer);
+                lastDraw = sdlTicks;
+            }
+            
 			//FPS
 			int delay = nextTick - SDL_GetTicks();
 			if (delay > 0)

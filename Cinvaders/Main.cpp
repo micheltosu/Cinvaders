@@ -11,6 +11,7 @@ using namespace ToMingine;
 
 int main(int argc, char** argv) {
     GameEngine &ge = GameEngine::getInstance();
+    ge.setFps(30);
     
     // Common things
     SDL_Color transparent = {0,0,0,0};
