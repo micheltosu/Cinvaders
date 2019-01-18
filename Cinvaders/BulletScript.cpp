@@ -27,5 +27,5 @@ void BulletScript::run(){
 
 void BulletScript::collision(Type t){
 	if (t == ENEMY)
-		GameEngine::getInstance().getCurrentScene()->removeObject(ro);
+		GameEngine::getInstance().destroyGameOject(ro);
 }
