@@ -42,9 +42,8 @@ namespace ToMingine {
         if (script) {
             script->run();
         }
-        draw();
-
     }
+    
 
     void GameObject::keyBoardEvent(const SDL_KeyboardEvent& kev) {
         if (script != nullptr)

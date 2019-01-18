@@ -38,10 +38,13 @@ namespace ToMingine {
 		void run();
         void destroyGameOject(GameObject *);
 		void addScene(Scene* s);
+        
+        
 		void setCurrentScene(Scene* s) { currentScene = s; }
 		Scene* getCurrentScene() { return currentScene; }
 		SDL_Renderer* getRen() { return renderer; }
 		void nextScene();
+        void setFps(int fps) { FPS = fps;}
 
 
 		void Quit() { quit = true; }
@@ -50,7 +53,7 @@ namespace ToMingine {
 			static GameEngine instance;
 			return instance;
 		}
-		
+        int getFps() {return FPS;}
 		int window_width = 1280;
 		int window_height = 720;
 
@@ -58,8 +61,9 @@ namespace ToMingine {
         MouseManager *mouseManager() { return mouseMan; }
 	private:
 		GameEngine();
-		const int FPS = 40;
-		const int tickInterval = 1000 / FPS;
+		int FPS = 40;
+        int lastDraw = 0;
+        const int tickInterval = 1000 / 30;
 		SDL_Window *window;
 		SDL_Renderer *renderer;
 		
