@@ -22,6 +22,9 @@ namespace ToMingine {
 		return nullptr;
 	}
 	void PhysicsObject::bounce(GameObject* go, int* x, int* y, Direction dir){
+		if (*y == 1 || *y == -1) {
+			*y = 0;
+		}
 		if(dir == VERT)
 			*x *= -1 * elasticity;
 		if(dir == HORIZ)

@@ -13,11 +13,11 @@ public:
 	void setGravity(int g) { gravity = g; }
 	void setElasticity(double e) { elasticity = e; }
     
+	void bounce(GameObject*, int* x, int* y, Direction);
 protected:
     PhysicsObject(Sprite* spr, Type t);
     PhysicsObject(Sprite* spr, Type t, int x, int y);
 private:
-	void bounce(GameObject*, int* x, int* y, Direction);
 	double elasticity = 0.5;
 	GameObject* collisionObject;
 	int gravity = 1;

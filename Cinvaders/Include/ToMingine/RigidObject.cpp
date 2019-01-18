@@ -83,18 +83,23 @@ namespace ToMingine {
             if (go != this && type != go->getType()) {
                 if (
                     otherRect->y + otherRect->h >= getRect()->y + y &&
-                    getRect()->y + otherRect->h + y >= otherRect->y &&
+                    getRect()->y + getRect()->h + y >= otherRect->y &&
                     otherRect->x + otherRect->w >= getRect()->x + x &&
                     getRect()->x + getRect()->w + x >= otherRect->x 
                     ) {
 					RigidObject* ro;
 					if (ro = dynamic_cast<RigidObject*>(go)) {
-						int tempx = x;
-						int tempy = y;
-
-						if (dynamic_cast<PhysicsObject*>(this)) {
-							x = tempx;
-							y = tempy;
+						
+						if (ro->type == WALL && (y >= 1 || y <= 1)) {	
+							if (PhysicsObject* po = dynamic_cast<PhysicsObject*>(this)) {
+								std::cout << x << "," << y << std::endl;
+								po->bounce(ro, &x, &y, HORIZ);
+								std::cout << x << "," << y << std::endl;
+							}
+							move(x, y);
+							if (hasScript())
+								collision(ro->type);
+							return go;
 						}
 
 						if (pixelDetection(ro, x, y,dir)) {
@@ -113,9 +118,8 @@ namespace ToMingine {
     }
 
     void RigidObject::move(int x, int y) {        
-		if (requestMove(x, y)) {
 			rect.x += x * SPEED;
 			rect.y += y * SPEED;
-		}
+		
     }
 }
