@@ -88,7 +88,7 @@ int main(int argc, char** argv) {
     level1.addObject(playerName);
     level1.addObject(ground);
     //Add Scene objects
-    AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1);
+    AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/player.png", 2, 1);
     
     PhysicsObject* player = PhysicsObject::create(playerSprite, PLAYER, 500, 550);
     
@@ -100,31 +100,31 @@ int main(int argc, char** argv) {
     level1.addObject(player);
     
     
-    RigidObject* enemy1 = RigidObject::create(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 100, 50);
+    RigidObject* enemy1 = RigidObject::create(new AnimatedSprite("Resources/Image/cshipsheet.png", 4, 1), ENEMY, 100, 50);
     enemy1->addScript(new EnemyScript(enemy1));
     level1.addObject(enemy1);
     
-    RigidObject* enemy2 = RigidObject::create(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 250, 100);
+    RigidObject* enemy2 = RigidObject::create(new AnimatedSprite("Resources/Image/cshipsheet.png", 4, 1), ENEMY, 250, 100);
     enemy2->addScript(new EnemyScript(enemy2));
     level1.addObject(enemy2);
     
-    RigidObject* enemy3 = RigidObject::create(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 400, 50);
+    RigidObject* enemy3 = RigidObject::create(new AnimatedSprite("Resources/Image/cshipsheet.png", 4, 1), ENEMY, 400, 50);
     enemy3->addScript(new EnemyScript(enemy3));
     level1.addObject(enemy3);
     
-    RigidObject* enemy4 = RigidObject::create(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 550, 100);
+    RigidObject* enemy4 = RigidObject::create(new AnimatedSprite("Resources/Image/cshipsheet.png", 4, 1), ENEMY, 550, 100);
     enemy4->addScript(new EnemyScript(enemy4));
     level1.addObject(enemy4);
     
-    RigidObject* enemy5 = RigidObject::create(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 700, 50);
+    RigidObject* enemy5 = RigidObject::create(new AnimatedSprite("Resources/Image/cshipsheet.png", 4, 1), ENEMY, 700, 50);
     enemy5->addScript(new EnemyScript(enemy5));
     level1.addObject(enemy5);
     
-    RigidObject* enemy6 = RigidObject::create(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 850, 100);
+    RigidObject* enemy6 = RigidObject::create(new AnimatedSprite("Resources/Image/cshipsheet.png", 4, 1), ENEMY, 850, 100);
     enemy6->addScript(new EnemyScript(enemy6));
     level1.addObject(enemy6);
     
-    RigidObject* enemy7 = RigidObject::create(new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1), ENEMY, 1000, 50);
+    RigidObject* enemy7 = RigidObject::create(new AnimatedSprite("Resources/Image/cshipsheet.png", 4, 1), ENEMY, 1000, 50);
     enemy7->addScript(new EnemyScript(enemy7));
     level1.addObject(enemy7);
     
