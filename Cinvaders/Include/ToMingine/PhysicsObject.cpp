@@ -15,26 +15,18 @@ namespace ToMingine {
         collisionObject = nullptr;
     }
 	GameObject* PhysicsObject::requestMove(int* x, int* y){
-		*y += gravity;
-		GameObject* go = RigidObject::requestMove(*x, *y);
+		Direction dir;
+		//*y += gravity;
+		GameObject* go = RigidObject::requestMove(*x, *y, dir);
 		if (go) {
-			bounce(go, x, y);
+			bounce(go, x, y, dir);
 		}
 		return nullptr;
 	}
-	void PhysicsObject::bounce(GameObject* go, int* x, int* y){
-		if ((go->getRect()->x < (getRect()->x + getRect()->w) && (go->getRect()->x + go->getRect()->w) > getRect()->x) &&
-			(go->getRect()->y > (getRect()->y + getRect()->h) || (go->getRect()->y + go->getRect()->h) < getRect()->y)
-			) {
-			*y *= -1 * elasticity;
-		}
-		if ((go->getRect()->y < (getRect()->y + getRect()->h) && (go->getRect()->y + go->getRect()->h) > getRect()->y) &&
-			(go->getRect()->x > (getRect()->x + getRect()->w) || (go->getRect()->x + go->getRect()->w) < getRect()->x)
-			) {
+	void PhysicsObject::bounce(GameObject* go, int* x, int* y, Direction dir){
+		if(dir == VERT)
 			*x *= -1 * elasticity;
-		}
-
-			
-			
+		if(dir == HORIZ)
+			*y *= -1 * elasticity;
 	}
 }

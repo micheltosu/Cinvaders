@@ -22,20 +22,30 @@ AnimatedSprite::AnimatedSprite(std::string path, int num, int seconds = 1) : Spr
 }
 
 unsigned long int AnimatedSprite::getPixel(int x, int y){
+	SDL_LockSurface(surface);
+
 	int bytes = (y*surface->w + (frameRect.w * currentFrame) + x);
 	if (surface->format->BitsPerPixel == 8) {
 		char* pixels = static_cast<char*>(surface->pixels);
+		SDL_UnlockSurface(surface);
 		return pixels[bytes];
 	}
 	if (surface->format->BitsPerPixel == 16) {
 		unsigned short* pixels = static_cast<unsigned short*>(surface->pixels);
+		SDL_UnlockSurface(surface);
 		return pixels[bytes];
 	}
 	if (surface->format->BitsPerPixel == 32) {
 		unsigned int* pixels = static_cast<unsigned int*>(surface->pixels); 
+		SDL_UnlockSurface(surface);
 		return pixels[bytes];
 	}
+<<<<<<< HEAD:Cinvaders/Include/ToMingine/AnimatedSprite.cpp
     return 0;
+=======
+	SDL_UnlockSurface(surface);
+	return 0;
+>>>>>>> origin/Pixel_Collision:Cinvaders/AnimatedSprite.cpp
 }
     
 void AnimatedSprite::draw() {
