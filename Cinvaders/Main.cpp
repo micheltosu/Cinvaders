@@ -23,6 +23,7 @@ int main(int argc, char** argv) {
     playerName->setText("anonymous");
     
     
+    
     // Create scenes
     Scene mainMenu = Scene("Resources/Image/bgMenu.png");
     ge.addScene(&mainMenu);
@@ -79,10 +80,13 @@ int main(int argc, char** argv) {
     // First level
     //
     
+    RigidObject* ground = new RigidObject(new Sprite("Resources/Image/ground.png"), WALL, 0, 676);
+    
+    
     Scene level1 = Scene("Resources/Image/background.png");
     ge.addScene(&level1);
     level1.addObject(playerName);
-    
+    level1.addObject(ground);
     //Add Scene objects
     AnimatedSprite* playerSprite = new AnimatedSprite("Resources/Image/blueShipSheet.png", 4, 1);
     

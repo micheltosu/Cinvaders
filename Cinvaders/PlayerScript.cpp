@@ -25,7 +25,7 @@ void PlayerScript::keyBoardEvent(const SDL_KeyboardEvent& kev) {
     if (kev.keysym.sym == SDLK_s)
         y += 1;
     if (kev.keysym.sym == SDLK_w)
-        y -= 2;
+        y -= 5;
     if (kev.keysym.sym == SDLK_d)
         x += 1;
     if (kev.keysym.sym == SDLK_a)
@@ -40,7 +40,6 @@ void PlayerScript::keyBoardEvent(const SDL_KeyboardEvent& kev) {
 
 
 void PlayerScript::collision(Type t) {
-    GameEngine::getInstance().destroyGameOject(ro );
 	
 }
 
