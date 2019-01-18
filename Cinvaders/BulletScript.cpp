@@ -8,15 +8,22 @@ BulletScript::~BulletScript(){
 }
 
 void BulletScript::run(){
-	if (dir == 1)
-		ro->move(0, -10);
-	else if (dir == 2) {
-		ro->move(10, 0);
+	if (dir == 1) {
+		int x = 0, y = -10;
+		ro->requestMove(x,y);
 	}
-	else if (dir == 3)
-		ro->move(0, 10);
-	else if (dir == 4)
-		ro->move(-10, 0);
+	else if (dir == 2) {
+		int x = 10, y = 0;
+		ro->requestMove(x,y);
+	}
+	else if (dir == 3) {
+		int x = 0, y = 10;
+		ro->requestMove(x, y);
+	}
+	else if (dir == 4) {
+		int x = -10, y = 0;
+		ro->requestMove(x, y);
+	}
 
 	if (ro->getRect()->x > GameEngine::getInstance().window_width || ro->getRect()->x < 0) {
 		GameEngine::getInstance().getCurrentScene()->removeObject(ro);
