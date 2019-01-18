@@ -87,6 +87,7 @@ namespace ToMingine {
                         }
                     }
                     
+                    // Remove the found keybindings
                     for (kbItType it : removeIterators)
                         kPair.second.erase(it);
                     
