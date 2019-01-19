@@ -95,8 +95,8 @@ namespace ToMingine {
 							collision(ro->getType());
 							if (ro->hasScript()) {
 								ro->collision(type);
-								}
-								return ro;
+							}
+							return ro;
 						}
 					}
                 }
