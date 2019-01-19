@@ -54,7 +54,3 @@ void PlayerScript::shoot(Uint32){
     bullet->addScript(new BulletScript(1, bullet));
     GameEngine::getInstance().getCurrentScene()->addObject(bullet);
 }
-
-void PlayerScript::moveUp() {
-    std::cout << "HEJ!" << std::endl;
-}

@@ -30,6 +30,7 @@ namespace ToMingine {
 		int width = rightX - leftX;
 		int height = rightY - leftY;
 
+		//ytan där de två rektanglarna korsar varandra
 		SDL_Rect collisionRect = { leftX, leftY, width, height };
 
 		int o1XOffset = Maximum(collisionRect.x, rect.x+movex) - Minimum(collisionRect.x, rect.x+movex);
@@ -43,17 +44,13 @@ namespace ToMingine {
 				int o1A = GetAlphaXY(c + o1XOffset, r + o1YOffset);
 				int o2A = ro->GetAlphaXY(c + o2XOffset, r + o2YOffset);
 				if (o1A && o2A) {
-					//if((o1s pixel till vänster||o1s pixel till höger)&&
-					//	(!o1s pixel ovan || !o1 pixel under);
+
+					//sätter dir för metoden bounce om så den vet hur objektet ska studsa
 					if ((GetAlphaXY(c - 1 + o1XOffset, r + o1YOffset) || GetAlphaXY(c + 1 + o1XOffset, r + o1YOffset))
 						&&(!(GetAlphaXY(c + o1XOffset, r -1 + o1YOffset)) || !(GetAlphaXY(c + o1XOffset, r + 1 + o1YOffset)))){
-						//std::cout << "vert! ";
 						dir = VERT;
 					}
-					/*if ((!(GetAlphaXY(c - 1 + o1XOffset, r + o1YOffset)) || !(GetAlphaXY(c + 1 + o1XOffset, r + o1YOffset)))
-						&& (GetAlphaXY(c + o1XOffset, r - 1 + o1YOffset) || GetAlphaXY(c + o1XOffset, r + 1 + o1YOffset))) */
 					else {
-						//std::cout << "horiz! ";
 						dir = HORIZ;
 					}
 
@@ -97,7 +94,6 @@ namespace ToMingine {
 
 							collision(ro->getType());
 							if (ro->hasScript()) {
-								std::cout << ro->getType() << std::endl;
 								ro->collision(type);
 								}
 								return ro;
