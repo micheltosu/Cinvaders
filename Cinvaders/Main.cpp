@@ -11,7 +11,7 @@ using namespace ToMingine;
 
 int main(int argc, char** argv) {
     GameEngine &ge = GameEngine::getInstance();
-    ge.setFps(30);
+    ge.setFps(40);
     
     // Common things
     SDL_Color transparent = {0,0,0,0};
@@ -31,27 +31,27 @@ int main(int argc, char** argv) {
     
 
     // Add main menu objects
-    TextLabel *gameLabel = new TextLabel("Resources/Fonts/Pixeled.ttf",40, 400, 50, 600, 100);
+    TextLabel *gameLabel = new TextLabel("Resources/Fonts/Pixeled.ttf",40, 440, 50, 600, 100);
     gameLabel->setBgColor(transparent);
     gameLabel->setFgColor(fgColor);
     gameLabel->setText("C INVADERS");
     
-    TextLabel *tagline = new TextLabel("Resources/Fonts/Pixeled.ttf",20, 200, 200 , 0,0);
+    TextLabel *tagline = new TextLabel("Resources/Fonts/Pixeled.ttf",20, 260, 200 , 0,0);
     tagline->setBgColor(transparent);
     tagline->setFgColor(fgColor);
     tagline->setText("Defend your language against the invasion");
     
-    TextLabel *nameInstructions = new TextLabel("Resources/Fonts/Pixeled.ttf",15, 200, 300, 0,0);
+    TextLabel *nameInstructions = new TextLabel("Resources/Fonts/Pixeled.ttf",15, 300, 300, 0,0);
     nameInstructions->setBgColor(transparent);
     nameInstructions->setFgColor(fgColor);
     nameInstructions->setText("Click in the box to enter player name:");
     
-    Inputfield *nameInput = new Inputfield("Resources/Fonts/Pixeled.ttf", 15, 700,300,0,0);
+    Inputfield *nameInput = new Inputfield("Resources/Fonts/Pixeled.ttf", 15, 800,300,0,0);
     nameInput->setFgColor(fgColor);
     nameInput->setBgColor(bgColor);
     nameInput->setText("Player 1");
     
-    SDL_Rect buttonPos = {500,500,100,100};
+    SDL_Rect buttonPos = {530,500,100,100};
     auto updateNameLabel = [&nameInput, &playerName]() -> void {
         
         playerName->setText(nameInput->getText());
@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
     startButton->setBgColor(bgColor);
     
     
-    TextLabel *instructions = new TextLabel("Resources/Fonts/Pixeled.ttf",15, 380, 650, 0,0);
+    TextLabel *instructions = new TextLabel("Resources/Fonts/Pixeled.ttf",15, 360, 650, 0,0);
     instructions->setBgColor(transparent);
     instructions->setFgColor(fgColor);
     instructions->setText("Move with the WASD keys, shoot with SPACEBAR");
