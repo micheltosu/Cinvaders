@@ -1,6 +1,6 @@
 #include "KeyboardManager.h"
 #include "MemberFunctionKeybinding.h"
-#include "PlayerScript.h"
+#include "Script.h"
 #include <iostream>
 #include <list>
 namespace ToMingine {
