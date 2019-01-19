@@ -7,7 +7,6 @@
 #include <SDL.h>
 #endif
 
-
 #include <string>
 #include <iostream>
 #include "GameObject.h"

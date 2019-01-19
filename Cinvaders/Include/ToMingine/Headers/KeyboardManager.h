@@ -2,13 +2,11 @@
 #define KeyboardManager_h
 
 #ifdef _WIN32
-
 #include <SDL.h>
 
-
 #elif defined (__APPLE__)
-
 #include <SDL2/SDL.h>
+
 #endif
 
 #include <set>
