@@ -9,13 +9,15 @@
 namespace ToMingine {
     RigidObject::RigidObject(Sprite* spr, Type t) : GameObject(spr, t) {};
     RigidObject::RigidObject(Sprite* spr, Type t, int x, int y) : GameObject(spr, t, x, y) {};
-    RigidObject::RigidObject(std::string path, Type t): RigidObject(new Sprite(path), t) { }
-    RigidObject::RigidObject(std::string path, Type t, int x, int y) : RigidObject(new Sprite(path), t, x, y) { }
-    
     RigidObject::~RigidObject() { }
+    
+    RigidObject* RigidObject::create(Sprite *spr, Type t, int x, int y) {
+        return new RigidObject(spr, t, x, y);
+    }
 
 	void RigidObject::collision(Type t)	{ 
-		script->collision(t);
+		if(script != nullptr)
+			script->collision(t);
 	}
 
 	bool RigidObject::pixelDetection(RigidObject * ro, int movex, int movey, Direction& dir){
@@ -28,6 +30,7 @@ namespace ToMingine {
 		int width = rightX - leftX;
 		int height = rightY - leftY;
 
+		//ytan där de två rektanglarna korsar varandra
 		SDL_Rect collisionRect = { leftX, leftY, width, height };
 
 		int o1XOffset = Maximum(collisionRect.x, rect.x+movex) - Minimum(collisionRect.x, rect.x+movex);
@@ -41,17 +44,13 @@ namespace ToMingine {
 				int o1A = GetAlphaXY(c + o1XOffset, r + o1YOffset);
 				int o2A = ro->GetAlphaXY(c + o2XOffset, r + o2YOffset);
 				if (o1A && o2A) {
-					//if((o1s pixel till vänster||o1s pixel till höger)&&
-					//	(!o1s pixel ovan || !o1 pixel under);
+
+					//sätter dir för metoden bounce om så den vet hur objektet ska studsa
 					if ((GetAlphaXY(c - 1 + o1XOffset, r + o1YOffset) || GetAlphaXY(c + 1 + o1XOffset, r + o1YOffset))
 						&&(!(GetAlphaXY(c + o1XOffset, r -1 + o1YOffset)) || !(GetAlphaXY(c + o1XOffset, r + 1 + o1YOffset)))){
-						//std::cout << "vert! ";
 						dir = VERT;
 					}
-					/*if ((!(GetAlphaXY(c - 1 + o1XOffset, r + o1YOffset)) || !(GetAlphaXY(c + 1 + o1XOffset, r + o1YOffset)))
-						&& (GetAlphaXY(c + o1XOffset, r - 1 + o1YOffset) || GetAlphaXY(c + o1XOffset, r + 1 + o1YOffset))) */
 					else {
-						//std::cout << "horiz! ";
 						dir = HORIZ;
 					}
 
@@ -82,31 +81,22 @@ namespace ToMingine {
             if (go != this && type != go->getType()) {
                 if (
                     otherRect->y + otherRect->h >= getRect()->y + y &&
-                    getRect()->y + otherRect->h + y >= otherRect->y &&
+                    getRect()->y + getRect()->h + y >= otherRect->y &&
                     otherRect->x + otherRect->w >= getRect()->x + x &&
                     getRect()->x + getRect()->w + x >= otherRect->x 
                     ) {
 					RigidObject* ro;
 					if (ro = dynamic_cast<RigidObject*>(go)) {
-						int tempx = x;
-						int tempy = y;
-						while (pixelDetection(ro,x,y,dir) && (x != 0 || y !=0 )) {
-							if (x != 0)
-								x += x > 0 ? -1 : 1;
-							if (y != 0)
-								y += y > 0 ? -1 : 1;
-						}
-
-						if (dynamic_cast<PhysicsObject*>(this)) {
-							x = tempx;
-							y = tempy;
-						}
-
 						if (pixelDetection(ro, x, y,dir)) {
-							collision(go->getType());
-								if (go->hasScript())
-									go->collision(type);
-								return go;
+							if (ro->type == WALL) {
+								move(x, 0);
+							}
+
+							collision(ro->getType());
+							if (ro->hasScript()) {
+								ro->collision(type);
+							}
+							return ro;
 						}
 					}
                 }
@@ -118,9 +108,7 @@ namespace ToMingine {
     }
 
     void RigidObject::move(int x, int y) {        
-		if (requestMove(x, y)) {
 			rect.x += x * SPEED;
 			rect.y += y * SPEED;
-		}
     }
 }

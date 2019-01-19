@@ -38,7 +38,7 @@ namespace ToMingine {
     }
     
     Sprite::~Sprite(){
-		
+        go = nullptr;
         
     }
     

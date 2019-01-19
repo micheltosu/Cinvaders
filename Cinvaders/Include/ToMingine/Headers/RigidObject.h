@@ -16,15 +16,11 @@ namespace ToMingine {
     enum Direction {HORIZ, VERT};
     class RigidObject :    public GameObject {
     public:
-		RigidObject(std::string path, Type t);
-        RigidObject(Sprite* spr, Type t);
-		RigidObject(std::string path, Type t, int x, int y);
-        RigidObject(Sprite* spr, Type t, int x, int y);
+        static RigidObject* create(Sprite* spr, Type t, int x, int y);
         ~RigidObject();
         
         void move(int x, int y);
 		void collision(Type t);
-
 
 		GameObject* requestMove(int& x, int& y) {
 			Direction dir = HORIZ;
@@ -32,6 +28,9 @@ namespace ToMingine {
 		}
 
 	protected:
+        RigidObject(Sprite* spr, Type t);
+        RigidObject(Sprite* spr, Type t, int x, int y);
+        
 		GameObject* requestMove(int&, int&, Direction&);
     private:
 		int GetAlphaXY(int x, int y);

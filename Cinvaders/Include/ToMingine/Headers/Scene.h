@@ -30,6 +30,7 @@ public:
 	void addObject(GameObject* go);
 	void removeObject(GameObject* go);
 	bool run();
+    void draw();
 	std::list<GameObject*> *getGameObjects() { return &gameObjects; }
 private:
 	SDL_Texture *background;

@@ -6,19 +6,19 @@
 namespace ToMingine {
 class PhysicsObject : public RigidObject {
 public:
-	PhysicsObject(std::string path, Type t);
-	PhysicsObject(Sprite* spr, Type t);
-	PhysicsObject(std::string path, Type t, int x, int y);
-	PhysicsObject(Sprite* spr, Type t, int x, int y);
+    static PhysicsObject* create(Sprite* spr, Type t, int x, int y);
 	~PhysicsObject();
 
 	GameObject* requestMove(int*, int*);
 	void setGravity(int g) { gravity = g; }
 	void setElasticity(double e) { elasticity = e; }
-private:
+    
 	void bounce(GameObject*, int* x, int* y, Direction);
+protected:
+    PhysicsObject(Sprite* spr, Type t);
+    PhysicsObject(Sprite* spr, Type t, int x, int y);
+private:
 	double elasticity = 0.5;
-	GameObject* collisionObject;
 	int gravity = 1;
 };
 

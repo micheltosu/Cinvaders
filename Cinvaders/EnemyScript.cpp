@@ -1,5 +1,5 @@
 #include "EnemyScript.h"
-
+#include "BulletScript.h"
 
 EnemyScript::EnemyScript(RigidObject* ro): ro(ro){ }
 
@@ -13,13 +13,20 @@ void EnemyScript::run(){
 		nextTick = SDL_GetTicks() + tickInterval;
 		x = rand() % 3 - 1;
 		y = rand() % 3 - 1;
+		shoot(0);
 	}
 	ro->move(x, y);
+}
 
-		
+void EnemyScript::shoot(Uint32){
+    int x = ro->getRect()->x +(ro->getRect()->w / 2);
+    int y = ro->getRect()->y -(ro->getRect()->h / 2);
+    RigidObject* bullet = RigidObject::create(new Sprite("Resources/Image/plus bullet.png"), ENEMY, x - 7, y+ ro->getSurface()->h);
+    bullet->addScript(new BulletScript(3, bullet));
+    GameEngine::getInstance().getCurrentScene()->addObject(bullet);
 }
 
 void EnemyScript::collision(Type t){
-	/*if (t == PLAYER)
-		GameEngine::getInstance().getCurrentScene()->removeObject(ro);*/
+	if (t == PLAYER)
+		GameEngine::getInstance().destroyGameOject(ro);
 }

@@ -11,9 +11,10 @@ enum Type { PLAYER, ENEMY, AMMO, WALL };
 class Script;
 class GameObject {
 public:
-    GameObject();
-    GameObject(Sprite* spr, Type t);
-    GameObject(Sprite* spr, Type t, int x, int y);
+    
+    static GameObject* create(Sprite* spr, Type t);
+    static GameObject* create(Sprite* spr, Type t, int x, int y);
+    
     virtual ~GameObject();
 	
 	GameObject(const GameObject& other) = delete;
@@ -31,7 +32,12 @@ public:
 
     virtual void collision(Type) {}
     bool hasScript();
+    void draw();
 protected:
+    GameObject();
+    GameObject(Sprite* spr, Type t);
+    GameObject(Sprite* spr, Type t, int x, int y);
+    
     SDL_Rect rect;
     Type type;
     RenderedObject* renOb = nullptr;
@@ -39,7 +45,7 @@ protected:
 
 
 private:
-    void draw();
+    
     
     
     int width, height; // The gameObject width and height

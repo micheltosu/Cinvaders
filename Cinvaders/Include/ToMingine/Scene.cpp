@@ -29,6 +29,14 @@ void Scene::removeObject(GameObject* go){
 	toRemove.push_back(go);
 	
 }
+    
+void Scene::draw() {
+    SDL_RenderClear(GameEngine::getInstance().getRen());
+    SDL_RenderCopy(GameEngine::getInstance().getRen(), background, NULL, NULL);
+    for (GameObject* go : gameObjects) {
+        go->draw();
+    }
+}
 
 bool Scene::run(){
     
@@ -55,8 +63,7 @@ bool Scene::run(){
     
     keyMan->tick();
 
-    SDL_RenderClear(GameEngine::getInstance().getRen());
-    SDL_RenderCopy(GameEngine::getInstance().getRen(), background, NULL, NULL);
+   
     for (GameObject* go : gameObjects) {
         go->tick();
     }

@@ -18,6 +18,7 @@ public:
     GameObject* getGameObject() override { return ro; }
     
 	int x = 0, y = 0;
+    bool isOnWall = false;
 
 private:
 	SDL_Rect prePos;

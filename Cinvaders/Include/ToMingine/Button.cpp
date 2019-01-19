@@ -7,7 +7,7 @@
 #include "GameEngine.h"
 
 namespace ToMingine {
-    Button::Button(std::string path, std::string txt, void (*funcPoint)(), SDL_Rect& pos, int textSize) : TextLabel(path, textSize, pos.x, pos.y, pos.w, pos.h), callback(funcPoint) {
+    Button::Button(std::string path, std::string txt, std::function<void()> funk, SDL_Rect& pos, int textSize) : TextLabel(path, textSize, pos.x, pos.y, pos.w, pos.h), callback(funk) {
         GameEngine::getInstance().mouseManager()->addListener(this);
         setText(txt);
     }
