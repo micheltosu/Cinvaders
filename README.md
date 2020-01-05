@@ -1,3 +1,8 @@
+### C invaders ###
+This is a game created by @micheltosu and @tobiasbjerking as a project for the C++ programming course at DSV, Stockholm University held by Jozef Swiatycki. 
+
+## Instructions ##
+
 Spelet spelas med tangenterna WASD samt mellanslag. I menyn innan spelet startas kan man ange sitt spelarnamn. Tryck sedan på knappen start för att börja spela. 
 
 Programmet behöver ha mappen Resources i samma mapp som programmet körs från.
