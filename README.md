@@ -1,5 +1,5 @@
-### C invaders ###
-This is a game created by @micheltosu and @tobiasbjerking as a project for the C++ programming course at DSV, Stockholm University held by Jozef Swiatycki. 
+# C invaders #
+This is a game created by [Michel Tosu](http://github.com/micheltosu) and [Tobias Bjerking](http://github.com/tobias-bjerking) as a project for the C++ programming course at DSV, Stockholm University held by Jozef Swiatycki. 
 
 ## Instructions ##
 
